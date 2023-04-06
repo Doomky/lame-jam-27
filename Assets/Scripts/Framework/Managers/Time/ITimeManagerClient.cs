@@ -1,4 +1,4 @@
-﻿namespace OldGame.Managers
+﻿namespace Framework.Managers
 {
     public interface ITimeManagerClient
     {

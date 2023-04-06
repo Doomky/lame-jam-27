@@ -4,7 +4,7 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace OldGame.Managers
+namespace Framework.Managers
 {
 
     public class TimeManager : Manager
