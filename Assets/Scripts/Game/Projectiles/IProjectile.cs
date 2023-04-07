@@ -8,6 +8,8 @@ namespace Game
 
         float MovementSpeed { get; set; }
 
-        float Lifetime { get; set; }
+        float CurrentLifetime { get; }
+        
+        float MaxLifetime { get; set; }
     }
 }

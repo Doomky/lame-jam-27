@@ -6,8 +6,8 @@ namespace Game
     [CreateAssetMenu(menuName = "New/Soul", fileName = "Soul", order = 0)]
     public class Soul : SerializedScriptableObject, ISoul
     {
-        [SerializeField] private IPrimaryFragment _primaryFragment;
-        [SerializeField] private ISecondaryFragment _secondaryFragment;
+        [SerializeField, InlineEditor] private IPrimaryFragment _primaryFragment = new PrimaryFragment();
+        [SerializeField, InlineEditor] private ISecondaryFragment _secondaryFragment = new SecondaryFragment();
 
         public IPrimaryFragment PrimaryFragment
         {

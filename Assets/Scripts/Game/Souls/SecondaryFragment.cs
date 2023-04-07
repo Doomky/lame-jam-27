@@ -1,18 +1,26 @@
+using System;
 using Sirenix.OdinInspector;
 using UnityEngine;
 
 namespace Game
 {
-    [CreateAssetMenu(menuName = "New/SecondaryFragment", fileName = "SecondaryFragment", order = 0)]
-    public class SecondaryFragment : SerializedScriptableObject, ISecondaryFragment
+    [Serializable]
+    public class SecondaryFragment : ISecondaryFragment
     {
-        private int _level;
-        private float _movementSpeedModifier;
-        private float _attackSpeedModifier;
-        private float _damageModifier;
-        private float _maxHealthModifier;
-        private float _projectileLifetimeModifier;
-        private float _projectileSpeedModifier;
+        [FoldoutGroup("Secondary Fragment")]
+        [SerializeField] private int _level = 0;
+        [FoldoutGroup("Secondary Fragment")]
+        [SerializeField] private float _movementSpeedModifier = 1;
+        [FoldoutGroup("Secondary Fragment")]
+        [SerializeField] private float _attackSpeedModifier = 1;
+        [FoldoutGroup("Secondary Fragment")]
+        [SerializeField] private float _damageModifier = 1;
+        [FoldoutGroup("Secondary Fragment")]
+        [SerializeField] private float _maxHealthModifier = 1;
+        [FoldoutGroup("Secondary Fragment")]
+        [SerializeField] private float _projectileLifetimeModifier = 1;
+        [FoldoutGroup("Secondary Fragment")]
+        [SerializeField] private float _projectileSpeedModifier = 1;
 
         public int Level => _level;
 
@@ -52,28 +60,28 @@ namespace Game
             set => _projectileSpeedModifier = value;
         }
 
-        public void OnFire(IPlayer player, IProjectile projectile, Vector2 direction)
+        public virtual void OnFire(IPlayer player, IProjectile projectile, Vector2 direction)
         {
-            Debug.Log($"{this.GetType()} Shard '{name}' => OnFire");
+            Debug.Log($"Fragment '{this.GetType()}' => OnFire");
         }
 
-        public void OnMove(IPlayer player, Vector2 direction)
+        public virtual void OnMove(IPlayer player, Vector2 direction)
         {
-            Debug.Log($"{this.GetType()} '{name}' => OnFire");
+            Debug.Log($"Fragment '{this.GetType()}' => OnFire");
         }
 
-        public void OnFixedUpdate(IPlayer player)
+        public virtual void OnFixedUpdate(IPlayer player)
         {
         }
 
-        public void OnHit(IPlayer player, IProjectile projectile, IEnemy enemy)
+        public virtual void OnHit(IPlayer player, IProjectile projectile, IEnemy enemy)
         {
-            Debug.Log($"{this.GetType()} '{name}' => OnHit");
+            Debug.Log($"Fragment '{this.GetType()}' => OnHit");
         }
 
-        public void OnTakeDamage(IPlayer player, IDamage damage, IEnemy enemy)
+        public virtual void OnTakeDamage(IPlayer player, IDamage damage, IEnemy enemy)
         {
-            Debug.Log($"{this.GetType()} '{name}' => OnTakeDamage");
+            Debug.Log($"Fragment '{this.GetType()}' => OnTakeDamage");
         }
     }
 }

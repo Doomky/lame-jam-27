@@ -1,13 +1,16 @@
+using System;
 using Sirenix.OdinInspector;
 using UnityEngine;
 
 namespace Game
 {
-    [CreateAssetMenu(menuName = "New/PrimaryFragment", fileName = "PrimaryFragment", order = 0)]
+    [Serializable]
     public class PrimaryFragment: SecondaryFragment, IPrimaryFragment
     {
-        private GameObject _particleSystemPrefab;
-        private IProjectile _projectile;
+        [FoldoutGroup("Primary Fragment")]
+        [SerializeField] private GameObject _particleSystemPrefab;
+        [FoldoutGroup("Primary Fragment")]
+        [SerializeField] private IProjectile _projectile;
 
         public GameObject ParticleSystemPrefab
         {

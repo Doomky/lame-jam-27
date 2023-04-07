@@ -1,4 +1,8 @@
-﻿namespace Game
+﻿using System;
+using Sirenix.OdinInspector;
+using UnityEngine;
+
+namespace Game
 {
     /// <summary>
     /// Primary:
@@ -8,7 +12,21 @@
     /// Secondary:
     /// - Projectile Lifetime +10%.
     /// </summary>
-    public abstract class SniperSoul : Soul
+    [Serializable]
+    public class SniperSoul_Primary : PrimaryFragment
     {
+        [FoldoutGroup("Sniper Fragment")]
+        [SerializeField] private float _distantDamageMultiplier = 1;
+        
+        public override void OnHit(IPlayer player, IProjectile projectile, IEnemy enemy)
+        {
+            base.OnHit(player, projectile, enemy);
+            var damage = new Damage()
+            {
+                Amount = (int)(_distantDamageMultiplier * projectile.CurrentLifetime)
+            };
+            
+            enemy.TakeDamage(damage);
+        }
     }
 }
