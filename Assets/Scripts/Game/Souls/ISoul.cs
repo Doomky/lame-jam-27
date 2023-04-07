@@ -13,10 +13,10 @@
         /// <summary>
         /// Unsubscribe to events mainly.
         /// </summary>
-        void Unbind();
+        void Unbind(IPlayer player);
 
-        IPrimaryFragment PrimaryFragement { get; set; }
+        IPrimaryFragment PrimaryFragment { get; set; }
         
-        ISecondaryFragment SecondaryFragement { get; set; }
+        ISecondaryFragment SecondaryFragment { get; set; }
     }
 }
