@@ -14,7 +14,7 @@ namespace Game
         [BoxGroup("Data/FireSystem")]
         [HideInEditorMode]
         [ShowInInspector]
-        private Timer _fireTimer = new(1);
+        private Timer _fireCooldownTimer = new(1);
 
         [BoxGroup("Data/FireSystem")]
         [SerializeField]
@@ -79,21 +79,19 @@ namespace Game
 
         public void Fire(Vector2 direction)
         {
-            // Check if the fire timer is ready
-            // if (this._fireTimer.IsRunning())
-            // {
-            //     return;
-            // }
+            if (this._fireCooldownTimer.IsRunning())
+            {
+                return;
+            }
 
             GameObject projectilePrefab = this._primarySoul.PrimaryFragment.ProjectilePrefab;
             GameObject psPrefab = this._primarySoul.PrimaryFragment.ParticleSystemPrefab;
 
             if (projectilePrefab)
             {
-                var instance = Instantiate(projectilePrefab.transform, this._projectileSpawnpoint.position, this._projectileSpawnpoint.rotation,
-                    parent: null);
+                Transform instance = Instantiate(projectilePrefab.transform, this._projectileSpawnpoint.position, this._projectileSpawnpoint.rotation, parent: null);
 
-                var projectile = instance.GetComponent<IProjectile>();
+                IProjectile projectile = instance.GetComponent<IProjectile>();
                 OnFire?.Invoke(this, projectile, direction);
             }
 
@@ -103,8 +101,7 @@ namespace Game
                     parent: null);
             }
 
-            this._fireTimer.Reset();
-            
+            this._fireCooldownTimer.Reset();           
         }
 
         public void SwapMode()

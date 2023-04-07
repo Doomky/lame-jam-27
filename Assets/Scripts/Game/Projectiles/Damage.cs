@@ -1,17 +1,13 @@
-﻿using Sirenix.OdinInspector;
+﻿using System;
+using UnityEngine;
 
 namespace Game
 {
-    [System.Serializable]
-    public struct Damage : IDamage
+    [Serializable]
+    public class Damage : IDamage
     {
-        [ShowInInspector]
+        [SerializeField]
         private int _amount;
-
-        public Damage(int amount)
-        {
-            this._amount = amount;
-        }
 
         public int Amount
         {

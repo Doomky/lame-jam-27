@@ -23,7 +23,7 @@ namespace Game
             base.OnHit(player, projectile, enemy);
             Debug.Log("SniperFragment => OnFire");
 
-            Damage damage = new Damage()
+            Damage damage = new()
             {
                 Amount = (int)(_distantDamageMultiplier * projectile.CurrentLifetime)
             };

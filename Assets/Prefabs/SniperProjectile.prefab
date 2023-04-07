@@ -12,6 +12,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SniperProjectile
       objectReference: {fileID: 0}
+    - target: {fileID: 940720775399222059, guid: fd6d3b83fff1bb447bf9f0ea8c585e78, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 1486418867136490003, guid: fd6d3b83fff1bb447bf9f0ea8c585e78, type: 3}
       propertyPath: m_RootOrder
       value: 2
@@ -55,6 +59,10 @@ PrefabInstance:
     - target: {fileID: 1486418867136490003, guid: fd6d3b83fff1bb447bf9f0ea8c585e78, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3825020487547519129, guid: fd6d3b83fff1bb447bf9f0ea8c585e78, type: 3}
+      propertyPath: _movementSpeed
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 3825020487547519129, guid: fd6d3b83fff1bb447bf9f0ea8c585e78, type: 3}
       propertyPath: _damage._amount

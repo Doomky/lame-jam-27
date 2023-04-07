@@ -5,7 +5,7 @@ namespace Game
 {
     public class Projectile : SingleCollisionPipelineMonoBehaviour, IProjectile
     {
-        [SerializeField] [InlineEditor]
+        [SerializeField]
         private Damage _damage = null;
 
         [SerializeField]
