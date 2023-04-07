@@ -3,7 +3,7 @@
     /// <summary>
     /// Does nothing.
     /// </summary>
-    public abstract class EmptySoul : Soul
+    public class EmptySoul : Soul
     {
     }
 }

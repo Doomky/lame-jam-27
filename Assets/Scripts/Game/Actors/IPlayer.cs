@@ -19,11 +19,13 @@ namespace Game
         
         ISoul[] SecondarySouls { get; set; }
 
+        void Aim(Vector2 direction);
+
         /// <summary>
         /// Fire using primary soul projectiles and use modifiers from secondary.
         /// </summary>
         /// <param name="direction"></param>
-        void Fire(Vector2 direction);
+        void Fire();
 
         /// <summary>
         /// Swap between souls mode, put the current soul in the secondary souls array and get the next soul from the array.

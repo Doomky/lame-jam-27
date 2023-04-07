@@ -1,6 +1,5 @@
 ﻿namespace Game
 {
-
     public interface ISoul
     {
         /// <summary>
