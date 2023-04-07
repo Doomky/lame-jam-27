@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Game
 {
-    public class Projectile : SerializedMonoBehaviour, IProjectile
+    public class Projectile : SingleCollisionPipelineMonoBehaviour, IProjectile
     {
         [SerializeField] [InlineEditor]
         private Damage _damage = null;
@@ -52,6 +52,18 @@ namespace Game
             if (this._currentLifeTime >= this.MaxLifetime)
             {
                 Destroy(this.gameObject);
+            }
+        }
+
+        protected override void OnCollision(GameObject go, Vector2 collisionPosition, bool isTrigger, CollisionType collisionType)
+        {
+            base.OnCollision(go, collisionPosition, isTrigger, collisionType);
+
+            if (go.TryGetComponent(out IActor actor))
+            {
+                actor.TakeDamage(this._damage);
+
+                GameObject.Destroy(this.gameObject);
             }
         }
     }

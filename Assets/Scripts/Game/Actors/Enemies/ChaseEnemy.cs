@@ -31,8 +31,8 @@ namespace Game
             direction.Normalize();
             direction *= this._movementSpeedCurve.Evaluate(Time.time + this._indexOffset * 0.8f);
 
-            Vector2 rotationDirection = (Vector2)this._player.transform.position - (Vector2)this.transform.position;
-            this.transform.rotation = Quaternion.FromToRotation(Vector2.right, rotationDirection);
+            //Vector2 rotationDirection = (Vector2)this._player.transform.position - (Vector2)this.transform.position;
+            //this.transform.rotation = Quaternion.FromToRotation(Vector2.right, rotationDirection);
 
             this.Move(direction);
         }
