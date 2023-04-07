@@ -41,3 +41,12 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: Background
+    uniqueID: 783109533
+    locked: 0
+  - name: Actor
+    uniqueID: 22600109
+    locked: 0
+  - name: Projectile
+    uniqueID: 302166569
+    locked: 0
