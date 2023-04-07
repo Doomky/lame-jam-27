@@ -15,7 +15,8 @@ MonoBehaviour:
   serializationData:
     SerializedFormat: 2
     SerializedBytes: 
-    ReferencedUnityObjects: []
+    ReferencedUnityObjects:
+    - {fileID: 1622378978940216432, guid: 08713654e1fffd44e8c807f8070fe4fd, type: 3}
     SerializedBytesString: 
     Prefab: {fileID: 0}
     PrefabModificationsReferencedUnityObjects: []
@@ -49,8 +50,8 @@ MonoBehaviour:
       Entry: 6
       Data: 
     - Name: _projectile
-      Entry: 6
-      Data: 
+      Entry: 10
+      Data: 0
     - Name: _distantDamageMultiplier
       Entry: 4
       Data: 1

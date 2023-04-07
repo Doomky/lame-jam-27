@@ -1,12 +1,17 @@
-﻿namespace Game
+﻿using System;
+using UnityEngine;
+
+namespace Game
 {
     public interface IDamage
     {
         int Amount { get; set; }
     }
 
-    public struct Damage : IDamage
+    [Serializable]
+    public class Damage : IDamage
     {
+        [SerializeField]
         private int _amount;
 
         public int Amount

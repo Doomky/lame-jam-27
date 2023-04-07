@@ -44,7 +44,7 @@ namespace Game
             set => this._movementSpeed = value; 
         }
 
-        public void Move(Vector2 direction)
+        public virtual void Move(Vector2 direction)
         {
             if (direction == Vector2.zero)
             {
@@ -56,7 +56,7 @@ namespace Game
             this.transform.position += (Vector3)(direction * this._movementSpeed * Time.fixedDeltaTime);
         }
 
-        public void TakeDamage(IDamage damage)
+        public virtual void TakeDamage(IDamage damage)
         {
             this._currentHealth -= damage.Amount;
         }

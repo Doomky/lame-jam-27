@@ -4,7 +4,7 @@ namespace Game
 {
     public interface IProjectile
     {
-        IDamage Damage { get; set; }
+        IDamage Damage { get; }
 
         float MovementSpeed { get; set; }
 

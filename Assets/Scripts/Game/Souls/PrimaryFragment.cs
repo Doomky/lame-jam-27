@@ -7,10 +7,10 @@ namespace Game
     [Serializable]
     public class PrimaryFragment: SecondaryFragment, IPrimaryFragment
     {
-        [FoldoutGroup("Primary Fragment")]
+        [FoldoutGroup("Primary Fragment"), InlineEditor]
         [SerializeField] private GameObject _particleSystemPrefab;
-        [FoldoutGroup("Primary Fragment")]
-        [SerializeField] private IProjectile _projectile;
+        [FoldoutGroup("Primary Fragment"), InlineEditor]
+        [SerializeField] private GameObject _projectile;
 
         public GameObject ParticleSystemPrefab
         {
@@ -18,10 +18,9 @@ namespace Game
             set => _particleSystemPrefab = value;
         }
 
-        public IProjectile Projectile
+        public GameObject ProjectilePrefab
         {
             get => _projectile;
-            set => _projectile = value;
         }
     }
 }

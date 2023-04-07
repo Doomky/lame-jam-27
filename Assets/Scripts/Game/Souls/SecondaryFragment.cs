@@ -62,12 +62,16 @@ namespace Game
 
         public virtual void OnFire(IPlayer player, IProjectile projectile, Vector2 direction)
         {
-            Debug.Log($"Fragment '{this.GetType()}' => OnFire");
+            Debug.Log("Fragment => OnFire");
+
+            projectile.MovementSpeed *= _movementSpeedModifier;
+            projectile.MaxLifetime   *= _projectileLifetimeModifier;
+            projectile.Damage.Amount = (int)(_damageModifier * projectile.Damage.Amount);
         }
 
         public virtual void OnMove(IPlayer player, Vector2 direction)
         {
-            Debug.Log($"Fragment '{this.GetType()}' => OnFire");
+            Debug.Log("Fragment => OnFire");
         }
 
         public virtual void OnFixedUpdate(IPlayer player)
@@ -76,12 +80,12 @@ namespace Game
 
         public virtual void OnHit(IPlayer player, IProjectile projectile, IEnemy enemy)
         {
-            Debug.Log($"Fragment '{this.GetType()}' => OnHit");
+            Debug.Log("Fragment => OnHit");
         }
 
         public virtual void OnTakeDamage(IPlayer player, IDamage damage, IEnemy enemy)
         {
-            Debug.Log($"Fragment '{this.GetType()}' => OnTakeDamage");
+            Debug.Log("Fragment => OnTakeDamage");
         }
     }
 }

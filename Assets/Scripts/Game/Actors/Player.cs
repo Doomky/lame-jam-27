@@ -1,8 +1,10 @@
-﻿using Framework;
+using Framework;
 using Framework.Helpers;
 using Framework.Managers;
 using Sirenix.OdinInspector;
 using System;
+using Sirenix.Utilities;
+using Unity.VisualScripting.Dependencies.NCalc;
 using UnityEngine;
 
 namespace Game
@@ -48,12 +50,18 @@ namespace Game
         protected void Awake()
         {
             this._inputManager = Manager.Get<InputManager>();
-            this._inputManager.Moved +=  this.Move;
+            this._inputManager.Moved += this.Move;
             this._inputManager.Pointed += screenPosition =>
             {
                 Vector2 worldPosition = Camera.main.ScreenToWorldPoint(screenPosition);
                 Vector2 aimDirection = (worldPosition - (Vector2)transform.position).normalized;
                 this.Aim(aimDirection);
+            };
+            this._inputManager.Clicked += (screenPosition, _) =>
+            {
+                Vector2 worldPosition = Camera.main.ScreenToWorldPoint(screenPosition);
+                Vector2 aimDirection = (worldPosition - (Vector2)transform.position).normalized;
+                this.Fire(aimDirection);
             };
 
             this._primarySoul?.Bind(this, true);
@@ -69,21 +77,34 @@ namespace Game
             this._projectileSpawnpoint.transform.rotation = Quaternion.FromToRotation(Vector2.right, direction);
         }
 
-        public void Fire()
+        public void Fire(Vector2 direction)
         {
             // Check if the fire timer is ready
-            if (this._fireTimer.IsRunning())
-            {
-                return;
-            }
+            // if (this._fireTimer.IsRunning())
+            // {
+            //     return;
+            // }
 
-            Projectile projectilePrefab = this._primarySoul.PrimaryFragment.Projectile as Projectile;
+            GameObject projectilePrefab = this._primarySoul.PrimaryFragment.ProjectilePrefab;
             GameObject psPrefab = this._primarySoul.PrimaryFragment.ParticleSystemPrefab;
 
-            Instantiate(projectilePrefab, this._projectileSpawnpoint.position, this._projectileSpawnpoint.rotation, parent: null);
-            Instantiate(psPrefab, this._projectileSpawnpoint.position, this._projectileSpawnpoint.rotation, parent: null);
+            if (projectilePrefab)
+            {
+                var instance = Instantiate(projectilePrefab.transform, this._projectileSpawnpoint.position, this._projectileSpawnpoint.rotation,
+                    parent: null);
+
+                var projectile = instance.GetComponent<IProjectile>();
+                OnFire?.Invoke(this, projectile, direction);
+            }
+
+            if (psPrefab)
+            {
+                Instantiate(psPrefab.transform, this._projectileSpawnpoint.position, this._projectileSpawnpoint.rotation,
+                    parent: null);
+            }
 
             this._fireTimer.Reset();
+            
         }
 
         public void SwapMode()

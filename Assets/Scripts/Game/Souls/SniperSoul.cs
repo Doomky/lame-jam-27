@@ -21,6 +21,8 @@ namespace Game
         public override void OnHit(IPlayer player, IProjectile projectile, IEnemy enemy)
         {
             base.OnHit(player, projectile, enemy);
+            Debug.Log("SniperFragment => OnFire");
+
             Damage damage = new Damage()
             {
                 Amount = (int)(_distantDamageMultiplier * projectile.CurrentLifetime)

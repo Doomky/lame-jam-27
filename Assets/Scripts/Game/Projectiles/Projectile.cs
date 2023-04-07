@@ -5,8 +5,8 @@ namespace Game
 {
     public class Projectile : SerializedMonoBehaviour, IProjectile
     {
-        [SerializeField]
-        private IDamage _damage = null;
+        [SerializeField] [InlineEditor]
+        private Damage _damage = null;
 
         [SerializeField]
         private float _movementSpeed = 5;
@@ -20,7 +20,6 @@ namespace Game
         public IDamage Damage 
         { 
             get => this._damage; 
-            set => this._damage = value; 
         }
         
         public float MovementSpeed 
@@ -42,15 +41,15 @@ namespace Game
 
         protected void Awake()
         {
-            this._currentLifeTime = this._maxLifeTime;
+            this._currentLifeTime = 0;
         }
 
         protected void FixedUpdate()
         {
             this.transform.position += (Vector3)(this.transform.right * this._movementSpeed * Time.fixedDeltaTime);
-            this._currentLifeTime -= Time.fixedDeltaTime;
+            this._currentLifeTime += Time.fixedDeltaTime;
 
-            if (this._currentLifeTime <= 0)
+            if (this._currentLifeTime >= this.MaxLifetime)
             {
                 Destroy(this.gameObject);
             }

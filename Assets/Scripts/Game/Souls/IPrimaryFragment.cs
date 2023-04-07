@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Sirenix.OdinInspector;
+using UnityEngine;
 
 namespace Game
 {
@@ -6,6 +7,6 @@ namespace Game
     {
         GameObject ParticleSystemPrefab { get; set; }
 
-        IProjectile Projectile { get; set; }
+        GameObject ProjectilePrefab { get; }
     }
 }
