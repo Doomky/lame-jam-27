@@ -1,4 +1,6 @@
-﻿namespace Game
+﻿using UnityEngine;
+
+namespace Game
 {
     public interface IProjectile
     {
