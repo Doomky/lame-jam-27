@@ -53,4 +53,4 @@ MonoBehaviour:
     PrefabModificationsReferencedUnityObjects: []
     PrefabModifications: []
     SerializationNodes: []
-  _audioSourceConfiguration: {fileID: 0}
+  _audioSourceConfiguration: {fileID: 11400000, guid: 0b46bb09f3837c24ea86e3125feca8d1, type: 2}

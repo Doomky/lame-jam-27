@@ -11,11 +11,16 @@ namespace Game
     {
         public enum Action
         {
-            
+            EnterInGame     = 1 << 0,
+            ExitFromGame    = 1 << 1,
         }
 
         public new class StateMachine : GameStateMachine<Action>
         {
+            private GameState _inGameState = new();
+            
+            private GameState _outGameState = new();
+
             public StateMachine() : base(null)
             {
             }
@@ -24,9 +29,23 @@ namespace Game
             {
                 switch (action)
                 {
+                    case Action.EnterInGame:
+                        {
+                            nextState = _inGameState;
+                            return true;
+                        }
+                        
+                    case Action.ExitFromGame:
+                        {
+                            nextState = _outGameState;
+                            return true;
+                        }
+
                     default:
-                        nextState = null;
-                        return false;
+                        {
+                            nextState = null;
+                            return false;
+                        }
                 }
             }
         }
