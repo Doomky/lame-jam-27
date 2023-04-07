@@ -11,7 +11,7 @@
     /// Secondary:
     ///     - Health +1 per level.
     /// </summary>
-    public abstract class KnightSoul : Soul
+    public class KnightSoul_Primary : PrimaryFragment
     {
     }
 }

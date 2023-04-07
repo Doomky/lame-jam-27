@@ -11,6 +11,8 @@ namespace Game
         float AttackSpeedModifier { get; set; }
 
         float DamageModifier { get; set; }
+        
+        float MaxHealthModifier { get; set; }
 
         float ProjectileLifetimeModifier { get; set; }
         
