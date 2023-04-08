@@ -13,10 +13,9 @@ namespace Framework.Managers
     {
         public event Action<Vector2> Moved;
         public event Action<Vector2> Pointed;
-        public event Action<Vector2, float> Clicked;
+        public event Action Fired;
 
-        [SerializeField]
-        private Player player;
+        private InputActions inputActions;
 
         [ShowInInspector]
         private Vector2 _pointedPosition;
@@ -25,27 +24,33 @@ namespace Framework.Managers
         private InputSystemUIInputModule _uiInputModule = null;
         private Vector2 _moveDirection;
 
+        private bool _isFiring;
+
         public override void Bind()
         {
+            this.inputActions = new InputActions();
+            this.inputActions.Enable();
         }
 
         public override void Unbind()
         {
+            this.inputActions.Disable();
+            this.inputActions = null;
         }
 
         public void FixedUpdate()
         {
             this.Moved?.Invoke(this._moveDirection);
+
+            if (this.inputActions.Player.Fire.inProgress)
+            {
+                this.Fired?.Invoke();
+            }
         }
 
         public void OnMove(InputValue inputValue)
         {
             this._moveDirection = inputValue.Get<Vector2>();
-        }
-
-        public void OnClick(InputValue inputValue)
-        {
-            this.Clicked?.Invoke(this._pointedPosition, inputValue.Get<float>());
         }
 
         public void OnPoint(InputValue inputValue)

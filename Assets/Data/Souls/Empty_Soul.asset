@@ -33,7 +33,7 @@ MonoBehaviour:
       Data: 1
     - Name: _attackSpeedModifier
       Entry: 4
-      Data: 1
+      Data: 4
     - Name: _damageModifier
       Entry: 4
       Data: 1
