@@ -35,10 +35,7 @@ namespace Game
 
             if (this._isPrimary)
             {
-                Damage damage = new()
-                {
-                    Amount = (int)(_distantDamageMultiplier * projectile.CurrentLifetime)
-                };
+                Damage damage = new((int)(_distantDamageMultiplier * projectile.CurrentLifetime));
 
                 enemy.TakeDamage(damage);
             }

@@ -494,6 +494,83 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4399371608813337468, guid: b461df6effa678a4baf791dd1b80c8ee, type: 3}
   m_PrefabInstance: {fileID: 5583463549561205668}
   m_PrefabAsset: {fileID: 0}
+--- !u!1001 &2014052819504630616
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 2004323943766953104, guid: 055333248922c634bb81d8a57fecb691, type: 3}
+      propertyPath: m_Name
+      value: KnightProjectile
+      objectReference: {fileID: 0}
+    - target: {fileID: 4468318196004708779, guid: 055333248922c634bb81d8a57fecb691, type: 3}
+      propertyPath: m_RootOrder
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4468318196004708779, guid: 055333248922c634bb81d8a57fecb691, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4468318196004708779, guid: 055333248922c634bb81d8a57fecb691, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4468318196004708779, guid: 055333248922c634bb81d8a57fecb691, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4468318196004708779, guid: 055333248922c634bb81d8a57fecb691, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4468318196004708779, guid: 055333248922c634bb81d8a57fecb691, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4468318196004708779, guid: 055333248922c634bb81d8a57fecb691, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4468318196004708779, guid: 055333248922c634bb81d8a57fecb691, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4468318196004708779, guid: 055333248922c634bb81d8a57fecb691, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4468318196004708779, guid: 055333248922c634bb81d8a57fecb691, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4468318196004708779, guid: 055333248922c634bb81d8a57fecb691, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7186285344044015388, guid: 055333248922c634bb81d8a57fecb691, type: 3}
+      propertyPath: serializationData.Prefab
+      value: 
+      objectReference: {fileID: 7186285344044015388, guid: 055333248922c634bb81d8a57fecb691, type: 3}
+    - target: {fileID: 8312854206490780038, guid: 055333248922c634bb81d8a57fecb691, type: 3}
+      propertyPath: m_Color.b
+      value: 0.6320754
+      objectReference: {fileID: 0}
+    - target: {fileID: 8312854206490780038, guid: 055333248922c634bb81d8a57fecb691, type: 3}
+      propertyPath: m_Color.g
+      value: 0.6320754
+      objectReference: {fileID: 0}
+    - target: {fileID: 8312854206490780038, guid: 055333248922c634bb81d8a57fecb691, type: 3}
+      propertyPath: m_Color.r
+      value: 0.6320754
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 055333248922c634bb81d8a57fecb691, type: 3}
 --- !u!1001 &5583463549561205668
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -554,10 +631,6 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 6585629225162898348, guid: b461df6effa678a4baf791dd1b80c8ee, type: 3}
-      propertyPath: _primarySoul
-      value: 
-      objectReference: {fileID: 11400000, guid: a66ced6712d20e14fa28b8a0c94f50cf, type: 2}
     - target: {fileID: 6585629225162898348, guid: b461df6effa678a4baf791dd1b80c8ee, type: 3}
       propertyPath: serializationData.Prefab
       value: 

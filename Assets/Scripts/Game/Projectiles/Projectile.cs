@@ -1,5 +1,6 @@
 using Sirenix.OdinInspector;
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace Game
@@ -19,6 +20,12 @@ namespace Game
 
         [SerializeField]
         private float _maxLifeTime = 5;
+
+        [SerializeField]
+        private bool _destroyOnHit = true;
+
+        [SerializeField]
+        private HashSet<IEnemy> _hittedEnemies = new();
 
         public event Action<IProjectile, IEnemy> Hit;
 
@@ -66,11 +73,21 @@ namespace Game
 
             if (go.TryGetComponent(out IActor actor) && collisionType == CollisionType.Enter)
             {
-                actor.TakeDamage(this._damage);
+                IEnemy enemy = actor as IEnemy;
+                
+                if (!this._hittedEnemies.Contains(enemy))
+                {
+                    actor.TakeDamage(this._damage);
 
-                this.Hit?.Invoke(this, actor as IEnemy);
+                    this.Hit?.Invoke(this, enemy);
 
-                GameObject.Destroy(this.gameObject);
+                    this._hittedEnemies.Add(enemy);
+
+                    if (this._destroyOnHit)
+                    {
+                        GameObject.Destroy(this.gameObject);
+                    }
+                }
             }
         }
     }

@@ -14,5 +14,16 @@ namespace Game
             get => _amount;
             set => _amount = value;
         }
+
+        public Damage()
+        {
+            _amount = 0;
+        }
+
+
+        public Damage(int amount)
+        {
+            _amount = amount;
+        }
     }
 }
