@@ -16,8 +16,8 @@ namespace Game
     [CreateAssetMenu(menuName = "New/SniperSoul", fileName = "SniperSoul", order = 0)]
     public class SniperSoul : Soul
     {
-        [FoldoutGroup("Sniper Fragment")]
-        [SerializeField] private float _distantDamageMultiplier = 1;
+        [SerializeField]
+        private float _distantDamageMultiplier = 1;
         
         public override void OnHit(IPlayer player, IProjectile projectile, IEnemy enemy)
         {

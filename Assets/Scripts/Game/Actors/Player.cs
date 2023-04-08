@@ -6,11 +6,16 @@ using System;
 using Sirenix.Utilities;
 using Unity.VisualScripting.Dependencies.NCalc;
 using UnityEngine;
+using Unity.Properties;
 
 namespace Game
 {
     public class Player : Actor, IPlayer
     {
+        [BoxGroup("Data/FireSystem")]
+        [SerializeField]
+        private int _baseMovementSpeed = 5;
+
         [BoxGroup("Data/FireSystem")]
         [HideInEditorMode]
         [ShowInInspector]
@@ -58,6 +63,8 @@ namespace Game
 
         protected void Awake()
         {
+            base.Awake();
+            
             this._inputManager = Manager.Get<InputManager>();
             this._inputManager.Moved += this.Move;
             this._inputManager.Pointed += screenPosition =>
@@ -88,6 +95,7 @@ namespace Game
         protected void FixedUpdate()
         {
             base.FixedUpdate();
+            
             this.UpdateStats();
             this.UpdateColor();
 
@@ -100,7 +108,20 @@ namespace Game
 
         private void UpdateStats()
         {
+            this.UpdateMovementSpeed();
             this.UpdateAttackSpeed();
+        }
+
+        private void UpdateMovementSpeed()
+        {
+            float movementSpeed = this._baseMovementSpeed;
+
+            for (int i = 0; i < this._secondarySouls.Length; i++)
+            {
+                movementSpeed *= (1 +  this._secondarySouls[i].PercentageMovementSpeedModifier);
+            }
+
+            this._movementSpeed = movementSpeed;
         }
 
         private void UpdateColor()

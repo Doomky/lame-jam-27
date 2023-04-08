@@ -47,19 +47,19 @@ namespace Game
 
         [BoxGroup("Secondary")]
         [SerializeField] 
-        private  float _movementSpeedModifier = 1;
+        private  float _percentageMovementSpeedModifier = 0;
 
         [BoxGroup("Secondary")]
         [SerializeField]
-        private  float _percentageAttackSpeedModifier = 1;
+        private  float _percentageAttackSpeedModifier = 0;
         
         [BoxGroup("Secondary")]
         [SerializeField]
-        private  float _porojectileLifetimeModifier = 1;
+        private  float _porojectileLifetimeModifier = 0;
         
         [BoxGroup("Secondary")]
         [SerializeField] 
-        private  float _projectileSpeedModifier = 1;
+        private  float _projectileSpeedModifier = 0;
         
         protected bool _isPrimary = false;
 
@@ -83,7 +83,7 @@ namespace Game
 
         public int NumberOfProjectiles => this._numberOfProjectiles;
 
-        public float MovementSpeedModifier => this._movementSpeedModifier;
+        public float PercentageMovementSpeedModifier => this._percentageMovementSpeedModifier;
 
         public float PercentageAttackSpeedModifier => this._percentageAttackSpeedModifier;
 

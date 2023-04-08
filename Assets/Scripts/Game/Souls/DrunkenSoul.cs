@@ -14,6 +14,12 @@ namespace Game
 
         private Timer _bonusProjectileCooldownTimer = new(1);
 
+        public override void Bind(IPlayer player, bool isPrimary)
+        {
+            base.Bind(player, isPrimary);
+            this._bonusProjectileCooldownTimer.Trigger();
+        }
+
         public override void OnFixedUpdate(IPlayer player)
         {
             base.OnFixedUpdate(player);

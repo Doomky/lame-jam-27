@@ -29,7 +29,7 @@ namespace Game
 
         int NumberOfProjectiles { get; }
 
-        float MovementSpeedModifier { get; }
+        float PercentageMovementSpeedModifier { get; }
 
         float PercentageAttackSpeedModifier { get; }
 

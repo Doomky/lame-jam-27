@@ -38,7 +38,7 @@ namespace Game
         [BoxGroup("Data")]
         [SerializeField]
         [VerticalGroup("Data/Health")]
-        private float _movementSpeed = 3;
+        protected float _movementSpeed = 3;
 
         private Timer _isMovingAnimatorTimer = new(0.1f);
 

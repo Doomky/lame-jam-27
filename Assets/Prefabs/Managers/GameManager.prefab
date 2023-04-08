@@ -83,5 +83,5 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  _maxNumberOfEnemyToSpawn: 100
+  _maxNumberOfEnemyToSpawn: 25
   _camera: {fileID: 136051960629355474, guid: eede951909a7f454f8f93bd9a16336be, type: 3}

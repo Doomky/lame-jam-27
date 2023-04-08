@@ -195,7 +195,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   serializationData:
-    SerializedFormat: 0
+    SerializedFormat: 2
     SerializedBytes: 
     ReferencedUnityObjects: []
     SerializedBytesString: 
@@ -205,7 +205,7 @@ MonoBehaviour:
     SerializationNodes: []
   _spriteRenderer: {fileID: 3820472884749890296}
   _animator: {fileID: 254130605514314891}
-  _maxHealth: 50
+  _maxHealth: 10
   _movementSpeed: 2
   _onGetHitPSPrefab: {fileID: 0}
   _onGetHitSFXs: []
