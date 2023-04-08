@@ -15,8 +15,9 @@ namespace Game
 
         private int _indexOffset = 0;
 
-        protected void Awake()
+        protected override void Awake()
         {
+            base.Awake();
             this._indexOffset = UnityEngine.Random.Range(0, 10);
             this._player = FindObjectOfType<Player>();
         }

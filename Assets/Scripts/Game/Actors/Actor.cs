@@ -1,3 +1,4 @@
+using System;
 using Framework;
 using Framework.Extensions;
 using Framework.Helpers;
@@ -25,7 +26,7 @@ namespace Game
 
         [BoxGroup("Data")]
         [ShowInInspector]
-        [HideInEditorMode]
+        [HideInPrefabs]
         [VerticalGroup("Data/Health")]
         private int _currentHealth = 3;
 
@@ -78,6 +79,11 @@ namespace Game
         {
             get => this._movementSpeed;
             set => this._movementSpeed = value;
+        }
+
+        protected virtual void Awake()
+        {
+            _currentHealth = _maxHealth;
         }
 
         public virtual void Move(Vector2 direction)
