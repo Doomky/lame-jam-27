@@ -24,13 +24,13 @@ MonoBehaviour:
   _name: Empty Soul
   _description: 
   _image: {fileID: 0}
-  _color1: {r: 0, g: 0, b: 0, a: 0}
-  _color2: {r: 0, g: 0, b: 0, a: 0}
+  _color1: {r: 0.21521567, g: 0.46996078, b: 0.56, a: 1}
+  _color2: {r: 0.38431373, g: 0.8392157, b: 1, a: 1}
   _projectilePrefab: {fileID: 940720775399222059, guid: fd6d3b83fff1bb447bf9f0ea8c585e78, type: 3}
   _particleSystemPrefab: {fileID: 0}
-  _baseAttackSpeed: 1
-  _spreadAngle: 0
-  _numberOfProjectiles: 0
+  _baseAttackSpeed: 2
+  _spreadAngle: 1
+  _numberOfProjectiles: 1
   _percentageMovementSpeedModifier: 0
   _percentageAttackSpeedModifier: 0
   _porojectileLifetimeModifier: 0
