@@ -3,7 +3,8 @@ using UnityEngine;
 
 namespace Game
 {
-    public abstract class Soul : SerializedScriptableObject, ISoul
+    [CreateAssetMenu(menuName = "New/Soul", fileName = "Soul", order = 0)]
+    public class Soul : SerializedScriptableObject, ISoul
     {
         [BoxGroup("Data")]
         [SerializeField] 
