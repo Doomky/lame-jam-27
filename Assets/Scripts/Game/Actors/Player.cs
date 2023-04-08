@@ -57,11 +57,10 @@ namespace Game
                 Vector2 aimDirection = (worldPosition - (Vector2)transform.position).normalized;
                 this.Aim(aimDirection);
             };
-            this._inputManager.Clicked += (screenPosition, _) =>
+            
+            this._inputManager.Fired += () =>
             {
-                Vector2 worldPosition = Camera.main.ScreenToWorldPoint(screenPosition);
-                Vector2 aimDirection = (worldPosition - (Vector2)transform.position).normalized;
-                this.Fire(aimDirection);
+                this.Fire();
             };
 
             this._primarySoul?.Bind(this, true);
@@ -72,12 +71,40 @@ namespace Game
             }
         }
 
+        protected void FixedUpdate()
+        {
+            this.UpdateStats();
+        }
+
+        private void UpdateStats()
+        {
+            this.UpdateAttackSpeed();
+        }
+
+        private void UpdateAttackSpeed()
+        {
+            float attackSpeed = 1;
+
+            attackSpeed *= this._primarySoul.PrimaryFragment.AttackSpeedModifier;
+            attackSpeed *= this._primarySoul.SecondaryFragment.AttackSpeedModifier;
+
+            for (int i = 0; i < this._secondarySouls.Length; i++)
+            {
+                attackSpeed *= this._secondarySouls[i].PrimaryFragment.AttackSpeedModifier;
+                attackSpeed *= this._secondarySouls[i].SecondaryFragment.AttackSpeedModifier;
+            }
+
+            float fireCooldown = Mathf.Clamp(1 / attackSpeed, 0.1f, 10f);
+
+            this._fireCooldownTimer.Duration = fireCooldown;
+        }
+
         public void Aim(Vector2 direction)
         {
             this._projectileSpawnpoint.transform.rotation = Quaternion.FromToRotation(Vector2.right, direction);
         }
 
-        public void Fire(Vector2 direction)
+        public void Fire()
         {
             if (this._fireCooldownTimer.IsRunning())
             {
@@ -92,7 +119,7 @@ namespace Game
                 Transform instance = Instantiate(projectilePrefab.transform, this._projectileSpawnpoint.position, this._projectileSpawnpoint.rotation, parent: null);
 
                 IProjectile projectile = instance.GetComponent<IProjectile>();
-                OnFire?.Invoke(this, projectile, direction);
+                OnFire?.Invoke(this, projectile, this._projectileSpawnpoint.transform.right);
             }
 
             if (psPrefab)
