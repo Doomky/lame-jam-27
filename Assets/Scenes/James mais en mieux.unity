@@ -207,11 +207,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!20 &645309155 stripped
-Camera:
-  m_CorrespondingSourceObject: {fileID: 136051960629355474, guid: eede951909a7f454f8f93bd9a16336be, type: 3}
-  m_PrefabInstance: {fileID: 8253868317540510342}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &674512439
 GameObject:
   m_ObjectHideFlags: 0
@@ -251,12 +246,6 @@ MonoBehaviour:
     PrefabModifications: []
     SerializationNodes: []
   _superManager: {fileID: 699254209}
-  _enemyPrefab: {fileID: 5527768640799173017, guid: ff057b61791402244922574e9552fa04, type: 3}
-  _playerPrefab: {fileID: 6381849272219621818, guid: b461df6effa678a4baf791dd1b80c8ee, type: 3}
-  _enemyList: []
-  _survivalTimerInMinutes: 0
-  _enemySpawnTime: 1
-  _camera: {fileID: 645309155}
 --- !u!4 &674512441
 Transform:
   m_ObjectHideFlags: 0
@@ -314,6 +303,7 @@ MonoBehaviour:
     - {fileID: 8779751337689218093, guid: 5c57fe36bdb7df944a237bbc3d1265ce, type: 3}
     - {fileID: 5072332570448079540, guid: 8a77e0bbb551cf845bbbe864c99eb2a9, type: 3}
     - {fileID: 6736152544773905696, guid: 74d03e942601f6546b631499e0501131, type: 3}
+    - {fileID: 1097742818562719751, guid: 41eb84f4e70a6b94eaaa4981fd54e748, type: 3}
     SerializedBytesString: 
     Prefab: {fileID: 0}
     PrefabModificationsReferencedUnityObjects: []
@@ -332,7 +322,7 @@ MonoBehaviour:
       Data: 
     - Name: 
       Entry: 12
-      Data: 7
+      Data: 8
     - Name: 
       Entry: 7
       Data: 
@@ -456,6 +446,24 @@ MonoBehaviour:
     - Name: $v
       Entry: 10
       Data: 6
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 7
+      Data: 9|System.RuntimeType, mscorlib
+    - Name: 
+      Entry: 1
+      Data: Framework.Managers.GameManager, Assembly-CSharp
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: $v
+      Entry: 10
+      Data: 7
     - Name: 
       Entry: 8
       Data: 
