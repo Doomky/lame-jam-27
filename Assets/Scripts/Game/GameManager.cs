@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 
@@ -19,18 +20,26 @@ namespace Framework.Managers
         [SerializeField]
         private float _survivalTimerInMinutes;
 
+        public float remainingTimeInSeconds;
+
         [SerializeField]
         private float _enemySpawnTime;
 
         private float _elapsedTime = 0f;
 
         [SerializeField]
-        private Camera _camera;
+        private AnimationCurve _enemySpawnAnimationCurve;
 
+        [SerializeField]
+        private float _maxNumberOfEnemyToSpawn;
+
+        [SerializeField]
+        private Camera _camera;
 
         public override void Bind()
         {
             Instantiate(this._playerPrefab, Vector3.zero, Quaternion.identity);
+            this.remainingTimeInSeconds = this._survivalTimerInMinutes * 60;
         }
 
         public override void Unbind()
@@ -39,17 +48,30 @@ namespace Framework.Managers
 
         public void Update()
         {
-            this._survivalTimerInMinutes -= Time.deltaTime;
-            if (this._survivalTimerInMinutes <= 0)
+            this.remainingTimeInSeconds -= Time.deltaTime;
+
+            if (this.remainingTimeInSeconds <= 0)
             {
                 Debug.Log("t'as gagné bogoss");
                 // TODO: Game Over
             }
+
             this._elapsedTime += Time.deltaTime;
+
             if (this._elapsedTime > this._enemySpawnTime)
             {
-                Vector3 position = this.GetEdgeRandomScreenPosition();
-                this.spawnEnemy(position);
+                
+                float indexOfCurve = (this._survivalTimerInMinutes * 60 - remainingTimeInSeconds) / (this._survivalTimerInMinutes * 60);
+                float numberOfEnemyToSpawn = _enemySpawnAnimationCurve.Evaluate(indexOfCurve) * this._maxNumberOfEnemyToSpawn;
+
+                Vector3 position;
+                for (int i = 0; i < numberOfEnemyToSpawn; i++)
+                {
+                    position = this.GetEdgeRandomScreenPosition();
+                    this.spawnEnemy(position);
+                }
+
+
                 this._elapsedTime = 0f;
             }
         }
@@ -63,18 +85,18 @@ namespace Framework.Managers
         public Vector3 GetEdgeRandomScreenPosition()
         {
             int random = UnityEngine.Random.Range(0, 4);
-
+            float dist = (transform.position - Camera.main.transform.position).z;
             // 0 = left, 1 = top, 2 = right, 3 = bottom
             switch (random)
-            {
+            {   
                 case 0:
-                    return new Vector3(-_camera.orthographicSize * _camera.aspect, UnityEngine.Random.Range(-_camera.orthographicSize, _camera.orthographicSize), 0);
+                    return Camera.main.ViewportToWorldPoint(new Vector3(0, UnityEngine.Random.Range(0.0f, 1.0f), dist));
                 case 1:
-                    return new Vector3(UnityEngine.Random.Range(-_camera.orthographicSize * _camera.aspect, _camera.orthographicSize * _camera.aspect), _camera.orthographicSize, 0);
+                    return Camera.main.ViewportToWorldPoint(new Vector3(UnityEngine.Random.Range(0.0f, 1.0f), 1, dist));
                 case 2:
-                    return new Vector3(_camera.orthographicSize * _camera.aspect, UnityEngine.Random.Range(-_camera.orthographicSize, _camera.orthographicSize), 0);
+                    return Camera.main.ViewportToWorldPoint(new Vector3(1, UnityEngine.Random.Range(0.0f, 1.0f), dist));
                 case 3:
-                    return new Vector3(UnityEngine.Random.Range(-_camera.orthographicSize * _camera.aspect, _camera.orthographicSize * _camera.aspect), -_camera.orthographicSize, 0);
+                    return Camera.main.ViewportToWorldPoint(new Vector3(UnityEngine.Random.Range(0.0f, 1.0f), 0, dist));
                 default:
                     return Vector3.zero;
             }

@@ -30,7 +30,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1097742818562719751
 MonoBehaviour:
@@ -57,5 +57,31 @@ MonoBehaviour:
   _playerPrefab: {fileID: 6381849272219621818, guid: b461df6effa678a4baf791dd1b80c8ee, type: 3}
   _enemyList: []
   _survivalTimerInMinutes: 5
+  remainingTimeInSeconds: 0
   _enemySpawnTime: 1
+  _enemySpawnAnimationCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 2
+      outSlope: 2
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  _maxNumberOfEnemyToSpawn: 100
   _camera: {fileID: 136051960629355474, guid: eede951909a7f454f8f93bd9a16336be, type: 3}
