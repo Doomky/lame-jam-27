@@ -18,6 +18,7 @@ namespace Game
         protected void Awake()
         {
             this._indexOffset = UnityEngine.Random.Range(0, 10);
+            this._player = FindObjectOfType<Player>();
         }
 
         public void FixedUpdate()

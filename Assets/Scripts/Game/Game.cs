@@ -1,14 +1,31 @@
 ﻿using Framework;
+using Framework.Managers;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using UnityEditor;
+using UnityEngine;
 
 namespace Game
 {
     public class Game : Game<Game.StateMachine, Game.Action>
     {
+        [SerializeField]
+        private GameObject _enemyPrefab;
+
+        [SerializeField]
+        private List<GameObject> _enemyList;
+
+        [SerializeField]
+        private float _enemySpawnTime;
+
+        private float _elapsedTime = 0f;
+
+        [SerializeField]
+        private Camera _camera;
+
         public enum Action
         {
             EnterInGame     = 1 << 0,
@@ -47,6 +64,43 @@ namespace Game
                             return false;
                         }
                 }
+            }
+        }
+
+        public void Update()
+        {
+            this._elapsedTime += Time.deltaTime;
+            if (this._elapsedTime > this._enemySpawnTime)
+            {
+                Vector3 position = this.GetEdgeRandomScreenPosition();
+                this.spawnEnemy(position);
+                this._elapsedTime = 0f;
+            }
+        }
+
+        public void spawnEnemy(Vector3 position)
+        {
+            GameObject enemy = Instantiate(this._enemyPrefab, position, Quaternion.identity);
+            _enemyList.Add(enemy);
+        }
+
+        public Vector3 GetEdgeRandomScreenPosition()
+        {
+            int random = UnityEngine.Random.Range(0, 4);
+
+            // 0 = left, 1 = top, 2 = right, 3 = bottom
+            switch (random)
+            {
+                case 0:
+                    return new Vector3(-_camera.orthographicSize * _camera.aspect, UnityEngine.Random.Range(-_camera.orthographicSize, _camera.orthographicSize), 0);
+                case 1:
+                    return new Vector3(UnityEngine.Random.Range(-_camera.orthographicSize * _camera.aspect, _camera.orthographicSize * _camera.aspect), _camera.orthographicSize, 0);
+                case 2:
+                    return new Vector3(_camera.orthographicSize * _camera.aspect, UnityEngine.Random.Range(-_camera.orthographicSize, _camera.orthographicSize), 0);
+                case 3:
+                    return new Vector3(UnityEngine.Random.Range(-_camera.orthographicSize * _camera.aspect, _camera.orthographicSize * _camera.aspect), -_camera.orthographicSize, 0);
+                default:
+                    return Vector3.zero;
             }
         }
     }
