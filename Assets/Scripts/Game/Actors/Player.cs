@@ -7,6 +7,7 @@ using Sirenix.Utilities;
 using Unity.VisualScripting.Dependencies.NCalc;
 using UnityEngine;
 using Unity.Properties;
+using UnityEngine.SceneManagement;
 
 namespace Game
 {
@@ -235,6 +236,14 @@ namespace Game
             Damage damage = new Damage(1);
             this.TakeDamage(damage);
             this._invulnerabilityTimer.Reset();
+        }
+
+        protected override void OnDeath()
+        {
+            base.OnDeath();
+            // reload scene mercichatgpt
+            
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         }
     }
 }
