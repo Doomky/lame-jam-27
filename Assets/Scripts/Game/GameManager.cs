@@ -71,7 +71,6 @@ namespace Framework.Managers
                     this.spawnEnemy(position);
                 }
 
-
                 this._elapsedTime = 0f;
             }
         }

@@ -1,9 +1,12 @@
-﻿using UnityEngine;
+﻿
+using System;
+using System.Collections;
 
 namespace Game
 {
     public interface IProjectile
     {
+        event Action<IProjectile, IEnemy> Hit;
         IDamage Damage { get; }
 
         float MovementSpeed { get; set; }

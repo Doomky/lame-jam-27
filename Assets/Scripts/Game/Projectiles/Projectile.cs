@@ -1,4 +1,5 @@
 using Sirenix.OdinInspector;
+using System;
 using UnityEngine;
 
 namespace Game
@@ -18,6 +19,8 @@ namespace Game
 
         [SerializeField]
         private float _maxLifeTime = 5;
+
+        public event Action<IProjectile, IEnemy> Hit;
 
         public IDamage Damage 
         { 
@@ -64,6 +67,8 @@ namespace Game
             if (go.TryGetComponent(out IActor actor) && collisionType == CollisionType.Enter)
             {
                 actor.TakeDamage(this._damage);
+
+                this.Hit?.Invoke(this, actor as IEnemy);
 
                 GameObject.Destroy(this.gameObject);
             }

@@ -173,6 +173,9 @@ namespace Game
                     Transform instance = Instantiate(projectilePrefab.transform, this._projectileSpawnpoint.position, rotation, parent: null);
 
                     IProjectile projectile = instance.GetComponent<IProjectile>();
+                    
+                    projectile.Hit += this.Projectile_Hit;
+                    
                     OnFire?.Invoke(this, projectile, this._projectileSpawnpoint.transform.right);
                 }
             }
@@ -184,6 +187,11 @@ namespace Game
             }
 
             this._fireCooldownTimer.Reset();           
+        }
+
+        private void Projectile_Hit(IProjectile projectile, IEnemy actor)
+        {
+            this.OnHit?.Invoke(this, projectile, actor);
         }
 
         public void SwitchSoul()
