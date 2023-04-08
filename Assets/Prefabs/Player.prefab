@@ -298,6 +298,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 4a1052a950e02a44cac43fe85e21c531, type: 2}
   - {fileID: 11400000, guid: 4a1052a950e02a44cac43fe85e21c531, type: 2}
   _invulnerabilityTime: 0.5
+  _switchSoul: {fileID: 8300000, guid: 0384e56379bab1b4fae262465d641b38, type: 3}
 --- !u!1 &8258942385881763493
 GameObject:
   m_ObjectHideFlags: 0

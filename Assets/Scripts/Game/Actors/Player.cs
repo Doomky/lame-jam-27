@@ -48,6 +48,10 @@ namespace Game
 
         private Timer _invulnerabilityTimer;
 
+        [BoxGroup("Data/Souls")]
+        [SerializeField]
+        private AudioClip _switchSoul = null;
+
         public event Action<IPlayer, IProjectile, Vector2> OnFire;
         public event Action<IPlayer, Vector2> OnMove;
         public event Action<IPlayer> OnFixedUpdate;
@@ -210,6 +214,8 @@ namespace Game
         {
             this._primarySoul.Unbind(this);
             this._secondarySouls[0].Unbind(this);
+
+            Manager.Get<SFXManager>().PlayGlobalSFX(this._switchSoul);
 
             Soul previousPrimarySoul = this._primarySoul;
 
