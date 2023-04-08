@@ -82,3 +82,8 @@ MonoBehaviour:
     - Name: 
       Entry: 8
       Data: 
+  _name: 
+  _description: 
+  _image: {fileID: 0}
+  _color1: {r: 0.3882353, g: 0.60784316, b: 1, a: 1}
+  _color2: {r: 0.37254903, g: 0.8039216, b: 0.89411765, a: 1}

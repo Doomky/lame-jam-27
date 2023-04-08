@@ -16,7 +16,7 @@ namespace Game
         [BoxGroup("Components")]
         [Required]
         [SerializeField]
-        private SpriteRenderer _spriteRenderer = null;
+        protected SpriteRenderer _spriteRenderer = null;
 
         [BoxGroup("Components")]
         [Required]

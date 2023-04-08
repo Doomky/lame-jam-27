@@ -1,10 +1,14 @@
-﻿Shader "Custom/OnGetHit"
+﻿Shader "Custom/DefaultShader"
 {
 	Properties
 	{
 		[PerRendererData] _MainTex ("Sprite Texture", 2D) = "white" {}
 		_Color ("Tint", Color) = (1,1,1,1)
 		[MaterialToggle] PixelSnap ("Pixel snap", Float) = 0
+
+        _PrimaryColor("Destination Color 1", Color) = (1,1,1,1)
+
+        _SecondaryColor("Destination Color 2", Color) = (1,1,1,1)
 	}
 
 	SubShader
@@ -63,6 +67,8 @@
 			sampler2D _MainTex;
 			sampler2D _AlphaTex;
 			float _AlphaSplitEnabled;
+            fixed4 _PrimaryColor;
+            fixed4 _SecondaryColor;
 
 			fixed4 SampleSpriteTexture (float2 uv)
 			{
@@ -71,9 +77,14 @@
 				if (_AlphaSplitEnabled)
 					color.a = tex2D (_AlphaTex, uv).r;
 			#endif //UNITY_TEXTURE_ALPHASPLIT_ALLOWED
-				float lum =  0.21 * color.r + 0.72 * color.g + 0.07 * color.b;
-				lum += 0.8f * (1 - lum);
-				return float4((0.8f * color.r + 0.2f * lum),(0.8f * color.g + 0.2f * lum),(0.8f * color.b + 0.2f * lum),color.a);
+				
+				float remappingCoef1 = color.r == 1 ? 1 : 0;
+                color = (1 - remappingCoef1) * color + remappingCoef1 * float4(_PrimaryColor.rgb, color.a);
+
+				float remappingCoef2 = color.g == 1 ? 1 : 0;
+                color = (1 - remappingCoef2) * color + remappingCoef2 * float4(_SecondaryColor.rgb, color.a);
+			
+				return color;
 			}
 
 			fixed4 frag(v2f IN) : SV_Target

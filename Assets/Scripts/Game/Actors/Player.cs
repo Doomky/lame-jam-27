@@ -24,6 +24,12 @@ namespace Game
         [SerializeField]
         private ISoul _primarySoul = null;
 
+        [SerializeField]
+        private ParticleSystem _soulParticles = null;
+
+        [SerializeField]
+        private SpriteRenderer _aimIndicatorSpriteRenderer = null;
+
         [BoxGroup("Data/Souls")]
         [SerializeField]
         private ISoul[] _secondarySouls = null;
@@ -73,12 +79,25 @@ namespace Game
 
         protected void FixedUpdate()
         {
+            base.FixedUpdate();
             this.UpdateStats();
+            this.UpdateColor();
         }
 
         private void UpdateStats()
         {
             this.UpdateAttackSpeed();
+        }
+
+        private void UpdateColor()
+        {
+            this._spriteRenderer.material.SetColor("_PrimaryColor", this._primarySoul.Color1);
+            this._spriteRenderer.material.SetColor("_SecondaryColor", this._primarySoul.Color2);
+
+            this._aimIndicatorSpriteRenderer.color = this._aimIndicatorSpriteRenderer.color.SetColor(this.PrimarySoul.Color2);
+
+            ParticleSystem.MainModule main = this._soulParticles.main;
+            main.startColor = this._primarySoul.Color2;
         }
 
         private void UpdateAttackSpeed()
