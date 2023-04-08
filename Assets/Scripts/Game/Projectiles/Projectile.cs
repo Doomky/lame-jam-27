@@ -1,4 +1,4 @@
-﻿using Sirenix.OdinInspector;
+using Sirenix.OdinInspector;
 using UnityEngine;
 
 namespace Game
@@ -11,7 +11,6 @@ namespace Game
         [SerializeField]
         private float _movementSpeed = 5;
 
-        [SerializeField]
         private float _currentLifeTime = 5;
 
         [SerializeField]

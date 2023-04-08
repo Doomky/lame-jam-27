@@ -1,4 +1,4 @@
-﻿using Framework;
+using Framework;
 using Framework.Extensions;
 using Framework.Helpers;
 using Framework.Managers;
@@ -48,6 +48,7 @@ namespace Game
         protected Material _swapedMaterial = null;
         protected float _onGetHitVisualEffectDuration = 0.2f;
         [SerializeField] protected List<AudioClip> _onGetHitSFXs;
+        [SerializeField] private GameObject _damagePopup;
 
         [Header("On Death")]
         [Space]
@@ -98,6 +99,12 @@ namespace Game
         public void TakeDamage(IDamage damage)
         {
             this._currentHealth -= damage.Amount;
+
+            if (_damagePopup)
+            {
+                var popup = Instantiate(_damagePopup, this.transform.position, Quaternion.identity);
+                popup.GetComponent<UI_DamagePopup>().Bind(damage);
+            }
 
             if (_onGetHitSFXs.TryGetRandom(out AudioClip getHitSFX))
             {

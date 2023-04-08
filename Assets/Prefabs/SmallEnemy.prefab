@@ -184,6 +184,7 @@ MonoBehaviour:
   _spriteRenderer: {fileID: 3933916741572592224}
   _maxHealth: 3
   _movementSpeed: 10
+  _damagePopup: {fileID: 1607192860749998027, guid: 65ce90627e1d6394281a9416c0f7d7dc, type: 3}
   _player: {fileID: 0}
   _movementSpeedCurve:
     serializedVersion: 2

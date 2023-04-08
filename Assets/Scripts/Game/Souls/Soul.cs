@@ -6,27 +6,40 @@ namespace Game
     [CreateAssetMenu(menuName = "New/Soul", fileName = "Soul", order = 0)]
     public class Soul : SerializedScriptableObject, ISoul
     {
+        [SerializeField] private string _name;
+        [SerializeField] private string _description;
+        [SerializeField] private Texture2D _image;
+        [SerializeField] private Color _color1;
+        [SerializeField] private Color _color2;
         [SerializeField, InlineEditor] private IPrimaryFragment _primaryFragment = new PrimaryFragment();
         [SerializeField, InlineEditor] private ISecondaryFragment _secondaryFragment = new SecondaryFragment();
 
         public IPrimaryFragment PrimaryFragment
         {
             get => _primaryFragment;
-            set => _primaryFragment = value;
         }
 
         public ISecondaryFragment SecondaryFragment
         {
             get => _secondaryFragment;
-            set => _secondaryFragment = value;
         }
+
+        public Texture2D Image => _image;
+
+        public string Name => _name;
+
+        public string Description => _description;
+
+        public Color Color1 => _color1;
+
+        public Color Color2 => _color2;
 
         public void Bind(IPlayer player, bool isPrimary)
         {
             if (isPrimary)
             {
+                // TODO COLOR 
                 Bind(player, PrimaryFragment);
-                Bind(player, SecondaryFragment);
             }
             else
             {

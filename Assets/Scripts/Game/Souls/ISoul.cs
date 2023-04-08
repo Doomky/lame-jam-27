@@ -1,4 +1,6 @@
-﻿namespace Game
+﻿using UnityEngine;
+
+namespace Game
 {
     public interface ISoul
     {
@@ -14,8 +16,12 @@
         /// </summary>
         void Unbind(IPlayer player);
 
-        IPrimaryFragment PrimaryFragment { get; set; }
-        
-        ISecondaryFragment SecondaryFragment { get; set; }
+        IPrimaryFragment PrimaryFragment { get; }
+        ISecondaryFragment SecondaryFragment { get; }
+        Texture2D Image { get; }
+        string Name { get; }
+        string Description { get; }
+        Color Color1 { get; }
+        Color Color2 { get; }
     }
 }
