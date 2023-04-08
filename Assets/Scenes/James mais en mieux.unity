@@ -207,17 +207,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &495277322 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 5782685772220497598, guid: 8f3c26f464d698340a24d0de45c44167, type: 3}
-  m_PrefabInstance: {fileID: 897047392}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &674512439
 GameObject:
   m_ObjectHideFlags: 0
@@ -526,7 +515,7 @@ PrefabInstance:
     - target: {fileID: 760883143934534349, guid: 8f3c26f464d698340a24d0de45c44167, type: 3}
       propertyPath: _timerLabel
       value: 
-      objectReference: {fileID: 495277322}
+      objectReference: {fileID: 0}
     - target: {fileID: 1478823543239222217, guid: 8f3c26f464d698340a24d0de45c44167, type: 3}
       propertyPath: m_Name
       value: UI_ScreenCanvas
@@ -635,8 +624,44 @@ PrefabInstance:
       propertyPath: serializationData.Prefab
       value: 
       objectReference: {fileID: 4420102883244763461, guid: 8f3c26f464d698340a24d0de45c44167, type: 3}
+    - target: {fileID: 4424158819652561449, guid: 8f3c26f464d698340a24d0de45c44167, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4424158819652561449, guid: 8f3c26f464d698340a24d0de45c44167, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4424158819652561449, guid: 8f3c26f464d698340a24d0de45c44167, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4424158819652561449, guid: 8f3c26f464d698340a24d0de45c44167, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4667463732765193790, guid: 8f3c26f464d698340a24d0de45c44167, type: 3}
+      propertyPath: serializationData.Prefab
+      value: 
+      objectReference: {fileID: 4667463732765193790, guid: 8f3c26f464d698340a24d0de45c44167, type: 3}
     - target: {fileID: 5790107872094716657, guid: 8f3c26f464d698340a24d0de45c44167, type: 3}
       propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6092149245069058071, guid: 8f3c26f464d698340a24d0de45c44167, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6092149245069058071, guid: 8f3c26f464d698340a24d0de45c44167, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6092149245069058071, guid: 8f3c26f464d698340a24d0de45c44167, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6092149245069058071, guid: 8f3c26f464d698340a24d0de45c44167, type: 3}
+      propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6358482943040461623, guid: 8f3c26f464d698340a24d0de45c44167, type: 3}
