@@ -282,35 +282,12 @@ MonoBehaviour:
   serializationData:
     SerializedFormat: 2
     SerializedBytes: 
-    ReferencedUnityObjects:
-    - {fileID: 11400000, guid: cef85a968315b48409987f48e28445bc, type: 2}
-    - {fileID: 11400000, guid: f70d34fa25d44ba41b4d3b8249364784, type: 2}
+    ReferencedUnityObjects: []
     SerializedBytesString: 
     Prefab: {fileID: 0}
     PrefabModificationsReferencedUnityObjects: []
     PrefabModifications: []
-    SerializationNodes:
-    - Name: _primarySoul
-      Entry: 10
-      Data: 0
-    - Name: _secondarySouls
-      Entry: 7
-      Data: 0|Game.ISoul[], Assembly-CSharp
-    - Name: 
-      Entry: 12
-      Data: 2
-    - Name: 
-      Entry: 10
-      Data: 1
-    - Name: 
-      Entry: 10
-      Data: 1
-    - Name: 
-      Entry: 13
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
+    SerializationNodes: []
   _spriteRenderer: {fileID: 6842331399203174399}
   _animator: {fileID: 6594561731909497964}
   _maxHealth: 3
@@ -323,8 +300,12 @@ MonoBehaviour:
   _onDeathSFXs: []
   _onDeathPrefab: {fileID: 0}
   _projectileSpawnpoint: {fileID: 5648403265943158757}
+  _primarySoul: {fileID: 11400000, guid: 437352b654f165b4e8de7ec0b2de8df0, type: 2}
   _soulParticles: {fileID: 2906555571386570797}
   _aimIndicatorSpriteRenderer: {fileID: 5468875799320449441}
+  _secondarySouls:
+  - {fileID: 11400000, guid: 8803d26432d3ffd4b843d6f4b1bb1201, type: 2}
+  - {fileID: 11400000, guid: 8803d26432d3ffd4b843d6f4b1bb1201, type: 2}
 --- !u!1 &8258942385881763493
 GameObject:
   m_ObjectHideFlags: 0

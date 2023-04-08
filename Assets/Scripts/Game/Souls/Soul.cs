@@ -3,26 +3,65 @@ using UnityEngine;
 
 namespace Game
 {
-    [CreateAssetMenu(menuName = "New/Soul", fileName = "Soul", order = 0)]
-    public class Soul : SerializedScriptableObject, ISoul
+    public abstract class Soul : SerializedScriptableObject, ISoul
     {
-        [SerializeField] private string _name;
-        [SerializeField] private string _description;
-        [SerializeField] private Texture2D _image;
-        [SerializeField] private Color _color1;
-        [SerializeField] private Color _color2;
-        [SerializeField, InlineEditor] private IPrimaryFragment _primaryFragment = new PrimaryFragment();
-        [SerializeField, InlineEditor] private ISecondaryFragment _secondaryFragment = new SecondaryFragment();
+        [BoxGroup("Data")]
+        [SerializeField] 
+        private string _name;
 
-        public IPrimaryFragment PrimaryFragment
-        {
-            get => _primaryFragment;
-        }
+        [BoxGroup("Data")]
+        [SerializeField] 
+        private string _description;
 
-        public ISecondaryFragment SecondaryFragment
-        {
-            get => _secondaryFragment;
-        }
+        [BoxGroup("Data")]
+        [SerializeField]
+        private Texture2D _image;
+
+        [BoxGroup("Data")]
+        [SerializeField]
+        private Color _color1;
+
+        [BoxGroup("Data")]
+        [SerializeField]
+        private Color _color2;
+
+        [BoxGroup("Primary")]
+        [SerializeField]
+        private  GameObject _projectilePrefab;
+
+        [BoxGroup("Primary")]
+        [SerializeField]
+        private  GameObject _particleSystemPrefab;
+
+        [BoxGroup("Primary")]
+        [SerializeField]
+        private float _baseAttackSpeed = 1;
+
+        [BoxGroup("Primary")]
+        [SerializeField]
+        private float _spreadAngle = 0;
+
+        [BoxGroup("Primary")]
+        [SerializeField]
+        private int _numberOfProjectiles = 0;
+
+        [BoxGroup("Secondary")]
+        [SerializeField] 
+        private  float _movementSpeedModifier = 1;
+
+        [BoxGroup("Secondary")]
+        [SerializeField]
+        private  float _percentageAttackSpeedModifier = 1;
+        
+        [BoxGroup("Secondary")]
+        [SerializeField]
+        private  float _porojectileLifetimeModifier = 1;
+        
+        [BoxGroup("Secondary")]
+        [SerializeField] 
+        private  float _projectileSpeedModifier = 1;
+        
+        protected bool _isPrimary = false;
 
         public Texture2D Image => _image;
 
@@ -34,41 +73,62 @@ namespace Game
 
         public Color Color2 => _color2;
 
-        public void Bind(IPlayer player, bool isPrimary)
-        {
-            if (isPrimary)
-            {
-                // TODO COLOR 
-                Bind(player, PrimaryFragment);
-            }
-            else
-            {
-                Bind(player, SecondaryFragment);
-            }
-        }
+        public GameObject ProjectilePrefab => this._projectilePrefab;
 
-        private void Bind(IPlayer player, ISecondaryFragment fragment)
-        {
-            player.OnFire        += fragment.OnFire;
-            player.OnHit         += fragment.OnHit;
-            player.OnMove        += fragment.OnMove;
-            player.OnFixedUpdate += fragment.OnFixedUpdate;
-            player.OnTakeDamage  += fragment.OnTakeDamage;
-        }
+        public GameObject ParticleSystemPrefab => this._particleSystemPrefab;
 
-        void ISoul.Unbind(IPlayer player)
+        public float BaseAttackSpeed => this._baseAttackSpeed;
+
+        public float SpreadAngle => this._spreadAngle;
+
+        public int NumberOfProjectiles => this._numberOfProjectiles;
+
+        public float MovementSpeedModifier => this._movementSpeedModifier;
+
+        public float PercentageAttackSpeedModifier => this._percentageAttackSpeedModifier;
+
+        public float ProjectileLifetimeModifier => this._porojectileLifetimeModifier;
+
+        public float ProjectileSpeedModifier => this._projectileSpeedModifier;        
+
+        public virtual void Bind(IPlayer player, bool isPrimary)
         {
-            player.OnFire        -= PrimaryFragment.OnFire;
-            player.OnHit         -= PrimaryFragment.OnHit;
-            player.OnMove        -= PrimaryFragment.OnMove;
-            player.OnFixedUpdate -= PrimaryFragment.OnFixedUpdate;
-            player.OnTakeDamage  -= PrimaryFragment.OnTakeDamage;
+            this._isPrimary = isPrimary;
             
-            player.OnFire        -= SecondaryFragment.OnFire;
-            player.OnHit         -= SecondaryFragment.OnHit;
-            player.OnMove        -= SecondaryFragment.OnMove;
-            player.OnFixedUpdate -= SecondaryFragment.OnFixedUpdate;
-            player.OnTakeDamage  -= SecondaryFragment.OnTakeDamage;
+            player.OnFire        += this.OnFire;
+            player.OnHit         += this.OnHit;
+            player.OnMove        += this.OnMove;
+            player.OnFixedUpdate += this.OnFixedUpdate;
+            player.OnTakeDamage  += this.OnTakeDamage;
+        }
+
+        public virtual void Unbind(IPlayer player)
+        {
+            player.OnFire        -= this.OnFire;
+            player.OnHit         -= this.OnHit;
+            player.OnMove        -= this.OnMove;
+            player.OnFixedUpdate -= this.OnFixedUpdate;
+            player.OnTakeDamage  -= this.OnTakeDamage;
+        }
+
+        public virtual void OnFire(IPlayer player, IProjectile projectile, Vector2 direction)
+        {
+        }
+
+        public virtual void OnMove(IPlayer player, Vector2 direction)
+        {
+        }
+
+        public virtual void OnFixedUpdate(IPlayer player)
+        {
+        }
+
+        public virtual void OnHit(IPlayer player, IProjectile projectile, IEnemy enemy)
+        {
+        }
+
+        public virtual void OnTakeDamage(IPlayer player, IDamage damage, IEnemy enemy)
+        {
         }
     }
 }

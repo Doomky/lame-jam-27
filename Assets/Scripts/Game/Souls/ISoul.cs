@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Sirenix.OdinInspector;
+using UnityEngine;
 
 namespace Game
 {
@@ -16,12 +17,24 @@ namespace Game
         /// </summary>
         void Unbind(IPlayer player);
 
-        IPrimaryFragment PrimaryFragment { get; }
-        ISecondaryFragment SecondaryFragment { get; }
         Texture2D Image { get; }
         string Name { get; }
         string Description { get; }
         Color Color1 { get; }
         Color Color2 { get; }
+        
+        float BaseAttackSpeed { get; }
+
+        float SpreadAngle { get; }
+
+        int NumberOfProjectiles { get; }
+
+        float MovementSpeedModifier { get; }
+
+        float PercentageAttackSpeedModifier { get; }
+
+        float ProjectileLifetimeModifier { get; }
+
+        float ProjectileSpeedModifier { get; }
     }
 }

@@ -9,6 +9,9 @@ namespace Game
         private Damage _damage = null;
 
         [SerializeField]
+        private AnimationCurve _movementSpeedCurve = AnimationCurve.Linear(0,1,1,1);
+
+        [SerializeField]
         private float _movementSpeed = 5;
 
         private float _currentLifeTime = 5;
@@ -45,7 +48,7 @@ namespace Game
 
         protected void FixedUpdate()
         {
-            this.transform.position += (Vector3)(this.transform.right * this._movementSpeed * Time.fixedDeltaTime);
+            this.transform.position += (Vector3)(this.transform.right * this._movementSpeedCurve.Evaluate(this._maxLifeTime - this._currentLifeTime) * this._movementSpeed * Time.fixedDeltaTime);
             this._currentLifeTime += Time.fixedDeltaTime;
 
             if (this._currentLifeTime >= this.MaxLifetime)

@@ -15,9 +15,11 @@ namespace Game
 
         event Action<IPlayer, IDamage, IEnemy> OnTakeDamage;
 
-        ISoul PrimarySoul { get; set; }
+        Soul PrimarySoul { get; set; }
         
-        ISoul[] SecondarySouls { get; set; }
+        Soul[] SecondarySouls { get; set; }
+
+        Vector2 AimDirection { get; }
 
         void Aim(Vector2 direction);
 

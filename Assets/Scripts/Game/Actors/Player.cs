@@ -22,7 +22,7 @@ namespace Game
 
         [BoxGroup("Data/Souls")]
         [SerializeField]
-        private ISoul _primarySoul = null;
+        private Soul _primarySoul = null;
 
         [SerializeField]
         private ParticleSystem _soulParticles = null;
@@ -32,7 +32,7 @@ namespace Game
 
         [BoxGroup("Data/Souls")]
         [SerializeField]
-        private ISoul[] _secondarySouls = null;
+        private Soul[] _secondarySouls = null;
         private InputManager _inputManager;
 
         public event Action<IPlayer, IProjectile, Vector2> OnFire;
@@ -41,17 +41,20 @@ namespace Game
         public event Action<IPlayer, IProjectile, IEnemy> OnHit;
         public event Action<IPlayer, IDamage, IEnemy> OnTakeDamage;
         public event Action<ISoul, ISoul[]> OnSwapSoul;
-        public ISoul PrimarySoul
+
+        public Soul PrimarySoul
         {
             get => this._primarySoul;
             set => this._primarySoul = value;
         }
 
-        public ISoul[] SecondarySouls
+        public Soul[] SecondarySouls
         {
             get => this._secondarySouls;
             set => this._secondarySouls = value;
         }
+
+        public Vector2 AimDirection => this._projectileSpawnpoint.transform.right;
 
         protected void Awake()
         {
@@ -87,6 +90,12 @@ namespace Game
             base.FixedUpdate();
             this.UpdateStats();
             this.UpdateColor();
+
+            this._primarySoul.OnFixedUpdate(this);
+            for (int i = 0; i < this._secondarySouls.Length; i++)
+            {
+                this._secondarySouls[i].OnFixedUpdate(this);
+            }
         }
 
         private void UpdateStats()
@@ -107,15 +116,11 @@ namespace Game
 
         private void UpdateAttackSpeed()
         {
-            float attackSpeed = 1;
-
-            attackSpeed *= this._primarySoul.PrimaryFragment.AttackSpeedModifier;
-            attackSpeed *= this._primarySoul.SecondaryFragment.AttackSpeedModifier;
+            float attackSpeed = this._primarySoul.BaseAttackSpeed;
 
             for (int i = 0; i < this._secondarySouls.Length; i++)
             {
-                attackSpeed *= this._secondarySouls[i].PrimaryFragment.AttackSpeedModifier;
-                attackSpeed *= this._secondarySouls[i].SecondaryFragment.AttackSpeedModifier;
+                attackSpeed *= (1 + this._secondarySouls[i].PercentageAttackSpeedModifier);
             }
 
             float fireCooldown = Mathf.Clamp(1 / attackSpeed, 0.1f, 10f);
@@ -135,15 +140,20 @@ namespace Game
                 return;
             }
 
-            GameObject projectilePrefab = this._primarySoul.PrimaryFragment.ProjectilePrefab;
-            GameObject psPrefab = this._primarySoul.PrimaryFragment.ParticleSystemPrefab;
+            GameObject projectilePrefab = this._primarySoul.ProjectilePrefab;
+            GameObject psPrefab = this._primarySoul.ParticleSystemPrefab;
 
-            if (projectilePrefab)
+            for (int i = 0; i < this._primarySoul.NumberOfProjectiles; i++)
             {
-                Transform instance = Instantiate(projectilePrefab.transform, this._projectileSpawnpoint.position, this._projectileSpawnpoint.rotation, parent: null);
+                if (projectilePrefab)
+                {
+                    Quaternion rotation = Quaternion.Euler(0, 0, this._projectileSpawnpoint.rotation.eulerAngles.z + UnityEngine.Random.Range(-this._primarySoul.SpreadAngle / 2, this._primarySoul.SpreadAngle));
 
-                IProjectile projectile = instance.GetComponent<IProjectile>();
-                OnFire?.Invoke(this, projectile, this._projectileSpawnpoint.transform.right);
+                    Transform instance = Instantiate(projectilePrefab.transform, this._projectileSpawnpoint.position, rotation, parent: null);
+
+                    IProjectile projectile = instance.GetComponent<IProjectile>();
+                    OnFire?.Invoke(this, projectile, this._projectileSpawnpoint.transform.right);
+                }
             }
 
             if (psPrefab)
@@ -160,7 +170,7 @@ namespace Game
             this._primarySoul.Unbind(this);
             this._secondarySouls[0].Unbind(this);
 
-            ISoul previousPrimarySoul = this._primarySoul;
+            Soul previousPrimarySoul = this._primarySoul;
 
             int length = this._secondarySouls.Length;
 

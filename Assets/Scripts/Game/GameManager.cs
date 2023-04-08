@@ -1,8 +1,8 @@
+using Game;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
-
 
 namespace Framework.Managers
 {
@@ -52,7 +52,7 @@ namespace Framework.Managers
 
             if (this.remainingTimeInSeconds <= 0)
             {
-                Debug.Log("t'as gagné bogoss");
+                Debug.Log("t'as gagnï¿½ bogoss");
                 // TODO: Game Over
             }
 
