@@ -12,7 +12,7 @@ using UnityEngine;
 
 namespace Game
 {
-    public abstract class Actor : SerializedMonoBehaviour, IActor
+    public abstract class Actor : SingleCollisionPipelineMonoBehaviour, IActor
     {
         [BoxGroup("Components")]
         [Required]

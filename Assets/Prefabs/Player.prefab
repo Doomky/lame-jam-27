@@ -299,6 +299,7 @@ MonoBehaviour:
   _onDeathPSPrefabList: []
   _onDeathSFXs: []
   _onDeathPrefab: {fileID: 0}
+  _collider: {fileID: 3842722683236746650}
   _baseMovementSpeed: 5
   _projectileSpawnpoint: {fileID: 5648403265943158757}
   _primarySoul: {fileID: 11400000, guid: bd743fb2ea085e44cb3e818bdc729f0e, type: 2}
@@ -307,6 +308,7 @@ MonoBehaviour:
   _secondarySouls:
   - {fileID: 11400000, guid: 437352b654f165b4e8de7ec0b2de8df0, type: 2}
   - {fileID: 11400000, guid: 8803d26432d3ffd4b843d6f4b1bb1201, type: 2}
+  _invulnerabilityTime: 5
 --- !u!1 &8258942385881763493
 GameObject:
   m_ObjectHideFlags: 0

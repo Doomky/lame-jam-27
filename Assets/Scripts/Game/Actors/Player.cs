@@ -40,6 +40,11 @@ namespace Game
         private Soul[] _secondarySouls = null;
         private InputManager _inputManager;
 
+        [SerializeField]
+        private float _invulnerabilityTime;
+
+        private Timer _invulnerabilityTimer;
+
         public event Action<IPlayer, IProjectile, Vector2> OnFire;
         public event Action<IPlayer, Vector2> OnMove;
         public event Action<IPlayer> OnFixedUpdate;
@@ -90,6 +95,8 @@ namespace Game
             {
                 this._secondarySouls[i]?.Bind(this, false);
             }
+
+            this._invulnerabilityTimer = new(this._invulnerabilityTime);
         }
 
         protected void FixedUpdate()
@@ -215,6 +222,19 @@ namespace Game
             this._secondarySouls[length - 1].Bind(this, false);
             
             OnSwapSoul?.Invoke(this._primarySoul, this._secondarySouls);
+        }
+
+        protected override void OnCollision(GameObject go, Vector2 collisionPosition, bool isTrigger, CollisionType collisionType)
+        {
+            if (this._invulnerabilityTimer.IsRunning())
+            {
+                return;
+            }
+
+            Debug.Log("aie !");
+            Damage damage = new Damage(1);
+            this.TakeDamage(damage);
+            this._invulnerabilityTimer.Reset();
         }
     }
 }
