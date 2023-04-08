@@ -53,9 +53,10 @@ MonoBehaviour:
     PrefabModificationsReferencedUnityObjects: []
     PrefabModifications: []
     SerializationNodes: []
-  _enemyPrefab: {fileID: 5527768640799173017, guid: ff057b61791402244922574e9552fa04, type: 3}
+  _enemyPrefab:
+  - {fileID: 5527768640799173017, guid: ff057b61791402244922574e9552fa04, type: 3}
+  - {fileID: 5527768640799173017, guid: 69768293fee39634581a9b1297a12b94, type: 3}
   _playerPrefab: {fileID: 6381849272219621818, guid: b461df6effa678a4baf791dd1b80c8ee, type: 3}
-  _enemyList: []
   _survivalTimerInMinutes: 5
   remainingTimeInSeconds: 0
   _enemySpawnTime: 1

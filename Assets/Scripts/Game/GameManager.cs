@@ -9,12 +9,11 @@ namespace Framework.Managers
     public class GameManager : Manager
     {
         [SerializeField]
-        private GameObject _enemyPrefab;
+        private List<GameObject> _enemyPrefab;
 
         [SerializeField]
         private GameObject _playerPrefab;
 
-        [SerializeField]
         private List<GameObject> _enemyList;
 
         [SerializeField]
@@ -77,8 +76,8 @@ namespace Framework.Managers
 
         public void spawnEnemy(Vector3 position)
         {
-            GameObject enemy = Instantiate(this._enemyPrefab, position, Quaternion.identity);
-            _enemyList.Add(enemy);
+            int random = UnityEngine.Random.Range(0, this._enemyPrefab.Count);
+            GameObject enemy = Instantiate(this._enemyPrefab[random], position, Quaternion.identity);
         }
 
         public Vector3 GetEdgeRandomScreenPosition()

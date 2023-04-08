@@ -99,7 +99,7 @@ Animator:
   m_GameObject: {fileID: 5527768640799173017}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 58c5dff5f4dc7e342abd6879d8c6a836, type: 2}
+  m_Controller: {fileID: 9100000, guid: e0ad882e8d4a9db4f943c90116ddaea3, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -205,8 +205,8 @@ MonoBehaviour:
     SerializationNodes: []
   _spriteRenderer: {fileID: 3820472884749890296}
   _animator: {fileID: 254130605514314891}
-  _maxHealth: 50
-  _movementSpeed: 2
+  _maxHealth: 6
+  _movementSpeed: 4
   _onGetHitPSPrefab: {fileID: 0}
   _onGetHitSFXs: []
   _damagePopup: {fileID: 1607192860749998027, guid: 65ce90627e1d6394281a9416c0f7d7dc, type: 3}
