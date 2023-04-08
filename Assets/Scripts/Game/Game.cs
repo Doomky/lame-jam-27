@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.Android;
 
 namespace Game
 {
@@ -16,7 +17,13 @@ namespace Game
         private GameObject _enemyPrefab;
 
         [SerializeField]
+        private GameObject _playerPrefab;
+
+        [SerializeField]
         private List<GameObject> _enemyList;
+
+        [SerializeField]
+        private float _survivalTimerInMinutes;
 
         [SerializeField]
         private float _enemySpawnTime;
@@ -25,6 +32,8 @@ namespace Game
 
         [SerializeField]
         private Camera _camera;
+
+        private StateMachine _machine;
 
         public enum Action
         {
@@ -67,8 +76,21 @@ namespace Game
             }
         }
 
+        protected override void Awake()
+        {
+            base.Awake();
+            this._machine = new StateMachine();
+            Instantiate(this._playerPrefab, Vector3.zero, Quaternion.identity);
+        }
+
         public void Update()
         {
+            this._survivalTimerInMinutes -= Time.deltaTime;
+            if (this._survivalTimerInMinutes <= 0)
+            {
+                Debug.Log("t'as gagné bogoss");
+                // TODO: Game Over
+            }
             this._elapsedTime += Time.deltaTime;
             if (this._elapsedTime > this._enemySpawnTime)
             {
