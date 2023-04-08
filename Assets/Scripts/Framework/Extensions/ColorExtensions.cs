@@ -16,5 +16,14 @@ namespace Framework.Helpers
             color.a = newAlpha;
             return color;
         }
+
+        public static Color SetColor(this Color color, Color newColor)
+        {
+            color.r = newColor.r;
+            color.g = newColor.g;
+            color.b = newColor.b;
+            
+            return color;
+        }
     }
 }

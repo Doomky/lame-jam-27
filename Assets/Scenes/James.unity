@@ -479,6 +479,11 @@ Transform:
   m_Father: {fileID: 674512441}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!212 &895169132 stripped
+SpriteRenderer:
+  m_CorrespondingSourceObject: {fileID: 5468875799320449441, guid: b461df6effa678a4baf791dd1b80c8ee, type: 3}
+  m_PrefabInstance: {fileID: 5583463549561205668}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1095856925 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4399371608813337468, guid: b461df6effa678a4baf791dd1b80c8ee, type: 3}
@@ -492,18 +497,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 674512441}
     m_Modifications:
-    - target: {fileID: 2252610744872031311, guid: b461df6effa678a4baf791dd1b80c8ee, type: 3}
-      propertyPath: m_Color.b
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2252610744872031311, guid: b461df6effa678a4baf791dd1b80c8ee, type: 3}
-      propertyPath: m_Color.g
-      value: 0.83921576
-      objectReference: {fileID: 0}
-    - target: {fileID: 2252610744872031311, guid: b461df6effa678a4baf791dd1b80c8ee, type: 3}
-      propertyPath: m_Color.r
-      value: 0.38431376
-      objectReference: {fileID: 0}
     - target: {fileID: 3842722683236746650, guid: b461df6effa678a4baf791dd1b80c8ee, type: 3}
       propertyPath: m_Size.x
       value: 1
@@ -560,25 +553,25 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 6381849272219621818, guid: b461df6effa678a4baf791dd1b80c8ee, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6585629225162898348, guid: b461df6effa678a4baf791dd1b80c8ee, type: 3}
       propertyPath: serializationData.Prefab
       value: 
-      objectReference: {fileID: 6585629225162898348, guid: b461df6effa678a4baf791dd1b80c8ee, type: 3}
+      objectReference: {fileID: 0}
+    - target: {fileID: 6585629225162898348, guid: b461df6effa678a4baf791dd1b80c8ee, type: 3}
+      propertyPath: _aimIndicatorSpriteRenderer
+      value: 
+      objectReference: {fileID: 895169132}
     - target: {fileID: 6585629225162898348, guid: b461df6effa678a4baf791dd1b80c8ee, type: 3}
       propertyPath: serializationData.PrefabModifications.Array.size
-      value: 3
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6585629225162898348, guid: b461df6effa678a4baf791dd1b80c8ee, type: 3}
       propertyPath: serializationData.PrefabModifications.Array.data[0]
       value: '"path":"_primarySoul","value":$eref:0'
-      objectReference: {fileID: 0}
-    - target: {fileID: 6585629225162898348, guid: b461df6effa678a4baf791dd1b80c8ee, type: 3}
-      propertyPath: serializationData.PrefabModifications.Array.data[1]
-      value: '"path":"_secondarySouls.[0]","value":$eref:0'
-      objectReference: {fileID: 0}
-    - target: {fileID: 6585629225162898348, guid: b461df6effa678a4baf791dd1b80c8ee, type: 3}
-      propertyPath: serializationData.PrefabModifications.Array.data[2]
-      value: '"path":"_secondarySouls.[1]","value":$eref:0'
       objectReference: {fileID: 0}
     - target: {fileID: 6585629225162898348, guid: b461df6effa678a4baf791dd1b80c8ee, type: 3}
       propertyPath: serializationData.PrefabModificationsReferencedUnityObjects.Array.size
@@ -588,6 +581,22 @@ PrefabInstance:
       propertyPath: serializationData.PrefabModificationsReferencedUnityObjects.Array.data[0]
       value: 
       objectReference: {fileID: 11400000, guid: f70d34fa25d44ba41b4d3b8249364784, type: 2}
+    - target: {fileID: 6842331399203174399, guid: b461df6effa678a4baf791dd1b80c8ee, type: 3}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6842331399203174399, guid: b461df6effa678a4baf791dd1b80c8ee, type: 3}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6842331399203174399, guid: b461df6effa678a4baf791dd1b80c8ee, type: 3}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6842331399203174399, guid: b461df6effa678a4baf791dd1b80c8ee, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 224e1d7c4b73dba40a25757ff4e229dd, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
