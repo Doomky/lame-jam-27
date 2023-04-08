@@ -31,6 +31,7 @@ MonoBehaviour:
   _baseAttackSpeed: 2
   _spreadAngle: 1
   _numberOfProjectiles: 1
+  _fireSFX: {fileID: 8300000, guid: e1f7fc0a6f887ee439a60cc62fc1269c, type: 3}
   _percentageMovementSpeedModifier: 0
   _percentageAttackSpeedModifier: 0
   _porojectileLifetimeModifier: 0

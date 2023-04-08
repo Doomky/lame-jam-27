@@ -48,7 +48,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   serializationData:
     SerializedFormat: 0
-    SerializedBytes: 
+    SerializedBytes: 01010e0000005f0068006900740074006500640045006e0065006d006900650073002f000000000151000000530079007300740065006d002e0043006f006c006c0065006300740069006f006e0073002e00470065006e0065007200690063002e004800610073006800530065007400600031005b005b00470061006d0065002e00490045006e0065006d0079002c00200041007300730065006d0062006c0079002d004300530068006100720070005d005d002c002000530079007300740065006d002e0043006f0072006500000000000600000000000000000705
     ReferencedUnityObjects: []
     SerializedBytesString: 
     Prefab: {fileID: 0}
@@ -56,9 +56,34 @@ MonoBehaviour:
     PrefabModifications: []
     SerializationNodes: []
   _damage:
-    _amount: 5
-  _movementSpeed: 20
-  _maxLifeTime: 5
+    _amount: 4
+  _movementSpeedCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  _movementSpeed: 12
+  _maxLifeTime: 1
+  _destroyOnHit: 1
 --- !u!58 &8051076559172986960
 CircleCollider2D:
   m_ObjectHideFlags: 0

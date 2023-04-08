@@ -24,7 +24,7 @@ namespace Game
 
         public void FixedUpdate()
         {
-            if (this._player == null)
+            if (this._player == null || this._isDead)
             {
                 return;
             }

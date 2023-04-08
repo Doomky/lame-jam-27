@@ -46,6 +46,10 @@ namespace Game
         [SerializeField]
         private int _numberOfProjectiles = 0;
 
+        [BoxGroup("Primary")]
+        [SerializeField]
+        private AudioClip _fireSFX = null;
+
         [BoxGroup("Secondary")]
         [SerializeField] 
         private  float _percentageMovementSpeedModifier = 0;
@@ -61,7 +65,7 @@ namespace Game
         [BoxGroup("Secondary")]
         [SerializeField] 
         private  float _projectileSpeedModifier = 0;
-        
+
         protected bool _isPrimary = false;
 
         public Texture2D Image => _image;
@@ -90,7 +94,9 @@ namespace Game
 
         public float ProjectileLifetimeModifier => this._porojectileLifetimeModifier;
 
-        public float ProjectileSpeedModifier => this._projectileSpeedModifier;        
+        public float ProjectileSpeedModifier => this._projectileSpeedModifier;
+
+        public AudioClip FireSFX => this._fireSFX;
 
         public virtual void Bind(IPlayer player, bool isPrimary)
         {

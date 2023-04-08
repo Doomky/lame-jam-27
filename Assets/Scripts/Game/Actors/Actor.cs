@@ -9,6 +9,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.Properties;
 using UnityEngine;
+using UnityEngine.Rendering;
 
 namespace Game
 {
@@ -84,6 +85,11 @@ namespace Game
         protected virtual void Awake()
         {
             _currentHealth = _maxHealth;
+        }
+
+        public bool IsDead()
+        {
+            return this._isDead;
         }
 
         public virtual void Move(Vector2 direction)

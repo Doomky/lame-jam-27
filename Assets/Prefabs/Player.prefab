@@ -95,7 +95,7 @@ GameObject:
   - component: {fileID: 4399371608813337468}
   - component: {fileID: 6842331399203174399}
   - component: {fileID: 6594561731909497964}
-  - component: {fileID: 3842722683236746650}
+  - component: {fileID: 3647397530301393632}
   - component: {fileID: 4243342373931452648}
   - component: {fileID: 6585629225162898348}
   m_Layer: 6
@@ -195,8 +195,8 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!61 &3842722683236746650
-BoxCollider2D:
+--- !u!58 &3647397530301393632
+CircleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -227,19 +227,9 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.1875}
-    oldSize: {x: 1, y: 1}
-    newSize: {x: 1, y: 1}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
+  m_Offset: {x: 0, y: 0.3125}
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
-  m_EdgeRadius: 0
+  m_Radius: 0.32
 --- !u!50 &4243342373931452648
 Rigidbody2D:
   serializedVersion: 4
@@ -299,7 +289,6 @@ MonoBehaviour:
   _onDeathPSPrefabList: []
   _onDeathSFXs: []
   _onDeathPrefab: {fileID: 0}
-  _collider: {fileID: 3842722683236746650}
   _baseMovementSpeed: 5
   _projectileSpawnpoint: {fileID: 5648403265943158757}
   _primarySoul: {fileID: 11400000, guid: 4a1052a950e02a44cac43fe85e21c531, type: 2}
@@ -308,6 +297,7 @@ MonoBehaviour:
   _secondarySouls:
   - {fileID: 11400000, guid: 4a1052a950e02a44cac43fe85e21c531, type: 2}
   - {fileID: 11400000, guid: 4a1052a950e02a44cac43fe85e21c531, type: 2}
+  _invulnerabilityTime: 0.5
 --- !u!1 &8258942385881763493
 GameObject:
   m_ObjectHideFlags: 0

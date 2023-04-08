@@ -8,6 +8,8 @@ using Unity.VisualScripting.Dependencies.NCalc;
 using UnityEngine;
 using Unity.Properties;
 using UnityEngine.SceneManagement;
+using static UnityEngine.EventSystems.EventTrigger;
+using Framework.Managers.Audio;
 
 namespace Game
 {
@@ -194,6 +196,8 @@ namespace Game
                     parent: null);
             }
 
+            Manager.Get<SFXManager>().PlayGlobalSFX(this._primarySoul.FireSFX, isPitchRandomized: true);
+
             this._fireCooldownTimer.Reset();           
         }
 
@@ -232,10 +236,16 @@ namespace Game
                 return;
             }
 
-            Debug.Log("aie !");
-            Damage damage = new Damage(1);
-            this.TakeDamage(damage);
-            this._invulnerabilityTimer.Reset();
+            if (go.TryGetComponent(out IEnemy enemy))
+            {
+                if (!enemy.IsDead())
+                {
+                    Debug.Log("aie !");
+                    Damage damage = new Damage(1);
+                    this.TakeDamage(damage);
+                    this._invulnerabilityTimer.Reset();
+                }
+            }
         }
 
         protected override void OnDeath()
