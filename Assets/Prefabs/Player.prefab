@@ -142,7 +142,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 224e1d7c4b73dba40a25757ff4e229dd, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -164,7 +164,7 @@ SpriteRenderer:
   m_SortingLayer: 2
   m_SortingOrder: 0
   m_Sprite: {fileID: 417674869, guid: a78b34b042cf68e4a802ae051d0a8d04, type: 3}
-  m_Color: {r: 0.3820755, g: 0.8402974, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -317,11 +317,14 @@ MonoBehaviour:
   _movementSpeed: 5
   _onGetHitPSPrefab: {fileID: 0}
   _onGetHitSFXs: []
+  _damagePopup: {fileID: 0}
   _onDeathPSPrefab: {fileID: 0}
   _onDeathPSPrefabList: []
   _onDeathSFXs: []
   _onDeathPrefab: {fileID: 0}
   _projectileSpawnpoint: {fileID: 5648403265943158757}
+  _soulParticles: {fileID: 2906555571386570797}
+  _aimIndicatorSpriteRenderer: {fileID: 5468875799320449441}
 --- !u!1 &8258942385881763493
 GameObject:
   m_ObjectHideFlags: 0
@@ -1192,7 +1195,7 @@ ParticleSystem:
     rateOverTime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 2
+      scalar: 5
       minScalar: 10
       maxCurve:
         serializedVersion: 2

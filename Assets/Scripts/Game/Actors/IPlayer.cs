@@ -30,6 +30,6 @@ namespace Game
         /// <summary>
         /// Swap between souls mode, put the current soul in the secondary souls array and get the next soul from the array.
         /// </summary>
-        void SwapMode();
+        void SwitchSoul();
     }
 }

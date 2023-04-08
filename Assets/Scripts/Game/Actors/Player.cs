@@ -69,6 +69,11 @@ namespace Game
                 this.Fire();
             };
 
+            this._inputManager.Switched += () =>
+            {
+                this.SwitchSoul();
+            };
+
             this._primarySoul?.Bind(this, true);
 
             for (int i = 0; i < this._secondarySouls?.Length; i++)
@@ -150,7 +155,7 @@ namespace Game
             this._fireCooldownTimer.Reset();           
         }
 
-        public void SwapMode()
+        public void SwitchSoul()
         {
             this._primarySoul.Unbind(this);
             this._secondarySouls[0].Unbind(this);

@@ -14,6 +14,7 @@ namespace Framework.Managers
         public event Action<Vector2> Moved;
         public event Action<Vector2> Pointed;
         public event Action Fired;
+        public event Action Switched;
 
         private InputActions inputActions;
 
@@ -57,6 +58,11 @@ namespace Framework.Managers
         {
             this._pointedPosition = inputValue.Get<Vector2>();
             this.Pointed?.Invoke(this._pointedPosition);
+        }
+
+        public void OnSwitch(InputValue inputValue)
+        {
+            this.Switched?.Invoke();
         }
     }
 }
