@@ -58,7 +58,7 @@ namespace Game
         {
             base.OnCollision(go, collisionPosition, isTrigger, collisionType);
 
-            if (go.TryGetComponent(out IActor actor))
+            if (go.TryGetComponent(out IActor actor) && collisionType == CollisionType.Enter)
             {
                 actor.TakeDamage(this._damage);
 

@@ -40,7 +40,7 @@ namespace Game
         public event Action<IPlayer> OnFixedUpdate;
         public event Action<IPlayer, IProjectile, IEnemy> OnHit;
         public event Action<IPlayer, IDamage, IEnemy> OnTakeDamage;
-
+        public event Action<ISoul, ISoul[]> OnSwapSoul;
         public ISoul PrimarySoul
         {
             get => this._primarySoul;
@@ -174,6 +174,8 @@ namespace Game
 
             this._primarySoul.Bind(this, true);
             this._secondarySouls[length - 1].Bind(this, false);
+            
+            OnSwapSoul?.Invoke(this._primarySoul, this._secondarySouls);
         }
     }
 }
