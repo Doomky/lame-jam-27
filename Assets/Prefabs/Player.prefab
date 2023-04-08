@@ -291,7 +291,7 @@ MonoBehaviour:
   _onDeathPrefab: {fileID: 0}
   _baseMovementSpeed: 5
   _projectileSpawnpoint: {fileID: 5648403265943158757}
-  _primarySoul: {fileID: 11400000, guid: bd743fb2ea085e44cb3e818bdc729f0e, type: 2}
+  _primarySoul: {fileID: 11400000, guid: 18490306240f4944cbd66ee3dc20714b, type: 2}
   _soulParticles: {fileID: 2906555571386570797}
   _aimIndicatorSpriteRenderer: {fileID: 5468875799320449441}
   _secondarySouls:
