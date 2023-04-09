@@ -14,9 +14,9 @@ namespace Game
         [SerializeField] private float _wipeRadius = 5;
         [BoxGroup("Wipe")]
         [SerializeField] private int _wipeDamage = 10;
-        [BoxGroup("Wipe")] 
+        [BoxGroup("Wipe")]
         [SerializeField] private GameObject _wipePrefab;
-        
+
         [BoxGroup("Data/FireSystem")]
         [SerializeField]
         private int _baseMovementSpeed = 5;
@@ -85,7 +85,7 @@ namespace Game
         protected void Awake()
         {
             base.Awake();
-            
+
             this._inputManager = Manager.Get<InputManager>();
             this._inputManager.Moved += this.Move;
             this._inputManager.Pointed += InputManager_Pointed;
@@ -154,7 +154,7 @@ namespace Game
                 anySoulHasExpired = true;
             }
             else
-            { 
+            {
                 this._primarySoul.OnFixedUpdate(this);
             }
 
@@ -190,12 +190,12 @@ namespace Game
         private void UpdateMovementSpeed()
         {
             float movementSpeed = this._baseMovementSpeed;
-            
-            movementSpeed *= (1 +  this._primarySoul.PercentageMovementSpeedModifier);
+
+            movementSpeed *= (1 + this._primarySoul.PercentageMovementSpeedModifier);
 
             for (int i = 0; i < this._secondarySouls.Length; i++)
             {
-                movementSpeed *= (1 +  this._secondarySouls[i].PercentageMovementSpeedModifier);
+                movementSpeed *= (1 + this._secondarySouls[i].PercentageMovementSpeedModifier);
             }
 
             this._movementSpeed = movementSpeed;
@@ -250,9 +250,9 @@ namespace Game
                     Transform instance = Instantiate(projectilePrefab.transform, this._projectileSpawnpoint.position, rotation, parent: null);
 
                     IProjectile projectile = instance.GetComponent<IProjectile>();
-                    
+
                     projectile.Hit += this.Projectile_Hit;
-                    
+
                     OnFire?.Invoke(this, projectile, this._projectileSpawnpoint.transform.right);
                 }
             }
@@ -265,7 +265,7 @@ namespace Game
 
             Manager.Get<SFXManager>().PlayGlobalSFX(this._primarySoul.FireSFX, isPitchRandomized: true);
 
-            this._fireCooldownTimer.Reset();           
+            this._fireCooldownTimer.Reset();
         }
 
         private void Projectile_Hit(IProjectile projectile, IEnemy actor)
@@ -302,7 +302,7 @@ namespace Game
                     hasBeenAdded = true;
                 }
             }
-            
+
             if (!hasBeenAdded)
             {
                 for (int i = 0; i < this._secondarySouls.Length; i++)
@@ -316,6 +316,25 @@ namespace Game
                         break;
                     }
                 }
+            }
+
+            if (!hasBeenAdded)
+            {
+                float lowestRemainingTimer = float.MaxValue;
+                int soulIndex = 0;
+
+                for (int i = 0; i < this._secondarySouls.Length; i++)
+                {
+                    if (this._secondarySouls[i].SoulDurationTimer.TimeLeftToTrigger() < lowestRemainingTimer)
+                    {
+                        lowestRemainingTimer = this._secondarySouls[i].SoulDurationTimer.TimeLeftToTrigger();
+                        soulIndex = i;
+                    }
+                }
+
+                this._secondarySouls[soulIndex].Unbind(this);
+                this._secondarySouls[soulIndex] = soul;
+                this._secondarySouls[soulIndex].Bind(this, false, false);
             }
 
             OnSwapSoul?.Invoke(this._primarySoul, this._secondarySouls);
@@ -342,7 +361,7 @@ namespace Game
 
             this._primarySoul.Bind(this, true, true);
             this._secondarySouls[length - 1].Bind(this, false, true);
-            
+
             OnSwapSoul?.Invoke(this._primarySoul, this._secondarySouls);
         }
 
@@ -398,7 +417,7 @@ namespace Game
 
             return false;
         }
-        
+
         internal void WipeCloseEnnemy()
         {
             Collider2D[] colliders = Physics2D.OverlapCircleAll(this.transform.position, this._wipeRadius);
@@ -410,7 +429,7 @@ namespace Game
                     enemy.TakeDamage(new Damage(_wipeDamage, Color.white));
                 }
             }
-            
+
             Instantiate(this._wipePrefab, this.transform.position, Quaternion.identity, parent: null);
         }
     }
