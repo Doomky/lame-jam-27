@@ -10,7 +10,6 @@ namespace Game
 
         private void Update()
         {
-
             this._animator.SetBool("IsGameOver", Manager.Get<GameManager>().IsVictory);
         }
     }
