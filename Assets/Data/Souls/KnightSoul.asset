@@ -28,7 +28,7 @@ MonoBehaviour:
   _color2: {r: 0.7264151, g: 0.7264151, b: 0.7264151, a: 1}
   _projectilePrefab: {fileID: 2004323943766953104, guid: 055333248922c634bb81d8a57fecb691, type: 3}
   _particleSystemPrefab: {fileID: 0}
-  _baseAttackSpeed: 1
+  _baseAttackSpeed: 1.5
   _spreadAngle: 1
   _numberOfProjectiles: 1
   _fireSFX: {fileID: 8300000, guid: a12379b4b307314488b0d3da98ba4393, type: 3}

@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 8924507322243717424}
   - component: {fileID: 3820472884749890296}
   - component: {fileID: 254130605514314891}
-  - component: {fileID: 4324130752861809742}
+  - component: {fileID: 2076132070045336862}
   - component: {fileID: 7690700813969784979}
   - component: {fileID: 4824557448805368705}
   m_Layer: 7
@@ -35,7 +35,7 @@ Transform:
   m_Children:
   - {fileID: 8699987526282517205}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &3820472884749890296
 SpriteRenderer:
@@ -110,8 +110,8 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!61 &4324130752861809742
-BoxCollider2D:
+--- !u!58 &2076132070045336862
+CircleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -143,18 +143,8 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 2, y: 2}
-    newSize: {x: 1, y: 1}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
-  m_EdgeRadius: 0
+  m_Radius: 1.06
 --- !u!50 &7690700813969784979
 Rigidbody2D:
   serializedVersion: 4
@@ -207,10 +197,10 @@ MonoBehaviour:
   _animator: {fileID: 254130605514314891}
   _maxHealth: 50
   _movementSpeed: 10
-  _onGetHitPSPrefab: {fileID: 0}
+  _onGetHitPSPrefab: {fileID: 3282073576633320874, guid: b81793b72bc231c438947db03f16b0d7, type: 3}
   _onGetHitSFXs: []
   _damagePopup: {fileID: 1607192860749998027, guid: 65ce90627e1d6394281a9416c0f7d7dc, type: 3}
-  _onDeathPSPrefab: {fileID: 0}
+  _onDeathPSPrefab: {fileID: 3282073576633320874, guid: b81793b72bc231c438947db03f16b0d7, type: 3}
   _onDeathPSPrefabList: []
   _onDeathSFXs:
   - {fileID: 8300000, guid: d9f70214851b2b540a1a56636d92574e, type: 3}

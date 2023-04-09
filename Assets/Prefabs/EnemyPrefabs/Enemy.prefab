@@ -207,11 +207,11 @@ MonoBehaviour:
   _animator: {fileID: 254130605514314891}
   _maxHealth: 10
   _movementSpeed: 2
-  _onGetHitPSPrefab: {fileID: 0}
+  _onGetHitPSPrefab: {fileID: 7669642201945029242, guid: be186a6bca17f5f4d8469cf155997127, type: 3}
   _onGetHitSFXs:
   - {fileID: 8300000, guid: 18eb5f27930ea6b458941fb453fc85d7, type: 3}
   _damagePopup: {fileID: 1607192860749998027, guid: 65ce90627e1d6394281a9416c0f7d7dc, type: 3}
-  _onDeathPSPrefab: {fileID: 0}
+  _onDeathPSPrefab: {fileID: 7669642201945029242, guid: be186a6bca17f5f4d8469cf155997127, type: 3}
   _onDeathPSPrefabList: []
   _onDeathSFXs:
   - {fileID: 8300000, guid: d9f70214851b2b540a1a56636d92574e, type: 3}
