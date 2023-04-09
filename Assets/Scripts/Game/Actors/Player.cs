@@ -13,6 +13,7 @@ using Framework.Managers.Audio;
 using System.ComponentModel;
 using System.Collections.Generic;
 using System.Collections;
+using UnityEngine.UIElements;
 
 namespace Game
 {
@@ -126,6 +127,9 @@ namespace Game
             this.UpdateStats();
             this.UpdateColor();
             this.UpdateSouls();
+
+            Camera mainCamera = Camera.main;
+            mainCamera.transform.position = new Vector3(transform.position.x, transform.position.y, mainCamera.transform.position.z);
         }
 
         private void UpdateSouls()
@@ -134,7 +138,10 @@ namespace Game
 
             if (this._primarySoul.HasExpired)
             {
+                PickableSoul.SpawnedSouls.Remove(this._primarySoul);
+                this._primarySoul.Unbind(this);
                 this._primarySoul = this._emptySoul;
+                this._primarySoul.Bind(this, true, false);
                 anySoulHasExpired = true;
             }
             else
@@ -148,7 +155,10 @@ namespace Game
 
                 if (soul.HasExpired)
                 {
+                    PickableSoul.SpawnedSouls.Remove(this._secondarySouls[i]);
+                    this._secondarySouls[i].Unbind(this);
                     this._secondarySouls[i] = this._emptySoul;
+                    this._secondarySouls[i].Bind(this, false, false);
                     anySoulHasExpired = true;
                 }
                 else

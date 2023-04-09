@@ -63,8 +63,10 @@ MonoBehaviour:
   _survivalTimerInMinutes: 5
   remainingTimeInSeconds: 0
   _enemySpawnTime: 1
-  _soulSpawnTime: 5
   _bossSpawnTime: 100
+  _soulSpawnTime: 5
+  _soulPlayerDistance: 12
+  _bgm: {fileID: 8300000, guid: 285f3ec2e3d54f64c97d1ed12d713132, type: 3}
   _enemySpawnAnimationCurve:
     serializedVersion: 2
     m_Curve:
@@ -91,3 +93,4 @@ MonoBehaviour:
     m_RotationOrder: 4
   _maxNumberOfEnemyToSpawn: 12
   _camera: {fileID: 136051960629355474, guid: eede951909a7f454f8f93bd9a16336be, type: 3}
+  isGameOver: 0

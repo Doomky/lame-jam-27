@@ -44,6 +44,12 @@ namespace Framework.Managers
         [SerializeField]
         private float _soulSpawnTime;
 
+        [SerializeField]
+        private float _soulPlayerDistance = 4f;
+
+        [SerializeField]
+        private AudioClip _bgm = null;
+
         private float _elapsedTime = 0f;
 
         private float _bossElapsedTime = 0f;
@@ -70,6 +76,8 @@ namespace Framework.Managers
         {
             this._player = Instantiate(this._playerPrefab, Vector3.zero, Quaternion.identity).GetComponent<Player>();
             this.remainingTimeInSeconds = this._survivalTimerInMinutes * 60;
+
+            Manager.Get<BGMManager>().PlayBGM(this._bgm, true, 0.5f);
         }
 
         public override void Unbind()
@@ -113,15 +121,18 @@ namespace Framework.Managers
                 this._bossElapsedTime = 0f;
             }
 
-            if (this._soulElapsedTime > this._soulSpawnTime && this._player.HasAnyEmptySoul())
+            if (this._soulElapsedTime > this._soulSpawnTime && (this._player?.HasAnyEmptySoul() ?? false))
             {
-                float spawnY = Random.Range
-                (Camera.main.ScreenToWorldPoint(new Vector2(0, 0)).y, Camera.main.ScreenToWorldPoint(new Vector2(0, Screen.height)).y);
-                float spawnX = Random.Range
-                    (Camera.main.ScreenToWorldPoint(new Vector2(0, 0)).x, Camera.main.ScreenToWorldPoint(new Vector2(Screen.width, 0)).x);
+                Vector2 playerPosition = this._player.transform.position;
 
-                Vector2 spawnPosition = new Vector2(spawnX, spawnY);
-                this.spawnSoul(spawnPosition);
+                Vector2 soulPosition;
+
+                do
+                {
+                    soulPosition = playerPosition + this._soulPlayerDistance * Random.insideUnitCircle;
+                } while (!this.IsWorldPositionInScreen(soulPosition));
+                
+                this.spawnSoul(soulPosition);
                 this._soulElapsedTime = 0f;
             }
         }
@@ -162,6 +173,16 @@ namespace Framework.Managers
             }
         }
 
+        public bool IsWorldPositionInScreen(Vector2 position)
+        {
+            Vector2 topLeft = Camera.main.ScreenToWorldPoint(new Vector2(0, 0));
+            Vector2 rightBottom = Camera.main.ScreenToWorldPoint(new Vector2(Screen.width, Screen.height));
+
+            return 
+                position.x > topLeft.x && position.x < rightBottom.x &&
+                position.y > topLeft.y && position.y < rightBottom.y;
+        }
+
         public void GameOver()
         {
             this.StartCoroutine(this.GameOverCoroutine());
@@ -174,7 +195,7 @@ namespace Framework.Managers
             this.isGameOver = true;
             sfxManager.PlayGlobalSFX(this._gameOverSFX);           
 
-            yield return new WaitForSeconds(2);
+            yield return new WaitForSeconds(5);
 
             SceneManager.LoadScene("OutGame", LoadSceneMode.Single);
         }

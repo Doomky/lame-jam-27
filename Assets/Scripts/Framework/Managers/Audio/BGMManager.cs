@@ -10,6 +10,8 @@ namespace Framework.Managers.Audio
 
         private bool _isMuted = false;
         private float _volume = 1f;
+
+        [SerializeField]
         private AudioSource _audioSource;
 
         public bool IsMuted => this._isMuted;
