@@ -1,6 +1,4 @@
-﻿using Game;
-using Sirenix.OdinInspector;
-using Sirenix.OdinInspector.Editor;
+﻿using Sirenix.OdinInspector;
 using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
