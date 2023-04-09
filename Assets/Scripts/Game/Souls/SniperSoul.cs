@@ -41,6 +41,16 @@ namespace Game
             }
         }
 
+        public override void Bind(IPlayer player, bool isPrimary, bool isSwap)
+        {
+            base.Bind(player, isPrimary, isSwap);
+
+            if (!isSwap)
+            {
+                this._bonusProjectileCooldodwnTimer.Reset();
+            }
+        }
+
         public override void OnFire(IPlayer player, IProjectile projectile, Vector2 direction)
         {
             base.OnFire(player, projectile, direction);

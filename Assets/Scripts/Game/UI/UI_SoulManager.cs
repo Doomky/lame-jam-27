@@ -32,11 +32,11 @@ namespace Game
 
         private void Player_OnSwapSoul(ISoul primarySoul, ISoul[] secondarySoul)
         {
-            _souls[0].Bind(primarySoul, false);
+            _souls[0].Bind(primarySoul, true);
             for (int i = 0; i < secondarySoul.Length; i++)
             {
-                _souls[i + 1].Bind(secondarySoul[i], false);
-                _souls[i + 1].Bind(secondarySoul[i], false);
+                _souls[i + 1].Bind(secondarySoul[i], true);
+                _souls[i + 1].Bind(secondarySoul[i], true);
             }
         }
     }

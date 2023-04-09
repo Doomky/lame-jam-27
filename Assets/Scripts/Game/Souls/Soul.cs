@@ -1,4 +1,6 @@
-﻿using Sirenix.OdinInspector;
+﻿using Framework;
+using Sirenix.OdinInspector;
+using Unity.Properties;
 using UnityEngine;
 
 namespace Game
@@ -98,7 +100,9 @@ namespace Game
 
         public AudioClip FireSFX => this._fireSFX;
 
-        public virtual void Bind(IPlayer player, bool isPrimary)
+        private Timer _soulDurationTimer = new(10f);
+
+        public virtual void Bind(IPlayer player, bool isPrimary, bool isSwap)
         {
             this._isPrimary = isPrimary;
             
@@ -107,6 +111,11 @@ namespace Game
             player.OnMove        += this.OnMove;
             player.OnFixedUpdate += this.OnFixedUpdate;
             player.OnTakeDamage  += this.OnTakeDamage;
+
+            if (!isSwap)
+            {
+                this._soulDurationTimer.Reset();
+            }
         }
 
         public virtual void Unbind(IPlayer player)
@@ -117,6 +126,10 @@ namespace Game
             player.OnFixedUpdate -= this.OnFixedUpdate;
             player.OnTakeDamage  -= this.OnTakeDamage;
         }
+
+        public bool HasExpired => this._soulDurationTimer.IsTriggered();
+
+        public Timer SoulDurationTimer => this._soulDurationTimer;
 
         public virtual void OnFire(IPlayer player, IProjectile projectile, Vector2 direction)
         {

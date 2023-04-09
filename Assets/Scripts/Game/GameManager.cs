@@ -1,9 +1,11 @@
+using Framework.Managers.Audio;
 using Game;
 using Sirenix.OdinInspector;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace Framework.Managers
 {
@@ -57,6 +59,13 @@ namespace Framework.Managers
         [SerializeField]
         private Camera _camera;
 
+        [BoxGroup("Misc")]
+        private AudioClip _gameOverSFX = null;
+
+        public bool isGameOver = false;
+
+        public bool IsGameOver => this.isGameOver;
+
         public override void Bind()
         {
             this._player = Instantiate(this._playerPrefab, Vector3.zero, Quaternion.identity).GetComponent<Player>();
@@ -104,7 +113,7 @@ namespace Framework.Managers
                 this._bossElapsedTime = 0f;
             }
 
-            if (this._soulElapsedTime > this._soulSpawnTime)
+            if (this._soulElapsedTime > this._soulSpawnTime && this._player.HasAnyEmptySoul())
             {
                 float spawnY = Random.Range
                 (Camera.main.ScreenToWorldPoint(new Vector2(0, 0)).y, Camera.main.ScreenToWorldPoint(new Vector2(0, Screen.height)).y);
@@ -151,6 +160,23 @@ namespace Framework.Managers
                 default:
                     return Vector3.zero;
             }
+        }
+
+        public void GameOver()
+        {
+            this.StartCoroutine(this.GameOverCoroutine());
+        }
+
+        private IEnumerator GameOverCoroutine()
+        {
+            SFXManager sfxManager = Manager.Get<SFXManager>();
+
+            this.isGameOver = true;
+            sfxManager.PlayGlobalSFX(this._gameOverSFX);           
+
+            yield return new WaitForSeconds(2);
+
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         }
     }
 }

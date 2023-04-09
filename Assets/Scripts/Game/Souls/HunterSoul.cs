@@ -17,10 +17,14 @@ namespace Game
 
         private Timer _trapCooldownTimer = new(1);
 
-        public override void Bind(IPlayer player, bool isPrimary)
+        public override void Bind(IPlayer player, bool isPrimary, bool isSwap)
         {
-            base.Bind(player, isPrimary);
-            this._trapCooldownTimer.Reset();
+            base.Bind(player, isPrimary, isSwap);
+
+            if (!isSwap)
+            {
+                this._trapCooldownTimer.Reset();
+            }
         }
 
         public override void OnFixedUpdate(IPlayer player)

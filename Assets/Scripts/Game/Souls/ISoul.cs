@@ -1,4 +1,5 @@
-﻿using Sirenix.OdinInspector;
+﻿using Framework;
+using Sirenix.OdinInspector;
 using UnityEngine;
 
 namespace Game
@@ -10,7 +11,7 @@ namespace Game
         /// </summary>
         /// <param name="player"></param>
         /// <param name="isPrimary"></param>
-        void Bind(IPlayer player, bool isPrimary);
+        void Bind(IPlayer player, bool isPrimary, bool isSwap);
 
         /// <summary>
         /// Unsubscribe to events mainly.
@@ -36,5 +37,7 @@ namespace Game
         float ProjectileLifetimeModifier { get; }
 
         float ProjectileSpeedModifier { get; }
+
+        Timer SoulDurationTimer { get; }
     }
 }

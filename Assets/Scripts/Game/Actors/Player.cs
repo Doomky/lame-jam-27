@@ -12,6 +12,7 @@ using static UnityEngine.EventSystems.EventTrigger;
 using Framework.Managers.Audio;
 using System.ComponentModel;
 using System.Collections.Generic;
+using System.Collections;
 
 namespace Game
 {
@@ -102,27 +103,63 @@ namespace Game
                 this.SwitchSoul();
             };
 
-            this._primarySoul?.Bind(this, true);
+            this._primarySoul?.Bind(this, true, false);
 
             for (int i = 0; i < this._secondarySouls?.Length; i++)
             {
-                this._secondarySouls[i]?.Bind(this, false);
+                this._secondarySouls[i]?.Bind(this, false, false);
             }
 
             this._invulnerabilityTimer = new(this._invulnerabilityTime);
+
+            this._emptySoul.SoulDurationTimer.Trigger();
+        }
+
+        public void Start()
+        {
+            this.OnSwapSoul?.Invoke(this._primarySoul, this._secondarySouls);
         }
 
         protected void FixedUpdate()
         {
             base.FixedUpdate();
-            
             this.UpdateStats();
             this.UpdateColor();
+            this.UpdateSouls();
+        }
 
-            this._primarySoul.OnFixedUpdate(this);
+        private void UpdateSouls()
+        {
+            bool anySoulHasExpired = false;
+
+            if (this._primarySoul.HasExpired)
+            {
+                this._primarySoul = this._emptySoul;
+                anySoulHasExpired = true;
+            }
+            else
+            { 
+                this._primarySoul.OnFixedUpdate(this);
+            }
+
             for (int i = 0; i < this._secondarySouls.Length; i++)
             {
-                this._secondarySouls[i].OnFixedUpdate(this);
+                Soul soul = this._secondarySouls[i];
+
+                if (soul.HasExpired)
+                {
+                    this._secondarySouls[i] = this._emptySoul;
+                    anySoulHasExpired = true;
+                }
+                else
+                {
+                    soul.OnFixedUpdate(this);
+                }
+            }
+
+            if (anySoulHasExpired)
+            {
+                OnSwapSoul?.Invoke(this._primarySoul, this._secondarySouls);
             }
         }
 
@@ -218,31 +255,37 @@ namespace Game
 
         public void AddSoul(Soul soul)
         {
+            bool hasBeenAdded = false;
+
             if(this._primarySoul == this._emptySoul)
             {
                 this._primarySoul.Unbind(this);
                 this._primarySoul = soul;
-                this._primarySoul.Bind(this, true);
-                return;
+                this._primarySoul.Bind(this, true, false);
+                hasBeenAdded = true;
             }
 
-            for(int i = 0; i < this._secondarySouls.Length; i++)
+            if (!hasBeenAdded)
             {
-                if (this._secondarySouls[i] == this._emptySoul)
+                for (int i = 0; i < this._secondarySouls.Length; i++)
                 {
-                    this._secondarySouls[i].Unbind(this);
-                    this._secondarySouls[i] = soul;
-                    this._secondarySouls[i].Bind(this, false);
-                    return;
+                    if (this._secondarySouls[i] == this._emptySoul)
+                    {
+                        this._secondarySouls[i].Unbind(this);
+                        this._secondarySouls[i] = soul;
+                        this._secondarySouls[i].Bind(this, false, false);
+                        hasBeenAdded = true;
+                        break;
+                    }
                 }
             }
 
-            // bind the soul to a random secondary slot
+            //// bind the soul to a random secondary slot
 
-            int randomIndex = UnityEngine.Random.Range(0, this._secondarySouls.Length);
-            this._secondarySouls[randomIndex].Unbind(this);
-            this._secondarySouls[randomIndex] = soul;
-            this._secondarySouls[randomIndex].Bind(this, false);
+            //int randomIndex = UnityEngine.Random.Range(0, this._secondarySouls.Length);
+            //this._secondarySouls[randomIndex].Unbind(this);
+            //this._secondarySouls[randomIndex] = soul;
+            //this._secondarySouls[randomIndex].Bind(this, false);
 
             OnSwapSoul?.Invoke(this._primarySoul, this._secondarySouls);
         }
@@ -266,8 +309,8 @@ namespace Game
 
             this._secondarySouls[length - 1] = previousPrimarySoul;
 
-            this._primarySoul.Bind(this, true);
-            this._secondarySouls[length - 1].Bind(this, false);
+            this._primarySoul.Bind(this, true, true);
+            this._secondarySouls[length - 1].Bind(this, false, true);
             
             OnSwapSoul?.Invoke(this._primarySoul, this._secondarySouls);
         }
@@ -301,9 +344,26 @@ namespace Game
         protected override void OnDeath()
         {
             base.OnDeath();
-            // reload scene mercichatgpt
-            
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+
+            Manager.Get<GameManager>().GameOver();
+        }
+
+        internal bool HasAnyEmptySoul()
+        {
+            if (this._primarySoul == this._emptySoul)
+            {
+                return true;
+            }
+
+            for (int i = 0; i < this._secondarySouls.Length; i++)
+            {
+                if (this._secondarySouls[i] == this._emptySoul)
+                {
+                    return true;
+                }
+            }
+
+            return false;
         }
     }
 }

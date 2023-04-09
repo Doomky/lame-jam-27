@@ -267,10 +267,5 @@ namespace Framework.Managers.Audio
         {
             this.UpdatePitch();
         }
-
-        internal void PlayGlobalSFX(object endDaySFX)
-        {
-            throw new NotImplementedException();
-        }
     }
 }

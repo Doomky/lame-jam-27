@@ -14,10 +14,14 @@ namespace Game
 
         private Timer _bonusProjectileCooldownTimer = new(1);
 
-        public override void Bind(IPlayer player, bool isPrimary)
+        public override void Bind(IPlayer player, bool isPrimary, bool isSwap)
         {
-            base.Bind(player, isPrimary);
-            this._bonusProjectileCooldownTimer.Trigger();
+            base.Bind(player, isPrimary, isSwap);
+
+            if (!isSwap)
+            {
+                this._bonusProjectileCooldownTimer.Reset();
+            }
         }
 
         public override void OnFixedUpdate(IPlayer player)

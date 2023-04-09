@@ -33,6 +33,16 @@ namespace Game
 
         private Timer _meleeDamageCooldownTimer = new(0.3f);
 
+        public override void Bind(IPlayer player, bool isPrimary, bool isSwap)
+        {
+            base.Bind(player, isPrimary, isSwap);
+
+            if (!isSwap)
+            {
+                this._meleeDamageCooldownTimer.Reset();
+            }
+        }
+
         public override void OnFixedUpdate(IPlayer player)
         {
             base.OnFixedUpdate(player);
