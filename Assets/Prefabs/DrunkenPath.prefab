@@ -163,18 +163,56 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   serializationData:
-    SerializedFormat: 0
+    SerializedFormat: 2
     SerializedBytes: 
     ReferencedUnityObjects: []
     SerializedBytesString: 
     Prefab: {fileID: 0}
     PrefabModificationsReferencedUnityObjects: []
     PrefabModifications: []
-    SerializationNodes: []
-  _damage:
-    _amount: 2
+    SerializationNodes:
+    - Name: _hittedEnemies
+      Entry: 7
+      Data: 0|System.Collections.Generic.HashSet`1[[Game.IEnemy, Assembly-CSharp]],
+        System.Core
+    - Name: 
+      Entry: 12
+      Data: 0
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+  _damageAmount: 2
+  _soul: {fileID: 11400000, guid: 437352b654f165b4e8de7ec0b2de8df0, type: 2}
+  _movementSpeedCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
   _movementSpeed: 0
   _maxLifeTime: 3.75
+  _destroyOnHit: 1
 --- !u!95 &3782567680359039004
 Animator:
   serializedVersion: 5

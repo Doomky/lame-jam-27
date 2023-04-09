@@ -60,7 +60,7 @@ namespace Game
 
                         if (Vector2.Distance(((Player)player).transform.position, enemy.transform.position) < _meleeDamageRange)
                         {
-                            enemy.TakeDamage(new Damage(this._meleeDamage));
+                            enemy.TakeDamage(new Damage(this._meleeDamage, this.Color2));
                         }
                     }
 

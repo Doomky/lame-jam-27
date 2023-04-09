@@ -9,21 +9,25 @@ namespace Game
         [SerializeField]
         private int _amount;
 
+        [SerializeField]
+        private Color _color;
+
         public int Amount
         {
             get => _amount;
             set => _amount = value;
         }
 
-        public Damage()
+        public Color color
         {
-            _amount = 0;
+            get => _color;
+            set => _color = value;
         }
 
-
-        public Damage(int amount)
+        public Damage(int amount, Color color)
         {
             _amount = amount;
+            _color = color;
         }
     }
 }

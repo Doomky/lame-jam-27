@@ -21,6 +21,7 @@ namespace Game
             this._text.text = damage.Amount.ToString();
             this._direction = Random.insideUnitCircle * speedDelta;
             lifetime = maxLifetime;
+            this._text.color = damage.color;
         }
 
         private void Update()

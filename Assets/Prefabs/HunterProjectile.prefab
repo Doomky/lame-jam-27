@@ -54,11 +54,52 @@ MonoBehaviour:
     Prefab: {fileID: 0}
     PrefabModificationsReferencedUnityObjects: []
     PrefabModifications: []
-    SerializationNodes: []
+    SerializationNodes:
+    - Name: _hittedEnemies
+      Entry: 7
+      Data: 0|System.Collections.Generic.HashSet`1[[Game.IEnemy, Assembly-CSharp]],
+        System.Core
+    - Name: 
+      Entry: 12
+      Data: 0
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
   _damage:
     _amount: 5
+    _color: {r: 0, g: 0, b: 0, a: 0}
+  _damageAmount: 5
+  _soul: {fileID: 11400000, guid: 8803d26432d3ffd4b843d6f4b1bb1201, type: 2}
+  _movementSpeedCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
   _movementSpeed: 20
   _maxLifeTime: 0.5
+  _destroyOnHit: 1
 --- !u!58 &8051076559172986960
 CircleCollider2D:
   m_ObjectHideFlags: 0

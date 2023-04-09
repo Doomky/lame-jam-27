@@ -204,6 +204,9 @@ MonoBehaviour:
       Data: 
   _damage:
     _amount: 10
+    _color: {r: 0, g: 0, b: 0, a: 0}
+  _damageAmount: 10
+  _soul: {fileID: 11400000, guid: bd743fb2ea085e44cb3e818bdc729f0e, type: 2}
   _movementSpeedCurve:
     serializedVersion: 2
     m_Curve:

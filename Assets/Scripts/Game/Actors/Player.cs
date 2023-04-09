@@ -334,7 +334,7 @@ namespace Game
                 if (!enemy.IsDead())
                 {
                     Debug.Log("aie !");
-                    Damage damage = new Damage(1);
+                    Damage damage = new Damage(1, Color.white);
                     this.TakeDamage(damage);
                     this._invulnerabilityTimer.Reset();
                 }

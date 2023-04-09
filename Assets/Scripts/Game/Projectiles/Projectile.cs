@@ -7,8 +7,13 @@ namespace Game
 {
     public class Projectile : SingleCollisionPipelineMonoBehaviour, IProjectile
     {
-        [SerializeField]
         private Damage _damage = null;
+
+        [SerializeField]
+        private int _damageAmount;
+
+        [SerializeField]
+        private Soul _soul;
 
         [SerializeField]
         private AnimationCurve _movementSpeedCurve = AnimationCurve.Linear(0,1,1,1);
@@ -54,6 +59,7 @@ namespace Game
         protected void Awake()
         {
             this._currentLifeTime = 0;
+            this._damage = new Damage(_damageAmount, this._soul.Color2);
         }
 
         protected void FixedUpdate()
