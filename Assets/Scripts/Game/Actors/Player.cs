@@ -10,6 +10,8 @@ using Unity.Properties;
 using UnityEngine.SceneManagement;
 using static UnityEngine.EventSystems.EventTrigger;
 using Framework.Managers.Audio;
+using System.ComponentModel;
+using System.Collections.Generic;
 
 namespace Game
 {
@@ -51,6 +53,10 @@ namespace Game
         [BoxGroup("Data/Souls")]
         [SerializeField]
         private AudioClip _switchSoul = null;
+
+        [BoxGroup("Data/Souls")]
+        [SerializeField]
+        private Soul _emptySoul = null;
 
         public event Action<IPlayer, IProjectile, Vector2> OnFire;
         public event Action<IPlayer, Vector2> OnMove;
@@ -210,6 +216,35 @@ namespace Game
             this.OnHit?.Invoke(this, projectile, actor);
         }
 
+        public void AddSoul(Soul soul)
+        {
+            if(this._primarySoul == this._emptySoul)
+            {
+                this._primarySoul.Unbind(this);
+                this._primarySoul = soul;
+                this._primarySoul.Bind(this, true);
+                return;
+            }
+
+            for(int i = 0; i < this._secondarySouls.Length; i++)
+            {
+                if (this._secondarySouls[i] == this._emptySoul)
+                {
+                    this._secondarySouls[i].Unbind(this);
+                    this._secondarySouls[i] = soul;
+                    this._secondarySouls[i].Bind(this, false);
+                    return;
+                }
+            }
+
+            // bind the soul to a random secondary slot
+
+            int randomIndex = UnityEngine.Random.Range(0, this._secondarySouls.Length);
+            this._secondarySouls[randomIndex].Unbind(this);
+            this._secondarySouls[randomIndex] = soul;
+            this._secondarySouls[randomIndex].Bind(this, false);
+        }
+
         public void SwitchSoul()
         {
             this._primarySoul.Unbind(this);
@@ -237,6 +272,8 @@ namespace Game
 
         protected override void OnCollision(GameObject go, Vector2 collisionPosition, bool isTrigger, CollisionType collisionType)
         {
+            // if (go.TryGetComponent<Soul>)
+
             if (this._invulnerabilityTimer.IsRunning())
             {
                 return;
