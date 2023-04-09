@@ -18,5 +18,8 @@ public class PickableSoul : MonoBehaviour
     {
         int randomSoul = Random.Range(0, _soulList.Count);
         this._selectedSoul = _soulList[randomSoul];
+        SpriteRenderer spriteRenderer = this.GetComponent<SpriteRenderer>();
+        spriteRenderer.material.SetColor("_PrimaryColor", this._selectedSoul.Color1);
+        spriteRenderer.material.SetColor("_SecondaryColor", this._selectedSoul.Color2);
     }
 }
