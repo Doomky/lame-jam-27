@@ -119,7 +119,6 @@ namespace Game
 
         protected void OnDestroy()
         {
-            this._inputManager = Manager.Get<InputManager>();
             this._inputManager.Moved -= this.Move;
             this._inputManager.Pointed -= InputManager_Pointed;
             this._inputManager.Fired -= this.Fire;
