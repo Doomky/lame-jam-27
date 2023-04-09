@@ -58,10 +58,13 @@ MonoBehaviour:
   - {fileID: 5527768640799173017, guid: 69768293fee39634581a9b1297a12b94, type: 3}
   _bossPrefab: {fileID: 5527768640799173017, guid: 265c7b4277550bd43ba7092a30b842b7, type: 3}
   _playerPrefab: {fileID: 6381849272219621818, guid: b461df6effa678a4baf791dd1b80c8ee, type: 3}
+  _spawnSoulPrefab: {fileID: 5471914106286978763, guid: f9e04d41e90faf943858656c9cf40b83, type: 3}
+  _soulListToDrop: []
   _survivalTimerInMinutes: 5
   remainingTimeInSeconds: 0
   _enemySpawnTime: 1
   _bossSpawnTime: 10
+  _soulSpawnTime: 5
   _enemySpawnAnimationCurve:
     serializedVersion: 2
     m_Curve:

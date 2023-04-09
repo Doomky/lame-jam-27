@@ -243,6 +243,8 @@ namespace Game
             this._secondarySouls[randomIndex].Unbind(this);
             this._secondarySouls[randomIndex] = soul;
             this._secondarySouls[randomIndex].Bind(this, false);
+
+            OnSwapSoul?.Invoke(this._primarySoul, this._secondarySouls);
         }
 
         public void SwitchSoul()
@@ -272,7 +274,12 @@ namespace Game
 
         protected override void OnCollision(GameObject go, Vector2 collisionPosition, bool isTrigger, CollisionType collisionType)
         {
-            // if (go.TryGetComponent<Soul>)
+            // walk on soul and destroy it
+            if (go.TryGetComponent(out PickableSoul pickableSoul) && collisionType == CollisionType.Enter)
+            {
+                this.AddSoul(pickableSoul.SelectedSoul);
+                Destroy(go);
+            }
 
             if (this._invulnerabilityTimer.IsRunning())
             {

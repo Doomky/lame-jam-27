@@ -104,7 +104,7 @@ namespace Framework.Managers
                 this._bossElapsedTime = 0f;
             }
 
-            if (this._elapsedTime > this._soulSpawnTime)
+            if (this._soulElapsedTime > this._soulSpawnTime)
             {
                 float spawnY = Random.Range
                 (Camera.main.ScreenToWorldPoint(new Vector2(0, 0)).y, Camera.main.ScreenToWorldPoint(new Vector2(0, Screen.height)).y);
@@ -112,7 +112,8 @@ namespace Framework.Managers
                     (Camera.main.ScreenToWorldPoint(new Vector2(0, 0)).x, Camera.main.ScreenToWorldPoint(new Vector2(Screen.width, 0)).x);
 
                 Vector2 spawnPosition = new Vector2(spawnX, spawnY);
-                this.spawnEnemy(spawnPosition);
+                this.spawnSoul(spawnPosition);
+                this._soulElapsedTime = 0f;
             }
         }
 
