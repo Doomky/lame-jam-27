@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 7280011940856841546}
   - component: {fileID: 3288324275587606120}
   - component: {fileID: 4386181916798379113}
-  - component: {fileID: 2377033431399126130}
+  - component: {fileID: 8420636742040533383}
   m_Layer: 8
   m_Name: Trap
   m_TagString: Untagged
@@ -149,7 +149,7 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!114 &2377033431399126130
+--- !u!114 &8420636742040533383
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -158,44 +158,20 @@ MonoBehaviour:
   m_GameObject: {fileID: 7587265645069972380}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8d61f37bd49eb7d4b89f9dca9f24cf79, type: 3}
+  m_Script: {fileID: 11500000, guid: 0af4e5e7d36d4f3e84225a49bbadd464, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   serializationData:
     SerializedFormat: 0
-    SerializedBytes: 01010e0000005f0068006900740074006500640045006e0065006d006900650073002f000000000151000000530079007300740065006d002e0043006f006c006c0065006300740069006f006e0073002e00470065006e0065007200690063002e004800610073006800530065007400600031005b005b00470061006d0065002e00490045006e0065006d0079002c00200041007300730065006d0062006c0079002d004300530068006100720070005d005d002c002000530079007300740065006d002e0043006f0072006500000000000600000000000000000705
+    SerializedBytes: 
     ReferencedUnityObjects: []
     SerializedBytesString: 
     Prefab: {fileID: 0}
     PrefabModificationsReferencedUnityObjects: []
     PrefabModifications: []
     SerializationNodes: []
-  _damageAmount: 4
-  _soul: {fileID: 11400000, guid: 8803d26432d3ffd4b843d6f4b1bb1201, type: 2}
-  _movementSpeedCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    - serializedVersion: 3
-      time: 1
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  _movementSpeed: 0
-  _maxLifeTime: 10
-  _destroyOnHit: 1
+  _wipeRadius: 4
+  _damage:
+    _amount: 8
+    _color: {r: 1, g: 0.89851844, b: 0, a: 1}
+  _wipePrefab: {fileID: 7669642201945029242, guid: 6ba0cc3178208d144b0fc264bfd38ed1, type: 3}
