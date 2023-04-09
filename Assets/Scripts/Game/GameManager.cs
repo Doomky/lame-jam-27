@@ -76,7 +76,7 @@ namespace Framework.Managers
         private AudioClip _victorySFX = null;
 
         public bool isGameOver = false;
-        
+
         public bool isVictory = false;
         private bool _victoryCoroutineHasStarted;
 
@@ -130,7 +130,7 @@ namespace Framework.Managers
 
                 this._elapsedTime = 0f;
             }
-            
+
             if (this._bossElapsedTime > this._bossSpawnTime)
             {
                 this._bossSpawnCount++;
@@ -153,7 +153,7 @@ namespace Framework.Managers
                 {
                     soulPosition = playerPosition + this._soulPlayerDistance * Random.insideUnitCircle.normalized;
                 } while (!this.IsWorldPositionInScreen(soulPosition));
-                
+
                 this.spawnSoul(soulPosition);
                 this._soulElapsedTime = 0f;
             }
@@ -161,7 +161,7 @@ namespace Framework.Managers
 
         public void spawnEnemy(Vector3 position)
         {
-            int random = 0; 
+            int random = 0;
             if (remainingTimeInSeconds < 240)
             {
                 random = UnityEngine.Random.Range(0, 2);
@@ -185,7 +185,7 @@ namespace Framework.Managers
             float dist = (transform.position - Camera.main.transform.position).z;
             // 0 = left, 1 = top, 2 = right, 3 = bottom
             switch (random)
-            {   
+            {
                 case 0:
                     return Camera.main.ViewportToWorldPoint(new Vector3(0, UnityEngine.Random.Range(0.0f, 1.0f), dist));
                 case 1:
@@ -204,7 +204,7 @@ namespace Framework.Managers
             Vector2 topLeft = Camera.main.ScreenToWorldPoint(new Vector2(0, 0));
             Vector2 rightBottom = Camera.main.ScreenToWorldPoint(new Vector2(Screen.width, Screen.height));
 
-            return 
+            return
                 position.x > topLeft.x && position.x < rightBottom.x &&
                 position.y > topLeft.y && position.y < rightBottom.y;
         }
@@ -224,27 +224,23 @@ namespace Framework.Managers
         {
             SFXManager sfxManager = Manager.Get<SFXManager>();
 
-            List<Enemy> enemies = Enemy.Enemies;
-            int enemiesCount = enemies.Count;
-            
             Damage damage = new(999, Color.white);
-            
-            for (int i = enemiesCount - 1; i >= 0; i--)
+
+            while (Enemy.Enemies.Count > 0)
             {
-                if (enemies[i] != null)
+                Enemy.Enemies[0].TakeDamage(damage);
+                yield return new WaitForSeconds(0.02f);
+                if (this._player == null)
                 {
-                    enemies[i].TakeDamage(damage);
-                    yield return new WaitForSeconds(0.02f);
-                    if (this._player == null)
-                    {
-                        yield break;
-                    }
+                    yield break;
                 }
             }
 
             if (this._player != null)
             {
                 this.isVictory = true;
+                BGMManager bGMManager = Manager.Get<BGMManager>();
+                bGMManager.StopBGM(0.5f);
                 sfxManager.PlayGlobalSFX(this._victorySFX);
 
                 yield return new WaitForSeconds(3f);
@@ -256,9 +252,11 @@ namespace Framework.Managers
         private IEnumerator GameOverCoroutine()
         {
             SFXManager sfxManager = Manager.Get<SFXManager>();
+            BGMManager bGMManager = Manager.Get<BGMManager>();
 
             this.isGameOver = true;
-            sfxManager.PlayGlobalSFX(this._gameOverSFX);           
+            bGMManager.StopBGM(0.5f);
+            sfxManager.PlayGlobalSFX(this._gameOverSFX);
 
             yield return new WaitForSeconds(3);
 
