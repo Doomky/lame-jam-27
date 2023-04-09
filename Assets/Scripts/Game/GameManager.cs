@@ -66,6 +66,7 @@ namespace Framework.Managers
         private Camera _camera;
 
         [BoxGroup("Misc")]
+        [SerializeField]
         private AudioClip _gameOverSFX = null;
 
         public bool isGameOver = false;
@@ -195,7 +196,7 @@ namespace Framework.Managers
             this.isGameOver = true;
             sfxManager.PlayGlobalSFX(this._gameOverSFX);           
 
-            yield return new WaitForSeconds(5);
+            yield return new WaitForSeconds(3);
 
             SceneManager.LoadScene("OutGame", LoadSceneMode.Single);
         }
