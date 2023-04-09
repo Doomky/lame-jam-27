@@ -120,7 +120,7 @@ Transform:
   - {fileID: 5648403265943158757}
   - {fileID: 1106082952285450561}
   m_Father: {fileID: 0}
-  m_RootOrder: -1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &6842331399203174399
 SpriteRenderer:
@@ -301,6 +301,7 @@ MonoBehaviour:
   _invulnerabilityTime: 0.5
   _switchSoul: {fileID: 8300000, guid: 0384e56379bab1b4fae262465d641b38, type: 3}
   _emptySoul: {fileID: 11400000, guid: 4a1052a950e02a44cac43fe85e21c531, type: 2}
+  knightAoeSprite: {fileID: 0}
 --- !u!1 &8258942385881763493
 GameObject:
   m_ObjectHideFlags: 0

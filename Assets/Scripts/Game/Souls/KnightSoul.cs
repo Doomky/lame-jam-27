@@ -33,9 +33,22 @@ namespace Game
 
         private Timer _meleeDamageCooldownTimer = new(0.3f);
 
+        [SerializeField]
+        private GameObject aoeSpriteSample;
+
+        private GameObject _aoeSprite;
+
         public override void Bind(IPlayer player, bool isPrimary, bool isSwap)
         {
             base.Bind(player, isPrimary, isSwap);
+
+            if(!isPrimary)
+            {
+                Player player1 = player as Player;
+                this._aoeSprite = Instantiate(aoeSpriteSample, player1.transform.position, Quaternion.identity);
+                this._aoeSprite.gameObject.SetActive(true);
+            }
+            
 
             if (!isSwap)
             {
@@ -43,9 +56,23 @@ namespace Game
             }
         }
 
+        public override void Unbind(IPlayer player)
+        {
+            base.Unbind(player);
+
+            Destroy(this._aoeSprite);
+        }
+
         public override void OnFixedUpdate(IPlayer player)
         {
             base.OnFixedUpdate(player);
+
+            Player player1 = player as Player;
+            if(this._aoeSprite)
+            {
+                this._aoeSprite.gameObject.transform.position = player1.transform.position;
+            }
+            
 
             this._meleeDamageCooldownTimer.Duration = this._meleeDamageCooldown;
 

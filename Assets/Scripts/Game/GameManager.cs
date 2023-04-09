@@ -62,6 +62,8 @@ namespace Framework.Managers
         [SerializeField]
         private float _maxNumberOfEnemyToSpawn;
 
+        private int _bossSpawnCount = 0;
+
         [SerializeField]
         private Camera _camera;
 
@@ -131,8 +133,13 @@ namespace Framework.Managers
             
             if (this._bossElapsedTime > this._bossSpawnTime)
             {
-                Vector3 position = this.GetEdgeRandomScreenPosition();
-                this.spawnBoss(position);
+                this._bossSpawnCount++;
+                for (int i = 0; i < this._bossSpawnCount; i++)
+                {
+                    Vector3 position = this.GetEdgeRandomScreenPosition();
+                    this.spawnBoss(position);
+                }
+
                 this._bossElapsedTime = 0f;
             }
 
@@ -154,7 +161,11 @@ namespace Framework.Managers
 
         public void spawnEnemy(Vector3 position)
         {
-            int random = Random.Range(0, this._enemyPrefab.Count);
+            int random = 1; 
+            if (remainingTimeInSeconds < 240)
+            {
+                random = UnityEngine.Random.Range(0, 2);
+            }
             GameObject enemy = Instantiate(this._enemyPrefab[random], position, Quaternion.identity);
         }
 

@@ -60,6 +60,8 @@ namespace Game
         [SerializeField]
         private Soul _emptySoul = null;
 
+        public SpriteRenderer knightAoeSprite;
+
         public event Action<IPlayer, IProjectile, Vector2> OnFire;
         public event Action<IPlayer, Vector2> OnMove;
         public event Action<IPlayer> OnFixedUpdate;

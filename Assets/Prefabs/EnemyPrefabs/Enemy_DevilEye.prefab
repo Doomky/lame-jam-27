@@ -196,7 +196,7 @@ MonoBehaviour:
   _spriteRenderer: {fileID: 3820472884749890296}
   _animator: {fileID: 254130605514314891}
   _maxHealth: 6
-  _movementSpeed: 4
+  _movementSpeed: 3
   _onGetHitPSPrefab: {fileID: 4737272815632873305, guid: 9409643a9e88298469d5e76a83990287, type: 3}
   _onGetHitSFXs:
   - {fileID: 8300000, guid: 18eb5f27930ea6b458941fb453fc85d7, type: 3}

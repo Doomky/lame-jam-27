@@ -68,7 +68,7 @@ MonoBehaviour:
     - Name: 
       Entry: 8
       Data: 
-  _damageAmount: 3
+  _damageAmount: 4
   _soul: {fileID: 11400000, guid: 437352b654f165b4e8de7ec0b2de8df0, type: 2}
   _movementSpeedCurve:
     serializedVersion: 2
@@ -95,7 +95,7 @@ MonoBehaviour:
     m_PostInfinity: 0
     m_RotationOrder: 4
   _movementSpeed: 10
-  _maxLifeTime: 0.5
+  _maxLifeTime: 0.6
   _destroyOnHit: 1
 --- !u!58 &8492979175035992717
 CircleCollider2D:

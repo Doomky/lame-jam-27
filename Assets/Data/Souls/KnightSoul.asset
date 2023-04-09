@@ -29,7 +29,8 @@ MonoBehaviour:
 
     Secondary:
 
-'
+    Area
+    effect damage over time'
   _image: {fileID: 2800000, guid: ba962a71d030ec64c87d70cea363b9a0, type: 3}
   _color1: {r: 0.6037736, g: 0.6037736, b: 0.6037736, a: 1}
   _color2: {r: 0.7264151, g: 0.7264151, b: 0.7264151, a: 1}
@@ -44,5 +45,6 @@ MonoBehaviour:
   _porojectileLifetimeModifier: 0
   _projectileSpeedModifier: 0
   _meleeDamage: 2
-  _meleeDamageRange: 5
+  _meleeDamageRange: 4
   _meleeDamageCooldown: 0.3
+  aoeSpriteSample: {fileID: 367933662172248599, guid: 431763363d3709d43959945bb2489058, type: 3}
