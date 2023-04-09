@@ -176,7 +176,7 @@ namespace Framework.Managers
 
             yield return new WaitForSeconds(2);
 
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+            SceneManager.LoadScene("OutGame", LoadSceneMode.Single);
         }
     }
 }
