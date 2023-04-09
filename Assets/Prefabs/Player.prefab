@@ -283,7 +283,8 @@ MonoBehaviour:
   _maxHealth: 3
   _movementSpeed: 5
   _onGetHitPSPrefab: {fileID: 0}
-  _onGetHitSFXs: []
+  _onGetHitSFXs:
+  - {fileID: 8300000, guid: d276b8a9ab114d34fb40268c1fdd14d3, type: 3}
   _damagePopup: {fileID: 0}
   _onDeathPSPrefab: {fileID: 0}
   _onDeathPSPrefabList: []

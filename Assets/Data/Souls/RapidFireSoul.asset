@@ -23,7 +23,7 @@ MonoBehaviour:
     SerializationNodes: []
   _name: 
   _description: 
-  _image: {fileID: 0}
+  _image: {fileID: 2800000, guid: ba962a71d030ec64c87d70cea363b9a0, type: 3}
   _color1: {r: 0.2901961, g: 0.94509804, b: 0.39607844, a: 1}
   _color2: {r: 0.03123886, g: 0.735849, b: 0.14515787, a: 1}
   _projectilePrefab: {fileID: 5864047070222363841, guid: 0a00aadc628c0984c9193766e154666d, type: 3}

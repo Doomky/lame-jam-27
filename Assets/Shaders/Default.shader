@@ -1,14 +1,20 @@
-﻿Shader "Custom/DefaultShader"
+﻿Shader "Custom/Default"
 {
 	Properties
 	{
-		[PerRendererData] _MainTex ("Sprite Texture", 2D) = "white" {}
+		[PerRendererData] 
+		_MainTex ("Sprite Texture", 2D) = "white" {}
+		
 		_Color ("Tint", Color) = (1,1,1,1)
-		[MaterialToggle] PixelSnap ("Pixel snap", Float) = 0
+		
+		[MaterialToggle] 
+		PixelSnap ("Pixel snap", Float) = 0
 
-        _PrimaryColor("Destination Color 1", Color) = (1,1,1,1)
-
-        _SecondaryColor("Destination Color 2", Color) = (1,1,1,1)
+        [PerRendererData] 
+		_PrimaryColor("Destination Color 1", Color) = (1,1,1,1)
+		
+        [PerRendererData] 
+		_SecondaryColor("Destination Color 2", Color) = (1,1,1,1)
 	}
 
 	SubShader

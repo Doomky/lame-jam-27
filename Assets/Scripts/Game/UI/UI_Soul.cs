@@ -37,8 +37,10 @@ namespace Game
                 data.text = dataText;
             }
 
-            this.image.color = Soul.Color1;
-            
+            this.image.material = new Material(this.image.material);
+            this.image.material.SetColor("_PrimaryColor", Soul.Color1);
+            this.image.material.SetColor("_SecondaryColor", Soul.Color2);
+
             this.data.gameObject.SetActive(showText);
         }
 
