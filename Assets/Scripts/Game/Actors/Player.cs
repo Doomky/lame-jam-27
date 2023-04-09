@@ -143,7 +143,7 @@ namespace Game
         {
             bool anySoulHasExpired = false;
 
-            if (this._primarySoul.HasExpired)
+            if (this._primarySoul.HasExpired && this._primarySoul != this._emptySoul)
             {
                 PickableSoul.SpawnedSouls.Remove(this._primarySoul);
                 this._primarySoul.Unbind(this);
@@ -160,7 +160,7 @@ namespace Game
             {
                 Soul soul = this._secondarySouls[i];
 
-                if (soul.HasExpired)
+                if (soul.HasExpired && soul != this._emptySoul)
                 {
                     PickableSoul.SpawnedSouls.Remove(this._secondarySouls[i]);
                     this._secondarySouls[i].Unbind(this);
@@ -296,13 +296,6 @@ namespace Game
                     }
                 }
             }
-
-            //// bind the soul to a random secondary slot
-
-            //int randomIndex = UnityEngine.Random.Range(0, this._secondarySouls.Length);
-            //this._secondarySouls[randomIndex].Unbind(this);
-            //this._secondarySouls[randomIndex] = soul;
-            //this._secondarySouls[randomIndex].Bind(this, false);
 
             OnSwapSoul?.Invoke(this._primarySoul, this._secondarySouls);
         }

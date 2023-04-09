@@ -46,6 +46,8 @@ public class PickableSoul : MonoBehaviour
         spriteRenderer.material.SetColor("_PrimaryColor", this._selectedSoul.Color1);
         spriteRenderer.material.SetColor("_SecondaryColor", this._selectedSoul.Color2);
 
+        _spawnedSouls.Add(this._selectedSoul);
+
         this._lifetime.Reset();
     }
 

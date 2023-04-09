@@ -132,7 +132,7 @@ namespace Framework.Managers
 
                 do
                 {
-                    soulPosition = playerPosition + this._soulPlayerDistance * Random.insideUnitCircle;
+                    soulPosition = playerPosition + this._soulPlayerDistance * Random.insideUnitCircle.normalized;
                 } while (!this.IsWorldPositionInScreen(soulPosition));
                 
                 this.spawnSoul(soulPosition);
