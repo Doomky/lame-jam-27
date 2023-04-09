@@ -65,6 +65,7 @@ namespace Game
         protected bool onDeathVisualEffectStarted = false;
         protected bool _isDead = false;
         protected bool _defaultDeathAnimationHasStarted = false;
+        private bool _isMoving = false;
 
         public int CurrentHealth
         {
@@ -102,6 +103,11 @@ namespace Game
         {
             if (direction == Vector2.zero)
             {
+                if (_isMoving)
+                {
+                    this._animator.SetBool("IsMoving", false);
+                    _isMoving = false;
+                }
                 return;
             }
 
@@ -109,7 +115,11 @@ namespace Game
 
             this.transform.position += (Vector3)(direction * this._movementSpeed * Time.fixedDeltaTime);
 
-            this._animator.SetBool("IsMoving", true);
+            if (!_isMoving)
+            {
+                this._animator.SetBool("IsMoving", true);
+                _isMoving = true;
+            }
             this._isMovingAnimatorTimer.Reset();
         }
 
@@ -150,7 +160,11 @@ namespace Game
         {
             if (this._isMovingAnimatorTimer.IsTriggered())
             {
-                this._animator.SetBool("IsMoving", false);
+                if (_isMoving)
+                {
+                    this._animator.SetBool("IsMoving", false);
+                    _isMoving = false;
+                }
             }
         }
 
