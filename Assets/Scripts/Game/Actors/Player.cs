@@ -88,27 +88,10 @@ namespace Game
             
             this._inputManager = Manager.Get<InputManager>();
             this._inputManager.Moved += this.Move;
-            this._inputManager.Pointed += screenPosition =>
-            {
-                Vector2 worldPosition = Camera.main.ScreenToWorldPoint(screenPosition);
-                Vector2 aimDirection = (worldPosition - (Vector2)transform.position).normalized;
-                this.Aim(aimDirection);
-            };
-            
-            this._inputManager.Fired += () =>
-            {
-                this.Fire();
-            };
-
-            this._inputManager.Switched += () =>
-            {
-                this.SwitchSoul();
-            };
-            
-            this._inputManager.Paused += () =>
-            {
-                OnPauseInput?.Invoke(this);
-            };
+            this._inputManager.Pointed += InputManager_Pointed;
+            this._inputManager.Fired += this.Fire;
+            this._inputManager.Switched += this.SwitchSoul;
+            this._inputManager.Paused += InputManager_Paused;
 
             this._primarySoul?.Bind(this, true, false);
 
@@ -122,25 +105,26 @@ namespace Game
             this._emptySoul.SoulDurationTimer.Trigger();
         }
 
+        private void InputManager_Paused()
+        {
+            OnPauseInput?.Invoke(this);
+        }
+
+        private void InputManager_Pointed(Vector2 screenPosition)
+        {
+            Vector2 worldPosition = Camera.main.ScreenToWorldPoint(screenPosition);
+            Vector2 aimDirection = (worldPosition - (Vector2)transform.position).normalized;
+            this.Aim(aimDirection);
+        }
+
         protected void OnDestroy()
         {
             this._inputManager = Manager.Get<InputManager>();
             this._inputManager.Moved -= this.Move;
-            this._inputManager.Pointed -= screenPosition =>
-            {
-                Vector2 worldPosition = Camera.main.ScreenToWorldPoint(screenPosition);
-                Vector2 aimDirection = (worldPosition - (Vector2)transform.position).normalized;
-                this.Aim(aimDirection);
-            };
-
+            this._inputManager.Pointed -= InputManager_Pointed;
             this._inputManager.Fired -= this.Fire;
-
             this._inputManager.Switched -= this.SwitchSoul;
-
-            this._inputManager.Paused -= () =>
-            {
-                OnPauseInput?.Invoke(this);
-            };
+            this._inputManager.Paused -= InputManager_Paused;
         }
 
         public void Start()
