@@ -24,6 +24,8 @@ namespace Game
         [Required]
         [SerializeField]
         private Animator _animator = null;
+        [SerializeField]
+        private Collider2D _collider = null;
 
         [BoxGroup("Data")]
         [ShowInInspector]
@@ -85,6 +87,10 @@ namespace Game
         protected virtual void Awake()
         {
             _currentHealth = _maxHealth;
+            if (_collider == null)
+            {
+                _collider = GetComponent<Collider2D>();
+            }
         }
 
         public bool IsDead()
@@ -108,8 +114,13 @@ namespace Game
         }
 
         [Button]
-        public void TakeDamage(IDamage damage)
+        public bool TakeDamage(IDamage damage)
         {
+            if(_isDead)
+            {
+                return false;
+            }
+            
             this._currentHealth -= damage.Amount;
 
             if (_damagePopup)
@@ -131,6 +142,8 @@ namespace Game
             {
                 this.StartCoroutine(this.OnGetHit_VisualEffect(transform));
             }
+
+            return true;
         }
 
         protected void FixedUpdate()
@@ -149,6 +162,7 @@ namespace Game
             }
 
             this._isDead = true;
+            this._collider.enabled = false;
 
             if (_onDeathPSPrefab != null)
             {

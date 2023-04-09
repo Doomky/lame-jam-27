@@ -83,8 +83,9 @@ namespace Game
                 
                 if (!this._hittedEnemies.Contains(enemy))
                 {
-                    actor.TakeDamage(this._damage);
-
+                    bool collided = actor.TakeDamage(this._damage);
+                    if(!collided) return;
+                    
                     this.Hit?.Invoke(this, enemy);
 
                     this._hittedEnemies.Add(enemy);

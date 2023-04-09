@@ -15,6 +15,6 @@ namespace Game
 
         void Move(Vector2 direction);
 
-        void TakeDamage(IDamage damage);
+        bool TakeDamage(IDamage damage);
     }
 }
