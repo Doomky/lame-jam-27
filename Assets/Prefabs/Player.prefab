@@ -291,7 +291,7 @@ MonoBehaviour:
   _onDeathPSPrefabList: []
   _onDeathSFXs: []
   _onDeathPrefab: {fileID: 0}
-  _wipeRadius: 5
+  _wipeRadius: 8
   _wipeDamage: 10
   _wipePrefab: {fileID: 7669642201945029242, guid: 6ba0cc3178208d144b0fc264bfd38ed1, type: 3}
   _baseMovementSpeed: 5

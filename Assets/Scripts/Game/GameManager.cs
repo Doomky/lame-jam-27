@@ -231,11 +231,14 @@ namespace Framework.Managers
             
             for (int i = enemiesCount - 1; i >= 0; i--)
             {
-                enemies[i].TakeDamage(damage);
-                yield return new WaitForSeconds(0.1f);
-                if (this._player == null)
+                if (enemies[i] != null)
                 {
-                    yield break;
+                    enemies[i].TakeDamage(damage);
+                    yield return new WaitForSeconds(0.02f);
+                    if (this._player == null)
+                    {
+                        yield break;
+                    }
                 }
             }
 
