@@ -3,22 +3,16 @@ using Framework.Helpers;
 using Framework.Managers;
 using Sirenix.OdinInspector;
 using System;
-using Sirenix.Utilities;
-using Unity.VisualScripting.Dependencies.NCalc;
 using UnityEngine;
-using Unity.Properties;
-using UnityEngine.SceneManagement;
-using static UnityEngine.EventSystems.EventTrigger;
 using Framework.Managers.Audio;
-using System.ComponentModel;
-using System.Collections.Generic;
-using System.Collections;
-using UnityEngine.UIElements;
 
 namespace Game
 {
     public class Player : Actor, IPlayer
     {
+        [SerializeField] private float _wipeRadius = 5;
+        [SerializeField] private int _wipeDamage = 10;
+        
         [BoxGroup("Data/FireSystem")]
         [SerializeField]
         private int _baseMovementSpeed = 5;
@@ -135,15 +129,9 @@ namespace Game
                 this.Aim(aimDirection);
             };
 
-            this._inputManager.Fired -= () =>
-            {
-                this.Fire();
-            };
+            this._inputManager.Fired -= this.Fire;
 
-            this._inputManager.Switched -= () =>
-            {
-                this.SwitchSoul();
-            };
+            this._inputManager.Switched -= this.SwitchSoul;
 
             this._inputManager.Paused -= () =>
             {
@@ -361,6 +349,7 @@ namespace Game
                 Manager.Get<SFXManager>().PlayGlobalSFX(pickableSoul.PickupSFX);
                 this.AddSoul(pickableSoul.SelectedSoul);
                 Destroy(go);
+                WipeCloseEnnemy();
             }
 
             if (this._invulnerabilityTimer.IsRunning())
@@ -368,7 +357,7 @@ namespace Game
                 return;
             }
 
-            if (go.TryGetComponent(out IEnemy enemy))
+            if (go.TryGetComponent(out IEnemy enemy) && collisionType == CollisionType.Enter)
             {
                 if (!enemy.IsDead())
                 {
@@ -376,6 +365,7 @@ namespace Game
                     Damage damage = new Damage(1, Color.white);
                     this.TakeDamage(damage);
                     this._invulnerabilityTimer.Reset();
+                    WipeCloseEnnemy();
                 }
             }
         }
@@ -403,6 +393,19 @@ namespace Game
             }
 
             return false;
+        }
+        
+        internal void WipeCloseEnnemy()
+        {
+            Collider2D[] colliders = Physics2D.OverlapCircleAll(this.transform.position, this._wipeRadius);
+
+            for (int i = 0; i < colliders.Length; i++)
+            {
+                if (colliders[i].TryGetComponent(out IEnemy enemy))
+                {
+                    enemy.TakeDamage(new Damage(_wipeDamage, Color.white));
+                }
+            }
         }
     }
 }
