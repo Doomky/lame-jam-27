@@ -69,9 +69,18 @@ namespace Framework.Managers
         [SerializeField]
         private AudioClip _gameOverSFX = null;
 
+        [BoxGroup("Misc")]
+        [SerializeField]
+        private AudioClip _victorySFX = null;
+
         public bool isGameOver = false;
+        
+        public bool isVictory = false;
+        private bool _victoryCoroutineHasStarted;
 
         public bool IsGameOver => this.isGameOver;
+
+        public bool IsVictory => this.isVictory;
 
         public override void Bind()
         {
@@ -87,15 +96,18 @@ namespace Framework.Managers
 
         public void Update()
         {
-            var deltaTime = Time.deltaTime;
-            this.remainingTimeInSeconds -= deltaTime;
-                
-            // END GAME
             if (this.remainingTimeInSeconds <= 0)
             {
-                Debug.Log("t'as gagné bogoss");
-                // TODO: Game Over
+                if (!this._victoryCoroutineHasStarted)
+                {
+                    this.Victory();
+                }
+
+                return;
             }
+
+            this.remainingTimeInSeconds -= Time.deltaTime;
+            this.remainingTimeInSeconds = Mathf.Max(0, this.remainingTimeInSeconds);
 
             this._elapsedTime += Time.deltaTime;
             this._bossElapsedTime += Time.deltaTime;
@@ -189,6 +201,42 @@ namespace Framework.Managers
         public void GameOver()
         {
             this.StartCoroutine(this.GameOverCoroutine());
+        }
+
+        public void Victory()
+        {
+            this._victoryCoroutineHasStarted = true;
+            this.StartCoroutine(this.VictoryCoroutine());
+        }
+
+        private IEnumerator VictoryCoroutine()
+        {
+            SFXManager sfxManager = Manager.Get<SFXManager>();
+
+            List<Enemy> enemies = Enemy.Enemies;
+            int enemiesCount = enemies.Count;
+            
+            Damage damage = new(999, Color.white);
+            
+            for (int i = enemiesCount - 1; i >= 0; i--)
+            {
+                enemies[i].TakeDamage(damage);
+                yield return new WaitForSeconds(0.1f);
+                if (this._player == null)
+                {
+                    yield break;
+                }
+            }
+
+            if (this._player != null)
+            {
+                this.isVictory = true;
+                sfxManager.PlayGlobalSFX(this._victorySFX);
+
+                yield return new WaitForSeconds(3f);
+
+                SceneManager.LoadScene("OutGame", LoadSceneMode.Single);
+            }
         }
 
         private IEnumerator GameOverCoroutine()

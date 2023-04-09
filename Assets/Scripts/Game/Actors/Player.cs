@@ -82,7 +82,6 @@ namespace Game
 
         public Vector2 AimDirection => this._projectileSpawnpoint.transform.right;
 
-
         protected void Awake()
         {
             base.Awake();
@@ -121,6 +120,33 @@ namespace Game
             this._invulnerabilityTimer = new(this._invulnerabilityTime);
 
             this._emptySoul.SoulDurationTimer.Trigger();
+        }
+
+        protected void OnDestroy()
+        {
+            this._inputManager = Manager.Get<InputManager>();
+            this._inputManager.Moved -= this.Move;
+            this._inputManager.Pointed -= screenPosition =>
+            {
+                Vector2 worldPosition = Camera.main.ScreenToWorldPoint(screenPosition);
+                Vector2 aimDirection = (worldPosition - (Vector2)transform.position).normalized;
+                this.Aim(aimDirection);
+            };
+
+            this._inputManager.Fired -= () =>
+            {
+                this.Fire();
+            };
+
+            this._inputManager.Switched -= () =>
+            {
+                this.SwitchSoul();
+            };
+
+            this._inputManager.Paused -= () =>
+            {
+                OnPauseInput?.Invoke(this);
+            };
         }
 
         public void Start()

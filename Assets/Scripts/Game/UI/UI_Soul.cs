@@ -23,6 +23,7 @@ namespace Game
 
             var dataText = Soul.Name + "\n" + Soul.Description;
             data.text = dataText;
+            data.color = Soul.Color2;
             data.gameObject.SetActive(showDescription);
 
             _timeLeftSlder.gameObject.SetActive(showDurationLeft);

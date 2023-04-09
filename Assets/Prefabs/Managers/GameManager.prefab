@@ -45,7 +45,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   serializationData:
-    SerializedFormat: 0
+    SerializedFormat: 2
     SerializedBytes: 
     ReferencedUnityObjects: []
     SerializedBytesString: 
@@ -98,4 +98,6 @@ MonoBehaviour:
   _maxNumberOfEnemyToSpawn: 12
   _camera: {fileID: 136051960629355474, guid: eede951909a7f454f8f93bd9a16336be, type: 3}
   _gameOverSFX: {fileID: 8300000, guid: c817380fdd905744686f4c3b05f00fef, type: 3}
+  _victorySFX: {fileID: 8300000, guid: 728b1c1f2d1ac0347beac75ea7ae99d5, type: 3}
   isGameOver: 0
+  isVictory: 0
