@@ -13,7 +13,7 @@ namespace Game
         private string _name;
 
         [BoxGroup("Data")]
-        [SerializeField] 
+        [SerializeField, TextArea] 
         private string _description;
 
         [BoxGroup("Data")]
