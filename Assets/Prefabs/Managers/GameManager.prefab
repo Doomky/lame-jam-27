@@ -61,7 +61,11 @@ MonoBehaviour:
   _spawnSoulPrefab: {fileID: 5471914106286978763, guid: f9e04d41e90faf943858656c9cf40b83, type: 3}
   _soulListToDrop: []
   _survivalTimerInMinutes: 5
+  _switchSoulInSeconds: 10
+  _pickSoulInSeconds: 30
   remainingTimeInSeconds: 0
+  switchRemainingTimeInSeconds: 0
+  pickRemainingTimeInSeconds: 0
   _enemySpawnTime: 1
   _bossSpawnTime: 100
   _soulSpawnTime: 5

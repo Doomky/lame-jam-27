@@ -15,17 +15,20 @@ namespace Framework.Managers
         public event Action<Vector2> Pointed;
         public event Action Fired;
         public event Action Switched;
+        public event Action Paused;
 
         private InputActions inputActions;
-
+        
         [ShowInInspector]
         private Vector2 _pointedPosition;
 
         [Required, SerializeField]
         private InputSystemUIInputModule _uiInputModule = null;
+
         private Vector2 _moveDirection;
 
         private bool _isFiring;
+
 
         public override void Bind()
         {
@@ -63,6 +66,11 @@ namespace Framework.Managers
         public void OnSwitch(InputValue inputValue)
         {
             this.Switched?.Invoke();
+        }
+        
+        public void OnPause(InputValue inputValue)
+        {
+            this.Paused?.Invoke();
         }
     }
 }

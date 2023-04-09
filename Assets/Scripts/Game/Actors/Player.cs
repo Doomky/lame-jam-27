@@ -66,6 +66,7 @@ namespace Game
         public event Action<IPlayer, IProjectile, IEnemy> OnHit;
         public event Action<IPlayer, IDamage, IEnemy> OnTakeDamage;
         public event Action<ISoul, ISoul[]> OnSwapSoul;
+        public event Action<Player> OnPauseInput;
 
         public Soul PrimarySoul
         {
@@ -80,6 +81,7 @@ namespace Game
         }
 
         public Vector2 AimDirection => this._projectileSpawnpoint.transform.right;
+
 
         protected void Awake()
         {
@@ -102,6 +104,11 @@ namespace Game
             this._inputManager.Switched += () =>
             {
                 this.SwitchSoul();
+            };
+            
+            this._inputManager.Paused += () =>
+            {
+                OnPauseInput?.Invoke(this);
             };
 
             this._primarySoul?.Bind(this, true, false);

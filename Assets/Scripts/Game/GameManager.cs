@@ -87,11 +87,13 @@ namespace Framework.Managers
 
         public void Update()
         {
-            this.remainingTimeInSeconds -= Time.deltaTime;
-
+            var deltaTime = Time.deltaTime;
+            this.remainingTimeInSeconds -= deltaTime;
+                
+            // END GAME
             if (this.remainingTimeInSeconds <= 0)
             {
-                Debug.Log("t'as gagn� bogoss");
+                Debug.Log("t'as gagné bogoss");
                 // TODO: Game Over
             }
 

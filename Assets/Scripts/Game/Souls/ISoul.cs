@@ -1,4 +1,4 @@
-﻿using Framework;
+using Framework;
 using Sirenix.OdinInspector;
 using UnityEngine;
 
