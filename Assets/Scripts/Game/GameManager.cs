@@ -12,6 +12,9 @@ namespace Framework.Managers
         private List<GameObject> _enemyPrefab;
 
         [SerializeField]
+        private GameObject _bossPrefab;
+
+        [SerializeField]
         private GameObject _playerPrefab;
 
         private List<GameObject> _enemyList;
@@ -24,7 +27,12 @@ namespace Framework.Managers
         [SerializeField]
         private float _enemySpawnTime;
 
+        [SerializeField]
+        private float _bossSpawnTime;
+
         private float _elapsedTime = 0f;
+
+        private float _bossElapsedTime = 0f;
 
         [SerializeField]
         private AnimationCurve _enemySpawnAnimationCurve;
@@ -56,10 +64,11 @@ namespace Framework.Managers
             }
 
             this._elapsedTime += Time.deltaTime;
+            this._bossElapsedTime += Time.deltaTime;
 
             if (this._elapsedTime > this._enemySpawnTime)
             {
-                
+
                 float indexOfCurve = (this._survivalTimerInMinutes * 60 - remainingTimeInSeconds) / (this._survivalTimerInMinutes * 60);
                 float numberOfEnemyToSpawn = _enemySpawnAnimationCurve.Evaluate(indexOfCurve) * this._maxNumberOfEnemyToSpawn;
 
@@ -72,12 +81,24 @@ namespace Framework.Managers
 
                 this._elapsedTime = 0f;
             }
+            
+            if (this._bossElapsedTime > this._bossSpawnTime)
+            {
+                Vector3 position = this.GetEdgeRandomScreenPosition();
+                this.spawnBoss(position);
+                this._bossElapsedTime = 0f;
+            }
         }
 
         public void spawnEnemy(Vector3 position)
         {
             int random = UnityEngine.Random.Range(0, this._enemyPrefab.Count);
             GameObject enemy = Instantiate(this._enemyPrefab[random], position, Quaternion.identity);
+        }
+
+        public void spawnBoss(Vector3 position)
+        {
+            GameObject enemy = Instantiate(this._bossPrefab, position, Quaternion.identity);
         }
 
         public Vector3 GetEdgeRandomScreenPosition()
