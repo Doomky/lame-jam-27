@@ -55,6 +55,7 @@ public class PickableSoul : MonoBehaviour
     {
         if (this._lifetime.IsTriggered())
         {
+            _spawnedSouls.Remove(this._selectedSoul);
             GameObject.Destroy(this.gameObject);
         }
     }

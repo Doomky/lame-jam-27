@@ -27,8 +27,7 @@ namespace Framework.Managers
 
         private Vector2 _moveDirection;
 
-        private bool _isFiring;
-
+        private bool _isFiring = false;
 
         public override void Bind()
         {

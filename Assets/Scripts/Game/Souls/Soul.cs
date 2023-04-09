@@ -68,6 +68,10 @@ namespace Game
         [SerializeField] 
         private  float _projectileSpeedModifier = 0;
 
+        [BoxGroup("Data")]
+        [SerializeField]
+        private bool _isEmpty;
+
         protected bool _isPrimary = false;
 
         public Texture2D Image => _image;
@@ -112,7 +116,7 @@ namespace Game
             player.OnFixedUpdate += this.OnFixedUpdate;
             player.OnTakeDamage  += this.OnTakeDamage;
 
-            if (!isSwap)
+            if (!isSwap && !this._isEmpty)
             {
                 this._soulDurationTimer.Reset();
             }
