@@ -320,6 +320,7 @@ namespace Game
             // walk on soul and destroy it
             if (go.TryGetComponent(out PickableSoul pickableSoul) && collisionType == CollisionType.Enter)
             {
+                Manager.Get<SFXManager>().PlayGlobalSFX(pickableSoul.PickupSFX);
                 this.AddSoul(pickableSoul.SelectedSoul);
                 Destroy(go);
             }

@@ -52,6 +52,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: bd743fb2ea085e44cb3e818bdc729f0e, type: 2}
   - {fileID: 11400000, guid: 18490306240f4944cbd66ee3dc20714b, type: 2}
   - {fileID: 11400000, guid: a66ced6712d20e14fa28b8a0c94f50cf, type: 2}
+  _pickUpSFX: {fileID: 8300000, guid: 5c2ebf15057280347b9f427333707627, type: 3}
 --- !u!212 &9164530280767590400
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -133,7 +134,7 @@ CircleCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
