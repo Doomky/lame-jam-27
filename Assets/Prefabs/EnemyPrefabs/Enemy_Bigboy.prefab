@@ -212,7 +212,8 @@ MonoBehaviour:
   _damagePopup: {fileID: 1607192860749998027, guid: 65ce90627e1d6394281a9416c0f7d7dc, type: 3}
   _onDeathPSPrefab: {fileID: 0}
   _onDeathPSPrefabList: []
-  _onDeathSFXs: []
+  _onDeathSFXs:
+  - {fileID: 8300000, guid: d9f70214851b2b540a1a56636d92574e, type: 3}
   _onDeathPrefab: {fileID: 0}
   _player: {fileID: 0}
   _movementSpeedCurve:

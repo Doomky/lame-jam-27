@@ -292,12 +292,12 @@ MonoBehaviour:
   _onDeathPrefab: {fileID: 0}
   _baseMovementSpeed: 5
   _projectileSpawnpoint: {fileID: 5648403265943158757}
-  _primarySoul: {fileID: 11400000, guid: 18490306240f4944cbd66ee3dc20714b, type: 2}
+  _primarySoul: {fileID: 11400000, guid: 437352b654f165b4e8de7ec0b2de8df0, type: 2}
   _soulParticles: {fileID: 2906555571386570797}
   _aimIndicatorSpriteRenderer: {fileID: 5468875799320449441}
   _secondarySouls:
-  - {fileID: 11400000, guid: 4a1052a950e02a44cac43fe85e21c531, type: 2}
-  - {fileID: 11400000, guid: 4a1052a950e02a44cac43fe85e21c531, type: 2}
+  - {fileID: 11400000, guid: bd743fb2ea085e44cb3e818bdc729f0e, type: 2}
+  - {fileID: 11400000, guid: 18490306240f4944cbd66ee3dc20714b, type: 2}
   _invulnerabilityTime: 0.5
   _switchSoul: {fileID: 8300000, guid: 0384e56379bab1b4fae262465d641b38, type: 3}
 --- !u!1 &8258942385881763493

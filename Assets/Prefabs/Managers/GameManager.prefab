@@ -63,8 +63,8 @@ MonoBehaviour:
   _survivalTimerInMinutes: 5
   remainingTimeInSeconds: 0
   _enemySpawnTime: 1
-  _bossSpawnTime: 10
   _soulSpawnTime: 5
+  _bossSpawnTime: 100
   _enemySpawnAnimationCurve:
     serializedVersion: 2
     m_Curve:
