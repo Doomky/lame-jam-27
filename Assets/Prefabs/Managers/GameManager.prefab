@@ -62,7 +62,7 @@ MonoBehaviour:
   _soulListToDrop: []
   _survivalTimerInMinutes: 5
   remainingTimeInSeconds: 0
-  _enemySpawnTime: 2
+  _enemySpawnTime: 2.5
   _bossSpawnTime: 85
   _soulSpawnTime: 7
   _soulPlayerDistance: 10

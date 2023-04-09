@@ -294,31 +294,36 @@ namespace Game
         {
             bool hasBeenAdded = false;
 
-            if(this._primarySoul == this._emptySoul)
-            {
-                this._primarySoul.Unbind(this);
-                this._primarySoul = soul;
-                this._primarySoul.Bind(this, true, false);
-                hasBeenAdded = true;
-            }
-
-            if(this._primarySoul.Name == soul.Name)
+            if (this._primarySoul.Name == soul.Name)
             {
                 this._primarySoul.SoulDurationTimer.Reset();
                 hasBeenAdded = true;
             }
+            for (int i = 0; i < this._secondarySouls.Length; i++)
+            {
+                if (this._secondarySouls[i].Name == soul.Name)
+                {
+                    this._secondarySouls[i].SoulDurationTimer.Reset();
+                    hasBeenAdded = true;
+                    break;
+                }
+            }
 
+            if (!hasBeenAdded)
+            {
+                if (this._primarySoul == this._emptySoul)
+                {
+                    this._primarySoul.Unbind(this);
+                    this._primarySoul = soul;
+                    this._primarySoul.Bind(this, true, false);
+                    hasBeenAdded = true;
+                }
+            }
+            
             if (!hasBeenAdded)
             {
                 for (int i = 0; i < this._secondarySouls.Length; i++)
                 {
-                    if (this._secondarySouls[i].Name == soul.Name)
-                    {
-                        this._secondarySouls[i].SoulDurationTimer.Reset();
-                        hasBeenAdded = true;
-                        break;
-                    }
-
                     if (this._secondarySouls[i] == this._emptySoul)
                     {
                         this._secondarySouls[i].Unbind(this);

@@ -181,30 +181,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   serializationData:
-    SerializedFormat: 2
-    SerializedBytes: 
+    SerializedFormat: 0
+    SerializedBytes: 01010e0000005f0068006900740074006500640045006e0065006d006900650073002f000000000151000000530079007300740065006d002e0043006f006c006c0065006300740069006f006e0073002e00470065006e0065007200690063002e004800610073006800530065007400600031005b005b00470061006d0065002e00490045006e0065006d0079002c00200041007300730065006d0062006c0079002d004300530068006100720070005d005d002c002000530079007300740065006d002e0043006f0072006500000000000600000000000000000705
     ReferencedUnityObjects: []
     SerializedBytesString: 
     Prefab: {fileID: 0}
     PrefabModificationsReferencedUnityObjects: []
     PrefabModifications: []
-    SerializationNodes:
-    - Name: _hittedEnemies
-      Entry: 7
-      Data: 0|System.Collections.Generic.HashSet`1[[Game.IEnemy, Assembly-CSharp]],
-        System.Core
-    - Name: 
-      Entry: 12
-      Data: 0
-    - Name: 
-      Entry: 13
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-  _damage:
-    _amount: 10
-    _color: {r: 0, g: 0, b: 0, a: 0}
+    SerializationNodes: []
   _damageAmount: 10
   _soul: {fileID: 11400000, guid: bd743fb2ea085e44cb3e818bdc729f0e, type: 2}
   _movementSpeedCurve:
@@ -232,5 +216,5 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   _movementSpeed: 40
-  _maxLifeTime: 0.1
+  _maxLifeTime: 0.15
   _destroyOnHit: 0
