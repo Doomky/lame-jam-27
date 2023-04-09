@@ -45,7 +45,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   serializationData:
-    SerializedFormat: 2
+    SerializedFormat: 0
     SerializedBytes: 
     ReferencedUnityObjects: []
     SerializedBytesString: 
@@ -61,15 +61,11 @@ MonoBehaviour:
   _spawnSoulPrefab: {fileID: 5471914106286978763, guid: f9e04d41e90faf943858656c9cf40b83, type: 3}
   _soulListToDrop: []
   _survivalTimerInMinutes: 5
-  _switchSoulInSeconds: 10
-  _pickSoulInSeconds: 30
   remainingTimeInSeconds: 0
-  switchRemainingTimeInSeconds: 0
-  pickRemainingTimeInSeconds: 0
-  _enemySpawnTime: 1
-  _bossSpawnTime: 100
-  _soulSpawnTime: 5
-  _soulPlayerDistance: 12
+  _enemySpawnTime: 2
+  _bossSpawnTime: 85
+  _soulSpawnTime: 7
+  _soulPlayerDistance: 10
   _bgm: {fileID: 8300000, guid: 285f3ec2e3d54f64c97d1ed12d713132, type: 3}
   _enemySpawnAnimationCurve:
     serializedVersion: 2
@@ -77,43 +73,25 @@ MonoBehaviour:
     - serializedVersion: 3
       time: 0
       value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
+      inSlope: 1
+      outSlope: 1
+      tangentMode: 34
       weightedMode: 0
       inWeight: 0
       outWeight: 0
     - serializedVersion: 3
-      time: 0.53730017
-      value: 0.21399763
-      inSlope: 1.0689175
-      outSlope: 1.0689175
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    - serializedVersion: 3
-      time: 0.93029916
-      value: 0.53771096
-      inSlope: 1.8819145
-      outSlope: 1.8819145
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    - serializedVersion: 3
       time: 1
       value: 1
-      inSlope: 2
-      outSlope: 2
-      tangentMode: 0
+      inSlope: 1
+      outSlope: 1
+      tangentMode: 34
       weightedMode: 0
       inWeight: 0
       outWeight: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  _maxNumberOfEnemyToSpawn: 12
+  _maxNumberOfEnemyToSpawn: 16
   _camera: {fileID: 136051960629355474, guid: eede951909a7f454f8f93bd9a16336be, type: 3}
   _gameOverSFX: {fileID: 8300000, guid: c817380fdd905744686f4c3b05f00fef, type: 3}
   _victorySFX: {fileID: 8300000, guid: 728b1c1f2d1ac0347beac75ea7ae99d5, type: 3}

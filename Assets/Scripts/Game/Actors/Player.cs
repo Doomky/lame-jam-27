@@ -165,7 +165,6 @@ namespace Game
 
             if (this._primarySoul.HasExpired && this._primarySoul != this._emptySoul)
             {
-                PickableSoul.SpawnedSouls.Remove(this._primarySoul);
                 this._primarySoul.Unbind(this);
                 this._primarySoul = this._emptySoul;
                 this._primarySoul.Bind(this, true, false);
@@ -182,7 +181,6 @@ namespace Game
 
                 if (soul.HasExpired && soul != this._emptySoul)
                 {
-                    PickableSoul.SpawnedSouls.Remove(this._secondarySouls[i]);
                     this._secondarySouls[i].Unbind(this);
                     this._secondarySouls[i] = this._emptySoul;
                     this._secondarySouls[i].Bind(this, false, false);
@@ -304,10 +302,23 @@ namespace Game
                 hasBeenAdded = true;
             }
 
+            if(this._primarySoul.Name == soul.Name)
+            {
+                this._primarySoul.SoulDurationTimer.Reset();
+                hasBeenAdded = true;
+            }
+
             if (!hasBeenAdded)
             {
                 for (int i = 0; i < this._secondarySouls.Length; i++)
                 {
+                    if (this._secondarySouls[i].Name == soul.Name)
+                    {
+                        this._secondarySouls[i].SoulDurationTimer.Reset();
+                        hasBeenAdded = true;
+                        break;
+                    }
+
                     if (this._secondarySouls[i] == this._emptySoul)
                     {
                         this._secondarySouls[i].Unbind(this);
