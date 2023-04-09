@@ -29,14 +29,15 @@ MonoBehaviour:
   _color2: {r: 1, g: 0.73928237, b: 0.199, a: 1}
   _projectilePrefab: {fileID: 940720775399222059, guid: 2daa4a6df404ba441b7ee4b1e3acfe8b, type: 3}
   _particleSystemPrefab: {fileID: 0}
-  _baseAttackSpeed: 1
-  _spreadAngle: 10
-  _numberOfProjectiles: 6
+  _baseAttackSpeed: 0.9
+  _spreadAngle: 13
+  _numberOfProjectiles: 7
   _fireSFX: {fileID: 8300000, guid: 2507facceabeee1488dc42d481f5e0f7, type: 3}
   _percentageMovementSpeedModifier: 0
   _percentageAttackSpeedModifier: 0
   _porojectileLifetimeModifier: 0
   _projectileSpeedModifier: 0
+  _isEmpty: 0
   _trapPrefab: {fileID: 7587265645069972380, guid: f6fda7af3c71cd7459ffd4d19f7c18ad, type: 3}
-  _trapCooldown: 4
-  _trapOffset: 0.125
+  _trapCooldown: 1
+  _trapOffset: 2

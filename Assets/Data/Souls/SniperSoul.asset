@@ -21,7 +21,7 @@ MonoBehaviour:
     PrefabModificationsReferencedUnityObjects: []
     PrefabModifications: []
     SerializationNodes: []
-  _name: 
+  _name: Sniper Soul
   _description: 'Primary:
 
     Low rate of fire, high damage projectile that goes
@@ -44,6 +44,7 @@ MonoBehaviour:
   _percentageAttackSpeedModifier: 0
   _porojectileLifetimeModifier: 0
   _projectileSpeedModifier: 0
+  _isEmpty: 0
   _distantDamageMultiplier: 20
   _bonusProjectileCooldown: 0.8
   _bonusProjectilePrefab: {fileID: 1273439381294917417, guid: 0d10f3dd73af53f4589a733cf07effa3, type: 3}

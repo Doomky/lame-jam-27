@@ -21,7 +21,7 @@ MonoBehaviour:
     PrefabModificationsReferencedUnityObjects: []
     PrefabModifications: []
     SerializationNodes: []
-  _name: 
+  _name: RapidFire Soul
   _description: 'Primary:
 
     High rate of fire, low damage, high movespeed
@@ -44,3 +44,4 @@ MonoBehaviour:
   _percentageAttackSpeedModifier: 0
   _porojectileLifetimeModifier: 0
   _projectileSpeedModifier: 0
+  _isEmpty: 0
