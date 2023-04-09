@@ -68,7 +68,7 @@ MonoBehaviour:
     - Name: 
       Entry: 8
       Data: 
-  _damageAmount: 5
+  _damageAmount: 6
   _soul: {fileID: 11400000, guid: a66ced6712d20e14fa28b8a0c94f50cf, type: 2}
   _movementSpeedCurve:
     serializedVersion: 2
@@ -94,7 +94,7 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  _movementSpeed: 30
+  _movementSpeed: 40
   _maxLifeTime: 0.5
   _destroyOnHit: 1
 --- !u!58 &7369455307466112092
