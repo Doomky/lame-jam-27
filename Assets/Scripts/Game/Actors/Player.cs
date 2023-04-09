@@ -209,6 +209,8 @@ namespace Game
         private void UpdateMovementSpeed()
         {
             float movementSpeed = this._baseMovementSpeed;
+            
+            movementSpeed *= (1 +  this._primarySoul.PercentageMovementSpeedModifier);
 
             for (int i = 0; i < this._secondarySouls.Length; i++)
             {
