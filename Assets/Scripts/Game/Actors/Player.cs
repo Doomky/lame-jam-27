@@ -10,8 +10,12 @@ namespace Game
 {
     public class Player : Actor, IPlayer
     {
+        [BoxGroup("Wipe")]
         [SerializeField] private float _wipeRadius = 5;
+        [BoxGroup("Wipe")]
         [SerializeField] private int _wipeDamage = 10;
+        [BoxGroup("Wipe")] 
+        [SerializeField] private GameObject _wipePrefab;
         
         [BoxGroup("Data/FireSystem")]
         [SerializeField]
@@ -405,6 +409,8 @@ namespace Game
                     enemy.TakeDamage(new Damage(_wipeDamage, Color.white));
                 }
             }
+            
+            Instantiate(this._wipePrefab, this.transform.position, Quaternion.identity, parent: null);
         }
     }
 }
