@@ -104,7 +104,7 @@ namespace Game
 
         public AudioClip FireSFX => this._fireSFX;
 
-        private Timer _soulDurationTimer = new(10f);
+        private Timer _soulDurationTimer = new(20f);
 
         public virtual void Bind(IPlayer player, bool isPrimary, bool isSwap)
         {

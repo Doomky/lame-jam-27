@@ -161,7 +161,7 @@ namespace Framework.Managers
 
         public void spawnEnemy(Vector3 position)
         {
-            int random = 1; 
+            int random = 0; 
             if (remainingTimeInSeconds < 240)
             {
                 random = UnityEngine.Random.Range(0, 2);
