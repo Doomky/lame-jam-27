@@ -83,6 +83,8 @@ namespace Game
                 
                 if (!this._hittedEnemies.Contains(enemy))
                 {
+                    this._damage.KnockbackDirection = this.transform.right;
+                    this._damage.KnockbackForce = this._damage.Amount;
                     bool collided = actor.TakeDamage(this._damage);
                     if(!collided) return;
                     

@@ -6,28 +6,31 @@ namespace Game
     [Serializable]
     public class Damage : IDamage
     {
-        [SerializeField]
-        private int _amount;
+        [SerializeField] private int _amount;
+        [SerializeField] private Color _color;
+        [SerializeField] private Vector2 _knockbackDirection;
+        [SerializeField] private float _knockbackForce;
 
-        [SerializeField]
-        private Color _color;
-
-        public int Amount
+        public int Amount => _amount;
+        public Color Color => _color;
+        public Vector2 KnockbackDirection
         {
-            get => _amount;
-            set => _amount = value;
+            get => _knockbackDirection;
+            set => _knockbackDirection = value;
         }
 
-        public Color color
+        public float KnockbackForce
         {
-            get => _color;
-            set => _color = value;
+            get => _knockbackForce;
+            set => _knockbackForce = value;
         }
 
-        public Damage(int amount, Color color)
+        public Damage(int amount, Color color, Vector2 knockbackDirection = default, float knockbackForce = 0)
         {
             _amount = amount;
             _color = color;
+            _knockbackDirection = knockbackDirection;
+            _knockbackForce = knockbackForce;
         }
     }
 }

@@ -153,6 +153,8 @@ namespace Game
                 this.StartCoroutine(this.OnGetHit_VisualEffect(transform));
             }
 
+            transform.position += (Vector3)damage.KnockbackDirection * (damage.KnockbackForce * 0.1f);
+            
             return true;
         }
 

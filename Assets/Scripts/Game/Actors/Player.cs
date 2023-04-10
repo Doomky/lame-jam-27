@@ -8,7 +8,7 @@ using Framework.Managers.Audio;
 
 namespace Game
 {
-    public class Player : Actor, IPlayer
+    public partial class Player : Actor, IPlayer
     {
         [BoxGroup("Wipe")]
         [SerializeField] private float _wipeRadius = 5;
@@ -16,6 +16,8 @@ namespace Game
         [SerializeField] private int _wipeDamage = 10;
         [BoxGroup("Wipe")]
         [SerializeField] private GameObject _wipePrefab;
+        [BoxGroup("Wipe")]
+        [SerializeField] private float _wipeForce = 5;
 
         [BoxGroup("Data/FireSystem")]
         [SerializeField]
@@ -30,35 +32,15 @@ namespace Game
         [SerializeField]
         private Transform _projectileSpawnpoint = null;
 
-        [BoxGroup("Data/Souls")]
-        [SerializeField]
-        private Soul _primarySoul = null;
-
-        [SerializeField]
-        private ParticleSystem _soulParticles = null;
-
         [SerializeField]
         private SpriteRenderer _aimIndicatorSpriteRenderer = null;
 
-        [BoxGroup("Data/Souls")]
-        [SerializeField]
-        private Soul[] _secondarySouls = null;
         private InputManager _inputManager;
 
         [SerializeField]
         private float _invulnerabilityTime;
 
         private Timer _invulnerabilityTimer;
-
-        [BoxGroup("Data/Souls")]
-        [SerializeField]
-        private AudioClip _switchSoul = null;
-
-        [BoxGroup("Data/Souls")]
-        [SerializeField]
-        private Soul _emptySoul = null;
-
-        public SpriteRenderer knightAoeSprite;
 
         public event Action<IPlayer, IProjectile, Vector2> OnFire;
         public event Action<IPlayer, Vector2> OnMove;
@@ -67,18 +49,6 @@ namespace Game
         public event Action<IPlayer, IDamage, IEnemy> OnTakeDamage;
         public event Action<ISoul, ISoul[]> OnSwapSoul;
         public event Action<Player> OnPauseInput;
-
-        public Soul PrimarySoul
-        {
-            get => this._primarySoul;
-            set => this._primarySoul = value;
-        }
-
-        public Soul[] SecondarySouls
-        {
-            get => this._secondarySouls;
-            set => this._secondarySouls = value;
-        }
 
         public Vector2 AimDirection => this._projectileSpawnpoint.transform.right;
 
@@ -140,45 +110,6 @@ namespace Game
 
             Camera mainCamera = Camera.main;
             mainCamera.transform.position = new Vector3(transform.position.x, transform.position.y, mainCamera.transform.position.z);
-        }
-
-        private void UpdateSouls()
-        {
-            bool anySoulHasExpired = false;
-
-            if (this._primarySoul.HasExpired && this._primarySoul != this._emptySoul)
-            {
-                this._primarySoul.Unbind(this);
-                this._primarySoul = this._emptySoul;
-                this._primarySoul.Bind(this, true, false);
-                anySoulHasExpired = true;
-            }
-            else
-            {
-                this._primarySoul.OnFixedUpdate(this);
-            }
-
-            for (int i = 0; i < this._secondarySouls.Length; i++)
-            {
-                Soul soul = this._secondarySouls[i];
-
-                if (soul.HasExpired && soul != this._emptySoul)
-                {
-                    this._secondarySouls[i].Unbind(this);
-                    this._secondarySouls[i] = this._emptySoul;
-                    this._secondarySouls[i].Bind(this, false, false);
-                    anySoulHasExpired = true;
-                }
-                else
-                {
-                    soul.OnFixedUpdate(this);
-                }
-            }
-
-            if (anySoulHasExpired)
-            {
-                OnSwapSoul?.Invoke(this._primarySoul, this._secondarySouls);
-            }
         }
 
         private void UpdateStats()
@@ -273,98 +204,6 @@ namespace Game
             this.OnHit?.Invoke(this, projectile, actor);
         }
 
-        public void AddSoul(Soul soul)
-        {
-            bool hasBeenAdded = false;
-
-            if (this._primarySoul.Name == soul.Name)
-            {
-                this._primarySoul.SoulDurationTimer.Reset();
-                hasBeenAdded = true;
-            }
-            for (int i = 0; i < this._secondarySouls.Length; i++)
-            {
-                if (this._secondarySouls[i].Name == soul.Name)
-                {
-                    this._secondarySouls[i].SoulDurationTimer.Reset();
-                    hasBeenAdded = true;
-                    break;
-                }
-            }
-
-            if (!hasBeenAdded)
-            {
-                if (this._primarySoul == this._emptySoul)
-                {
-                    this._primarySoul.Unbind(this);
-                    this._primarySoul = soul;
-                    this._primarySoul.Bind(this, true, false);
-                    hasBeenAdded = true;
-                }
-            }
-
-            if (!hasBeenAdded)
-            {
-                for (int i = 0; i < this._secondarySouls.Length; i++)
-                {
-                    if (this._secondarySouls[i] == this._emptySoul)
-                    {
-                        this._secondarySouls[i].Unbind(this);
-                        this._secondarySouls[i] = soul;
-                        this._secondarySouls[i].Bind(this, false, false);
-                        hasBeenAdded = true;
-                        break;
-                    }
-                }
-            }
-
-            if (!hasBeenAdded)
-            {
-                float lowestRemainingTimer = float.MaxValue;
-                int soulIndex = 0;
-
-                for (int i = 0; i < this._secondarySouls.Length; i++)
-                {
-                    if (this._secondarySouls[i].SoulDurationTimer.TimeLeftToTrigger() < lowestRemainingTimer)
-                    {
-                        lowestRemainingTimer = this._secondarySouls[i].SoulDurationTimer.TimeLeftToTrigger();
-                        soulIndex = i;
-                    }
-                }
-
-                this._secondarySouls[soulIndex].Unbind(this);
-                this._secondarySouls[soulIndex] = soul;
-                this._secondarySouls[soulIndex].Bind(this, false, false);
-            }
-
-            OnSwapSoul?.Invoke(this._primarySoul, this._secondarySouls);
-        }
-
-        public void SwitchSoul()
-        {
-            this._primarySoul.Unbind(this);
-            this._secondarySouls[0].Unbind(this);
-
-            Manager.Get<SFXManager>().PlayGlobalSFX(this._switchSoul);
-
-            Soul previousPrimarySoul = this._primarySoul;
-
-            int length = this._secondarySouls.Length;
-
-            this._primarySoul = this._secondarySouls[0];
-            for (int i = 1; i < length; i++)
-            {
-                this._secondarySouls[i - 1] = this._secondarySouls[i];
-            }
-
-            this._secondarySouls[length - 1] = previousPrimarySoul;
-
-            this._primarySoul.Bind(this, true, true);
-            this._secondarySouls[length - 1].Bind(this, false, true);
-
-            OnSwapSoul?.Invoke(this._primarySoul, this._secondarySouls);
-        }
-
         protected override void OnCollision(GameObject go, Vector2 collisionPosition, bool isTrigger, CollisionType collisionType)
         {
             // walk on soul and destroy it
@@ -373,7 +212,7 @@ namespace Game
                 Manager.Get<SFXManager>().PlayGlobalSFX(pickableSoul.PickupSFX);
                 this.AddSoul(pickableSoul.SelectedSoul);
                 Destroy(go);
-                WipeCloseEnnemy();
+                WipeCloseEnemies();
             }
 
             if (this._invulnerabilityTimer.IsRunning())
@@ -388,7 +227,7 @@ namespace Game
                     Damage damage = new Damage(1, Color.white);
                     this.TakeDamage(damage);
                     this._invulnerabilityTimer.Reset();
-                    WipeCloseEnnemy();
+                    WipeCloseEnemies();
                 }
             }
         }
@@ -400,33 +239,16 @@ namespace Game
             Manager.Get<GameManager>().GameOver();
         }
 
-        internal bool HasAnyEmptySoul()
-        {
-            if (this._primarySoul == this._emptySoul)
-            {
-                return true;
-            }
-
-            for (int i = 0; i < this._secondarySouls.Length; i++)
-            {
-                if (this._secondarySouls[i] == this._emptySoul)
-                {
-                    return true;
-                }
-            }
-
-            return false;
-        }
-
-        internal void WipeCloseEnnemy()
+        internal void WipeCloseEnemies()
         {
             Collider2D[] colliders = Physics2D.OverlapCircleAll(this.transform.position, this._wipeRadius);
 
             for (int i = 0; i < colliders.Length; i++)
             {
-                if (colliders[i].TryGetComponent(out IEnemy enemy))
+                if (colliders[i].TryGetComponent(out Enemy enemy))
                 {
-                    enemy.TakeDamage(new Damage(_wipeDamage, Color.white));
+                    Vector3 distance = (this.transform.position - enemy.transform.position);
+                    enemy.TakeDamage(new Damage(_wipeDamage, Color.white, distance.normalized, this._wipeRadius - distance.magnitude));
                 }
             }
 
